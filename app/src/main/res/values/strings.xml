@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">ReviewMyPlace</string>
+    <string-array name="establishment_type">
+        <item></item>
+        <item>Restaurant</item>
+        <item>Coffee Shop</item>
+        <item>Bar</item>
+    </string-array>
 </resources>
