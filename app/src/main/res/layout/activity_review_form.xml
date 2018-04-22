@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ReviewFormActivity">
+
+    <!-- Title -->
+    <TextView android:id="@+id/review_form_title"
+        style="@style/AppTitleTheme"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="@string/review_form_title" />
+
+    <!-- Date -->
+    <TextView android:id="@+id/review_form_date_prompt"
+        style="@style/AppInputPromptTheme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/review_form_date_prompt"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/review_form_title" />
+
+    <TextView android:id="@+id/review_form_picked_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Test"
+        android:textSize="16sp"
+        android:fontFamily="serif"
+        app:layout_constraintBaseline_toBaselineOf="@id/review_form_date_prompt"
+        app:layout_constraintLeft_toRightOf="@id/review_form_date_prompt" />
+
+    <Button android:id="@+id/review_form_test_button_date_picker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:text="@string/review_form_button_pick_date"
+        android:onClick="showDatePickerDialog"
+        app:layout_constraintBaseline_toBaselineOf="@id/review_form_date_prompt"
+        app:layout_constraintLeft_toRightOf="@id/review_form_picked_date" />
+
+</android.support.constraint.ConstraintLayout>

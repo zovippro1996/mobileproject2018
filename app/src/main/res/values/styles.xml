@@ -9,9 +9,24 @@
     </style>
 
     <!-- Custom theme for buttons in IntroActivity. -->
-    <style name="AppTheme.IntroActivityButton" parent="Widget.AppCompat.Button.Colored">
+    <style name="IntroActivityButtonTheme" parent="Widget.AppCompat.Button.Colored">
         <item name="android:colorButtonNormal">@color/colorPinkButton</item>
         <item name="android:textColor">@color/colorWhiteText</item>
+    </style>
+
+    <!-- Custom theme for title(s). -->
+    <style name="AppTitleTheme" parent="@android:style/TextAppearance.Large">
+        <item name="android:textSize">28sp</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:fontFamily">serif</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- Custom theme for input-prompt (TextView) -->
+    <style name="AppInputPromptTheme" parent="@android:style/TextAppearance">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:fontFamily">serif</item>
     </style>
 
 </resources>

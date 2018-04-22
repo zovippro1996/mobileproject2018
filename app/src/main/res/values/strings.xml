@@ -1,10 +1,16 @@
 <resources>
     <string name="app_name">ReviewMyPlace</string>
 
+    <!-- IntroActivity -->
     <string name="intro_title_greeting">Welcome to</string>
     <string name="intro_title_app_name">ReStarNote</string>
     <string name="intro_subtitle">What do you want to do?</string>
     <string name="intro_button_add">Add Establishment</string>
     <string name="intro_button_dashboard">To Dashboard</string>
+
+    <!-- ReviewFormActivity -->
+    <string name="review_form_title">Review Form</string>
+    <string name="review_form_date_prompt">Date</string>
+    <string name="review_form_button_pick_date">Pick Date</string>
 
 </resources>
