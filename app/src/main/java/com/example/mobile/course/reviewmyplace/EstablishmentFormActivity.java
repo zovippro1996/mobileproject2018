@@ -3,21 +3,60 @@ package com.example.mobile.course.reviewmyplace;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 public class EstablishmentFormActivity extends AppCompatActivity {
+
+    //Init Component in Activity
+    EditText editText_UserID = (EditText)findViewById(R.id.editText_UserID);
+    EditText editText_NameEstablishment = (EditText) findViewById(R.id.editText_NameEstablishment);
+    Spinner spinner_TypeEstablishment = (Spinner) findViewById(R.id.spinner_TypeEstablishment);
+    EditText editText_TypeFood = (EditText) findViewById(R.id.editText_TypeFood);
+    EditText editText_Location = (EditText) findViewById(R.id.editText_Location);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.establishment_form_activity);
 
-        Spinner spinner = (Spinner) findViewById(R.id.spinner_TypeEstablishment);
-// Create an ArrayAdapter using the string array and a default spinner layout
+
+        // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.establishment_type, android.R.layout.simple_spinner_item);
-// Specify the layout to use when the list of choices appears
+        // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-// Apply the adapter to the spinner
-        spinner.setAdapter(adapter);
+        // Apply the adapter to the spinner
+        spinner_TypeEstablishment.setAdapter(adapter);
+
+
+    }
+
+
+    protected boolean validate_Allfield(){
+        //GetValue of user input
+        String UserID = editText_UserID.getText().toString();
+        String NameEstablishment = editText_NameEstablishment.getText().toString();
+        String TypeEstablishment = spinner_TypeEstablishment.getSelectedItem().toString();
+        String TypeFood = editText_TypeFood.getText().toString();
+        String Location = editText_Location.getText().toString();
+
+        return true;
+    }
+
+    /***
+     * Activate when User Click Confirm Button
+     * Validate First, then transfer value to confirmation activity
+     */
+    protected void clickConfirm_Button(){
+
+        //GetValue of user input
+        String UserID = editText_UserID.getText().toString();
+        String NameEstablishment = editText_NameEstablishment.getText().toString();
+        String TypeEstablishment = spinner_TypeEstablishment.getSelectedItem().toString();
+        String TypeFood = editText_TypeFood.getText().toString();
+        String Location = editText_Location.getText().toString();
+
+
     }
 }
