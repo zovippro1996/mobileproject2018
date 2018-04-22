@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f5d8f6"
+    tools:context="com.example.mobile.course.reviewmyplace.IntroActivity">
+
+    <TextView
+        android:id="@+id/intro_title_greeting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="@string/intro_title_greeting"
+        android:textColor="@android:color/black"
+        android:textSize="30sp"
+        android:textStyle="bold|italic"
+        android:fontFamily="cursive"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/intro_title_app_name"
+        app:layout_constraintTop_toBottomOf="@id/intro_title_app_name"
+        app:layout_constraintBottom_toTopOf="@id/intro_title_app_name" />
+
+    <TextView
+        android:id="@+id/intro_title_app_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/intro_title_app_name"
+        android:textColor="@android:color/holo_red_light"
+        android:textSize="40sp"
+        android:textStyle="bold|italic"
+        android:fontFamily="cursive"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/intro_title_greeting"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/intro_subtitle" />
+
+    <TextView
+        android:id="@+id/intro_subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/intro_subtitle"
+        android:textSize="12sp"
+        app:layout_constraintTop_toBottomOf="@id/intro_title_app_name"
+        app:layout_constraintBottom_toTopOf="@id/intro_button_add"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <Button
+        android:id="@+id/intro_button_add"
+        style="@style/AppTheme.IntroActivityButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/intro_button_add"
+        android:textSize="12sp"
+        android:onClick="moveToEstablishmentForm"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/intro_button_dashboard"
+        app:layout_constraintTop_toBottomOf="@id/intro_subtitle"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <Button
+        android:id="@+id/intro_button_dashboard"
+        style="@style/AppTheme.IntroActivityButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/intro_button_dashboard"
+        android:textSize="12sp"
+        android:onClick="moveToDashboard"
+        app:layout_constraintBaseline_toBaselineOf="@id/intro_button_add"
+        app:layout_constraintLeft_toRightOf="@id/intro_button_add"
+        app:layout_constraintRight_toRightOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

@@ -8,4 +8,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <!-- Custom theme for buttons in IntroActivity. -->
+    <style name="AppTheme.IntroActivityButton" parent="Widget.AppCompat.Button.Colored">
+        <item name="android:colorButtonNormal">@color/colorPinkButton</item>
+        <item name="android:textColor">@color/colorWhiteText</item>
+    </style>
+
 </resources>
