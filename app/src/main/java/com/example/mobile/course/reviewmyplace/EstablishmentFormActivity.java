@@ -2,9 +2,12 @@ package com.example.mobile.course.reviewmyplace;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+
+import java.util.regex.Pattern;
 
 public class EstablishmentFormActivity extends AppCompatActivity {
 
@@ -28,18 +31,34 @@ public class EstablishmentFormActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
         spinner_TypeEstablishment.setAdapter(adapter);
-
-
     }
 
 
-    protected boolean validate_Allfield(){
+    protected boolean validateAllFields(){
         //GetValue of user input
         String UserID = editText_UserID.getText().toString();
         String NameEstablishment = editText_NameEstablishment.getText().toString();
         String TypeEstablishment = spinner_TypeEstablishment.getSelectedItem().toString();
         String TypeFood = editText_TypeFood.getText().toString();
         String Location = editText_Location.getText().toString();
+
+        //Check If required field is empty
+        if (
+                (TextUtils.isEmpty(UserID))
+                &&(TextUtils.isEmpty(NameEstablishment))
+                &&(TextUtils.isEmpty(TypeEstablishment)))
+        {
+            return false;
+        }
+
+        //String Pattern
+        final String REGEX = "\\d";
+
+        //Validate String Pattern for UserID
+        boolean isValidRegex_UserID = Pattern.matches(REGEX, UserID);
+        if (!isValidRegex_UserID){
+            return false;
+        }
 
         return true;
     }
@@ -57,6 +76,10 @@ public class EstablishmentFormActivity extends AppCompatActivity {
         String TypeFood = editText_TypeFood.getText().toString();
         String Location = editText_Location.getText().toString();
 
+        if (validateAllFields()){
+
+
+        }
 
     }
 }
