@@ -1,6 +1,158 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/LabelEstablishmentName"
+        android:layout_width="80dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="Est. Name"
+        android:textAlignment="viewStart"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LabelUserID" />
+
+    <TextView
+        android:id="@+id/LabelEstablishmentType"
+        android:layout_width="80dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="Est. Type"
+        android:textAlignment="viewStart"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LabelEstablishmentName" />
+
+    <TextView
+        android:id="@+id/LabelFoodType"
+        android:layout_width="80dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="Food Type"
+        android:textAlignment="viewStart"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LabelEstablishmentType" />
+
+    <TextView
+        android:id="@+id/LabelLocation"
+        android:layout_width="80dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="Location"
+        android:textAlignment="viewStart"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LabelFoodType" />
+
+    <TextView
+        android:id="@+id/textview_UserID"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="44dp"
+        android:gravity="center"
+        android:text="USERID"
+        android:textAlignment="viewStart"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/LabelUserID"
+        tools:layout_editor_absoluteY="44dp" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="ESTNAME"
+        android:textAlignment="viewStart"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/LabelEstablishmentName"
+        app:layout_constraintTop_toBottomOf="@+id/textview_UserID" />
+
+    <TextView
+        android:id="@+id/textView_EstablishmentType"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="ESTTYPE"
+        android:textAlignment="viewStart"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/LabelEstablishmentType"
+        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+
+    <TextView
+        android:id="@+id/textView_FoodType"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="FOODTYPE"
+        android:textAlignment="viewStart"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/LabelFoodType"
+        app:layout_constraintTop_toBottomOf="@+id/textView_EstablishmentType" />
+
+    <TextView
+        android:id="@+id/textView_Location"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="28dp"
+        android:gravity="center"
+        android:text="LOCATION"
+        android:textAlignment="viewStart"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/LabelLocation"
+        app:layout_constraintTop_toBottomOf="@+id/textView_FoodType" />
+
+    <Button
+        android:id="@+id/button_Confirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="64dp"
+        android:text="Confirm"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LabelLocation" />
+
+    <Button
+        android:id="@+id/button_Edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="56dp"
+        android:text="Edit"
+        app:layout_constraintStart_toEndOf="@+id/button_Confirm"
+        app:layout_constraintTop_toBottomOf="@+id/textView_Location" />
+
+    <TextView
+        android:id="@+id/LabelUserID"
+        android:layout_width="80dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="44dp"
+        android:gravity="center"
+        android:text="Added By"
+        android:textAlignment="viewStart"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
