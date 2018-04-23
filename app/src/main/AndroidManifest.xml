@@ -19,11 +19,13 @@
         <!-- </intent-filter> -->
         <!-- </activity> -->
 
-        <activity android:name=".IntroActivity">
+        <activity android:name=".IntroActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
         </activity>
 
-        <activity android:name=".ReviewFormActivity">
+        <activity android:name=".ReviewFormActivity"
+            android:label="@string/review_form_activity_title">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

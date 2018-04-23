@@ -6,30 +6,22 @@
     android:layout_height="match_parent"
     tools:context=".ReviewFormActivity">
 
-    <!-- Title -->
-    <TextView android:id="@+id/review_form_title"
-        style="@style/AppTitleTheme"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:text="@string/review_form_title" />
-
     <!-- Date -->
     <TextView android:id="@+id/review_form_date_prompt"
         style="@style/AppInputPromptTheme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
+        android:gravity="start"
         android:text="@string/review_form_date_prompt"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/review_form_title" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView android:id="@+id/review_form_picked_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:text="Test"
         android:textSize="16sp"
         android:fontFamily="serif"
         app:layout_constraintBaseline_toBaselineOf="@id/review_form_date_prompt"
@@ -43,5 +35,128 @@
         android:onClick="showDatePickerDialog"
         app:layout_constraintBaseline_toBaselineOf="@id/review_form_date_prompt"
         app:layout_constraintLeft_toRightOf="@id/review_form_picked_date" />
+
+    <!-- Type of meal -->
+    <TextView android:id="@+id/review_form_type_meal_prompt"
+        style="@style/AppInputPromptTheme"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginStart="8dp"
+        android:gravity="start"
+        android:text="@string/review_form_type_meal_prompt"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/review_form_date_prompt" />
+
+    <CheckBox android:id="@+id/review_form_checkbox_breakfast"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"
+        android:text="@string/review_form_checkbox_breakfast"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintTop_toBottomOf="@id/review_form_type_meal_prompt"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/review_form_checkbox_lunch" />
+
+    <CheckBox android:id="@+id/review_form_checkbox_lunch"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="@string/review_form_checkbox_luch"
+        app:layout_constraintTop_toBottomOf="@id/review_form_checkbox_breakfast"
+        app:layout_constraintBottom_toTopOf="@id/review_form_checkbox_breakfast"
+        app:layout_constraintLeft_toRightOf="@id/review_form_checkbox_breakfast"
+        app:layout_constraintRight_toLeftOf="@id/review_form_checkbox_dinner" />
+
+    <CheckBox android:id="@+id/review_form_checkbox_dinner"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="@string/review_form_checkbox_dinner"
+        app:layout_constraintTop_toBottomOf="@id/review_form_checkbox_breakfast"
+        app:layout_constraintBottom_toTopOf="@id/review_form_checkbox_breakfast"
+        app:layout_constraintLeft_toRightOf="@id/review_form_checkbox_lunch"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <CheckBox android:id="@+id/review_form_checkbox_fast_food"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:layout_marginStart="16dp"
+        android:text="@string/review_form_checkbox_fast_food"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintTop_toBottomOf="@id/review_form_checkbox_breakfast"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/review_form_checkbox_snack" />
+
+    <CheckBox android:id="@+id/review_form_checkbox_snack"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="@string/review_form_checkbox_snack"
+        app:layout_constraintTop_toBottomOf="@id/review_form_checkbox_fast_food"
+        app:layout_constraintBottom_toTopOf="@id/review_form_checkbox_fast_food"
+        app:layout_constraintLeft_toRightOf="@id/review_form_checkbox_fast_food"
+        app:layout_constraintRight_toLeftOf="@id/review_form_checkbox_other" />
+
+    <CheckBox android:id="@+id/review_form_checkbox_other"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="@string/review_form_checkbox_other"
+        app:layout_constraintTop_toBottomOf="@id/review_form_checkbox_fast_food"
+        app:layout_constraintBottom_toTopOf="@id/review_form_checkbox_fast_food"
+        app:layout_constraintLeft_toRightOf="@id/review_form_checkbox_snack"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <!-- Cost of meal -->
+    <TextView android:id="@+id/review_form_cost_prompt"
+        style="@style/AppInputPromptTheme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        android:text="@string/review_form_cost_prompt"
+        app:layout_constraintTop_toBottomOf="@id/review_form_checkbox_fast_food"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <TextView android:id="@+id/review_form_min_cost_view"
+        style="@style/AppInputPromptTheme"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="24dp"
+        android:gravity="center_horizontal"
+        android:text="@string/review_form_min_cost"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@id/review_form_cost_prompt"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+
+    <EditText android:id="@+id/review_form_min_cost"
+        android:layout_width="124dp"
+        android:layout_height="30dp"
+        android:inputType="numberDecimal"
+        app:layout_constraintTop_toBottomOf="@id/review_form_min_cost_view"
+        app:layout_constraintBottom_toTopOf="@id/review_form_min_cost_view"
+        app:layout_constraintLeft_toRightOf="@id/review_form_min_cost_view" />
+
+    <TextView android:id="@+id/review_form_max_cost_view"
+        style="@style/AppInputPromptTheme"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="24dp"
+        android:gravity="center_horizontal"
+        android:text="@string/review_form_max_cost"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@id/review_form_min_cost_view"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+
+    <EditText android:id="@+id/review_form_max_cost"
+        android:layout_width="124dp"
+        android:layout_height="30dp"
+        android:inputType="numberDecimal"
+        app:layout_constraintTop_toBottomOf="@id/review_form_max_cost_view"
+        app:layout_constraintBottom_toTopOf="@id/review_form_max_cost_view"
+        app:layout_constraintLeft_toRightOf="@id/review_form_max_cost_view" />
 
 </android.support.constraint.ConstraintLayout>

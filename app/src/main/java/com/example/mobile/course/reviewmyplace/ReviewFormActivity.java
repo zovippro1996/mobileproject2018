@@ -8,9 +8,11 @@ import android.view.View;
 import android.widget.DatePicker;
 import android.widget.TextView;
 
-import com.example.mobile.course.reviewmyplace.object.DatePickerFragment;
+import com.example.mobile.course.reviewmyplace.helper.DatePickerFragment;
 
 import java.util.Calendar;
+import java.util.Locale;
+import java.util.Map;
 
 public class ReviewFormActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
 
@@ -22,10 +24,13 @@ public class ReviewFormActivity extends AppCompatActivity implements DatePickerD
         // Initialize picked date (with default value - current date)
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH);
+//        int month = calendar.get(Calendar.MONTH);
         int day = calendar.get(Calendar.DAY_OF_MONTH);
+        String monthName =
+                calendar.getDisplayName(Calendar.MONTH, Calendar.SHORT, Locale.getDefault());
 
-        String strDate = day + "/" + (month + 1) + "/" + year;
+//        String strDate = day + "/" + (month + 1) + "/" + year;
+        String strDate = day + " " + monthName + ", " + year;
 
         TextView pickedDate = (TextView) findViewById(R.id.review_form_picked_date);
         pickedDate.setText(strDate);

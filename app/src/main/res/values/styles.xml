@@ -24,8 +24,7 @@
 
     <!-- Custom theme for input-prompt (TextView) -->
     <style name="AppInputPromptTheme" parent="@android:style/TextAppearance">
-        <item name="android:textSize">18sp</item>
-        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textColor">@color/colorPinkInputPrompt</item>
         <item name="android:fontFamily">serif</item>
     </style>
 

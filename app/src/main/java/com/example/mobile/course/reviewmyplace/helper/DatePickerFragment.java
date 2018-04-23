@@ -1,4 +1,4 @@
-package com.example.mobile.course.reviewmyplace.object;
+package com.example.mobile.course.reviewmyplace.helper;
 
 import android.app.Dialog;
 import android.app.DialogFragment;

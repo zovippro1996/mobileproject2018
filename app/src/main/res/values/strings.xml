@@ -9,8 +9,18 @@
     <string name="intro_button_dashboard">To Dashboard</string>
 
     <!-- ReviewFormActivity -->
-    <string name="review_form_title">Review Form</string>
-    <string name="review_form_date_prompt">Date</string>
+    <string name="review_form_activity_title">Review Form</string>
+    <string name="review_form_date_prompt">Date of review:</string>
     <string name="review_form_button_pick_date">Pick Date</string>
+    <string name="review_form_type_meal_prompt">Type of meal served:</string>
+    <string name="review_form_checkbox_breakfast">Breakfast</string>
+    <string name="review_form_checkbox_luch">Lunch</string>
+    <string name="review_form_checkbox_dinner">Dinner</string>
+    <string name="review_form_checkbox_fast_food">Fast Food</string>
+    <string name="review_form_checkbox_snack">Snack</string>
+    <string name="review_form_checkbox_other">Other</string>
+    <string name="review_form_cost_prompt">Cost of meals:</string>
+    <string name="review_form_max_cost">Max:</string>
+    <string name="review_form_min_cost">Min:</string>
 
 </resources>
