@@ -1,19 +1,27 @@
 <resources>
     <string name="app_name">ReviewMyPlace</string>
 
-    <string-array name="establishment_type">
-        <item></item>
-        <item>Restaurant</item>
-        <item>Coffee Shop</item>
-        <item>Bar</item>
-    </string-array>
-
-
     <string name="intro_title_greeting">Welcome to</string>
     <string name="intro_title_app_name">ReStarNote</string>
     <string name="intro_subtitle">What do you want to do?</string>
     <string name="intro_button_add">Add Establishment</string>
     <string name="intro_button_dashboard">To Dashboard</string>
 
+    <string name="userID">User ID</string>
+
+
+    <string-array name="establishment_label">
+        <item></item>
+        <item>Restaurant</item>
+        <item>Coffee Shop</item>
+        <item>Bar</item>
+    </string-array>
+
+    <string-array name="establishment_value">
+        <item></item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
 
 </resources>

@@ -18,8 +18,10 @@ public class IntroActivity extends AppCompatActivity {
      * starting creating new establishment
      */
     public void moveToEstablishmentForm(View view) {
-//        Intent intent = new Intent(this, EstablishmentFormActivity.class);
-//        startActivity(intent);
+        Intent intent = new Intent(this, EstablishmentFormActivity.class);
+        startActivity(intent);
+
+
     }
 
     /**
