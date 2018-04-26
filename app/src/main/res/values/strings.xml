@@ -20,7 +20,12 @@
     <string name="review_form_checkbox_snack">Snack</string>
     <string name="review_form_checkbox_other">Other</string>
     <string name="review_form_cost_prompt">Cost of meals:</string>
-    <string name="review_form_max_cost">Max:</string>
-    <string name="review_form_min_cost">Min:</string>
+    <string name="review_form_max_cost_hint">Max. cost</string>
+    <string name="review_form_min_cost_hint">Min. cost</string>
+    <string name="review_form_rating_prompt">Ratings:</string>
+    <string name="review_form_service_rating_prompt">Service</string>
+    <string name="review_form_atmosphere_rating_prompt">Atmosphere</string>
+    <string name="review_form_food_rating_prompt">Food</string>
+    <string name="review_form_overall_rating_prompt">Overall</string>
 
 </resources>

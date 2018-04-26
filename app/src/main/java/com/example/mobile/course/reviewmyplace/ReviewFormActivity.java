@@ -24,13 +24,22 @@ public class ReviewFormActivity extends AppCompatActivity implements DatePickerD
         // Initialize picked date (with default value - current date)
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
-//        int month = calendar.get(Calendar.MONTH);
         int day = calendar.get(Calendar.DAY_OF_MONTH);
         String monthName =
-                calendar.getDisplayName(Calendar.MONTH, Calendar.SHORT, Locale.getDefault());
+                calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault());
 
-//        String strDate = day + "/" + (month + 1) + "/" + year;
-        String strDate = day + " " + monthName + ", " + year;
+        // String representation of the selected date
+        String strDate = day + "";
+        if (day % 10 == 1 && day != 11) {
+            strDate += "st ";
+        } else if (day % 10 == 2 && day != 12) {
+            strDate += "nd ";
+        } else if (day % 10 == 3 && day != 13) {
+            strDate += "rd ";
+        } else {
+            strDate += "th ";
+        }
+        strDate += monthName + ", " + year;
 
         TextView pickedDate = (TextView) findViewById(R.id.review_form_picked_date);
         pickedDate.setText(strDate);
@@ -43,8 +52,24 @@ public class ReviewFormActivity extends AppCompatActivity implements DatePickerD
 
     @Override
     public void onDateSet(DatePicker view, int year, int month, int day) {
-        // Set the value of 'picked date' TextView into the selected date
-        String strDate = day + "/" + (month + 1) + "/" + year;
+        // Extract name of selected month
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(year, month, day);
+
+        String monthName = calendar.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault());
+
+        // String representation of the selected date
+        String strDate = day + "";
+        if (day % 10 == 1 && day != 11) {
+            strDate += "st ";
+        } else if (day % 10 == 2 && day != 12) {
+            strDate += "nd ";
+        } else if (day % 10 == 3 && day != 13) {
+            strDate += "rd ";
+        } else {
+            strDate += "th ";
+        }
+        strDate += monthName + ", " + year;
 
         TextView pickedDate = (TextView) findViewById(R.id.review_form_picked_date);
         pickedDate.setText(strDate);
