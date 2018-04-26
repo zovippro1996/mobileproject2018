@@ -21,12 +21,14 @@
         android:id="@+id/editText_UserID"
         android:layout_width="wrap_content"
         android:layout_height="43dp"
+        android:layout_marginStart="48dp"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/textview_UserID"
+        app:layout_constraintStart_toEndOf="@+id/textview_UserID"
         app:layout_constraintTop_toBottomOf="@+id/textview_UserID"
-        tools:layout_editor_absoluteX="95dp" />
+        app:layout_constraintVertical_bias="0.552" />
 
     <TextView
         android:id="@+id/textView_EstablishmentName"
@@ -63,7 +65,8 @@
     <Spinner
         android:id="@+id/spinner_EstablishmentType"
         android:layout_width="237dp"
-        android:layout_height="wrap_content"
+        android:layout_height="36dp"
+
         android:layout_marginStart="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_EstablishmentType" />

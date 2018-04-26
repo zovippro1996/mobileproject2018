@@ -30,11 +30,19 @@ public class EstablishmentConfirmationActivity extends AppCompatActivity {
 
         String FoodType = intent.getStringExtra("FoodType");
         String Location = intent.getStringExtra("Location");
-//
-//        // Set Text for Text View Based on Establishment Form
+
+        // Set Text for Text View Based on Establishment Form
+        textview_UserID = (TextView) findViewById(R.id.textview_UserID);
+        textView_EstablishmentName = (TextView) findViewById(R.id.textView_EstablishmentName);
+        textView_EstablishmentType = (TextView) findViewById(R.id.textView_EstablishmentType);
+        textView_FoodType = (TextView) findViewById(R.id.textView_FoodType);
+        textView_Location = (TextView) findViewById(R.id.textView_Location);
+
         textview_UserID.setText(UserID);
         textView_EstablishmentName.setText(EstablishmentName);
-        textView_EstablishmentType.setText(EstablishmentType);
+        String EstType_Label = getResources().getStringArray(R.array.establishment_label)[Integer
+                .parseInt(EstablishmentType)];
+        textView_EstablishmentType.setText(EstType_Label);
         textView_FoodType.setText(FoodType);
         textView_Location.setText(Location);
 
