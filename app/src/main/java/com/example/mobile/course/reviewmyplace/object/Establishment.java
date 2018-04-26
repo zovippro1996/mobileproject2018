@@ -1,14 +1,19 @@
 package com.example.mobile.course.reviewmyplace.object;
 
 public class Establishment {
-    private int establishmentID;                    // id for the establishment assigned by the database
+    private int establishmentID;                    // id for the establishment assigned by the
+    // database
     private String userID;                          // userID input from user (for what?)
-    private String establishmentName;               // name of establishment (e.g. Trung Nguyen Coffee)
-    private EstablishmentType establishmentType;    // type of establishment {Restaurant | Coffe Shop | Bar}
+    private String establishmentName;               // name of establishment (e.g. Trung Nguyen
+    // Coffee)
+    private EstablishmentType establishmentType;    // type of establishment {Restaurant | Coffe
+    // Shop | Bar}
     private String food;                            // food served in the establishment
     private Location establishmentLocation;         // location of the establishment
 
-    /** Constructors */
+    /**
+     * Constructors
+     */
     public Establishment() {
         // Default ID: negative value
         setEstablishmentID(-1);
@@ -23,6 +28,7 @@ public class Establishment {
         // Default Location: a Location object with empty description
         setEstablishmentLocation("");
     }
+
 
     public Establishment(int id, String userID, String name, EstablishmentType type, String food,
                          String locationDescription) {
@@ -44,7 +50,9 @@ public class Establishment {
         setEstablishmentLocation(location);
     }
 
-    /** Get/Set for establishmentID */
+    /**
+     * Get/Set for establishmentID
+     */
     public void setEstablishmentID(int establishmentID) {
         this.establishmentID = establishmentID;
     }
@@ -53,7 +61,9 @@ public class Establishment {
         return establishmentID;
     }
 
-    /** Get/Set for userID */
+    /**
+     * Get/Set for userID
+     */
     public void setUserID(String userID) {
         this.userID = userID;
     }
@@ -62,7 +72,9 @@ public class Establishment {
         return userID;
     }
 
-    /** Get/Set for establishmentName */
+    /**
+     * Get/Set for establishmentName
+     */
     public void setEstablishmentName(String establishmentName) {
         this.establishmentName = establishmentName;
     }
@@ -71,7 +83,9 @@ public class Establishment {
         return establishmentName;
     }
 
-    /** Get/Set for establishmentType */
+    /**
+     * Get/Set for establishmentType
+     */
     public void setEstablishmentType(EstablishmentType establishmentType) {
         this.establishmentType = establishmentType;
     }
@@ -80,7 +94,9 @@ public class Establishment {
         return establishmentType;
     }
 
-    /** Get/Set for food */
+    /**
+     * Get/Set for food
+     */
     public void setFood(String food) {
         this.food = food;
     }
@@ -91,6 +107,7 @@ public class Establishment {
 
     /**
      * Setter for establishmentLocation that receives Location parameter
+     *
      * @param location
      */
     public void setEstablishmentLocation(Location location) {
@@ -99,13 +116,16 @@ public class Establishment {
 
     /**
      * Setter for establishmentLocation that receives String parameter
+     *
      * @param description
      */
     public void setEstablishmentLocation(String description) {
         establishmentLocation = new Location(description);
     }
 
-    /** Setter for establishmentLocation */
+    /**
+     * Setter for establishmentLocation
+     */
     public Location getEstablishmentLocation() {
         return establishmentLocation;
     }
