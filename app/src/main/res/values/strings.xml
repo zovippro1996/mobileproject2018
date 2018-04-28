@@ -8,6 +8,22 @@
     <string name="intro_button_add">Add Establishment</string>
     <string name="intro_button_dashboard">To Dashboard</string>
 
+    <string name="userID">User ID</string>
+
+    <string-array name="establishment_label">
+        <item></item>
+        <item>Restaurant</item>
+        <item>Coffee Shop</item>
+        <item>Bar</item>
+    </string-array>
+
+    <string-array name="establishment_value">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
     <!-- ReviewFormActivity -->
     <string name="review_form_activity_title">Review Form</string>
     <string name="review_form_date_prompt">Date of review:</string>
