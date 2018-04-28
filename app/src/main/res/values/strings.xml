@@ -27,5 +27,19 @@
     <string name="review_form_atmosphere_rating_prompt">Atmosphere</string>
     <string name="review_form_food_rating_prompt">Food</string>
     <string name="review_form_overall_rating_prompt">Overall</string>
+    <string name="review_form_next_button">Next</string>
+
+    <!-- ReviewFormContActivity -->
+    <string name="review_form_cont_date_label">Date of review:</string>
+    <string name="review_form_cont_meal_types_label">Types of meal:</string>
+    <string name="review_form_cont_cost_label">Average cost:</string>
+    <string name="review_form_cont_dash">-</string>
+    <string name="review_form_cont_service_rating_label">Service:</string>
+    <string name="review_form_cont_atmosphere_rating_label">Atmosphere:</string>
+    <string name="review_form_cont_food_rating_label">Food:</string>
+    <string name="review_form_cont_overall_rating_label">Overall:</string>
+    <string name="review_form_cont_comment_prompt">Additional comments:</string>
+    <string name="review_form_cont_save_button">Save</string>
+    <string name="review_form_cont_comment_hint">Note anything you want (e.g. return in 2 weeks, bring more friends next time, etc.)</string>
 
 </resources>

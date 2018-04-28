@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Currency Array -->
+    <string-array name="currencies_array">
+        <item value="dollar">USD (\u0024)</item>
+        <item value="euro">EURO (\u20ac)</item>
+        <item value="pound">POUND (\u00a3)</item>
+        <item value="vnd">VND</item>
+    </string-array>
+</resources>

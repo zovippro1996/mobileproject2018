@@ -8,11 +8,11 @@
 
     <!-- Date -->
     <TextView android:id="@+id/review_form_date_prompt"
-        style="@style/AppInputPromptTheme"
+        style="@style/AppTheme.InputPrompt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:text="@string/review_form_date_prompt"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -40,10 +40,10 @@
 
     <!-- Type of meal -->
     <TextView android:id="@+id/review_form_type_meal_prompt"
-        style="@style/AppInputPromptTheme"
+        style="@style/AppTheme.InputPrompt"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:layout_marginStart="8dp"
         android:gravity="start"
         android:text="@string/review_form_type_meal_prompt"
@@ -112,7 +112,7 @@
 
     <!-- Cost of meal -->
     <TextView android:id="@+id/review_form_cost_prompt"
-        style="@style/AppInputPromptTheme"
+        style="@style/AppTheme.InputPrompt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -122,7 +122,7 @@
         app:layout_constraintLeft_toLeftOf="parent" />
 
     <EditText android:id="@+id/review_form_min_cost"
-        android:layout_width="124dp"
+        android:layout_width="140dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginStart="16dp"
@@ -131,49 +131,49 @@
         app:layout_constraintTop_toBottomOf="@id/review_form_cost_prompt"
         app:layout_constraintLeft_toLeftOf="parent" />
 
-    <TextView android:id="@+id/review_form_min_currency"
+    <Spinner android:id="@+id/review_form_min_currency"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="$"
+        android:spinnerMode="dropdown"
         app:layout_constraintTop_toBottomOf="@id/review_form_min_cost"
         app:layout_constraintBottom_toTopOf="@id/review_form_min_cost"
         app:layout_constraintLeft_toRightOf="@id/review_form_min_cost" />
 
     <EditText android:id="@+id/review_form_max_cost"
-        android:layout_width="124dp"
+        android:layout_width="140dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="16dp"
         android:inputType="numberDecimal"
         android:hint="@string/review_form_max_cost_hint"
         app:layout_constraintTop_toBottomOf="@id/review_form_min_cost"
-        app:layout_constraintBottom_toTopOf="@id/review_form_min_cost"
-        app:layout_constraintLeft_toRightOf="@id/review_form_min_currency" />
+        app:layout_constraintLeft_toLeftOf="parent" />
 
-    <TextView android:id="@+id/review_form_max_currency"
+    <Spinner android:id="@+id/review_form_max_currency"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="$"
+        android:spinnerMode="dropdown"
         app:layout_constraintTop_toBottomOf="@id/review_form_max_cost"
         app:layout_constraintBottom_toTopOf="@id/review_form_max_cost"
         app:layout_constraintLeft_toRightOf="@id/review_form_max_cost" />
 
     <!-- Ratings -->
     <TextView android:id="@+id/review_form_rating_prompt"
-        style="@style/AppInputPromptTheme"
+        style="@style/AppTheme.InputPrompt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginStart="8dp"
         android:text="@string/review_form_rating_prompt"
-        app:layout_constraintTop_toBottomOf="@id/review_form_min_cost"
+        app:layout_constraintTop_toBottomOf="@id/review_form_max_cost"
         app:layout_constraintLeft_toLeftOf="parent" />
 
     <TextView android:id="@+id/review_form_service_rating_prompt"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="10dp"
         android:layout_marginStart="24dp"
         android:text="@string/review_form_service_rating_prompt"
         android:textColor="@android:color/black"
@@ -181,7 +181,7 @@
         app:layout_constraintTop_toBottomOf="@id/review_form_rating_prompt" />
 
     <RatingBar android:id="@+id/review_form_service_rating_bar"
-        style="@style/AppCustomRatingBar"
+        style="@style/AppTheme.RatingBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
@@ -196,7 +196,7 @@
     <TextView android:id="@+id/review_form_atmosphere_rating_prompt"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="10dp"
         android:layout_marginStart="24dp"
         android:text="@string/review_form_atmosphere_rating_prompt"
         android:textColor="@android:color/black"
@@ -204,7 +204,7 @@
         app:layout_constraintLeft_toLeftOf="parent" />
 
     <RatingBar android:id="@+id/review_form_atmosphere_rating_bar"
-        style="@style/AppCustomRatingBar"
+        style="@style/AppTheme.RatingBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
@@ -219,7 +219,7 @@
     <TextView android:id="@+id/review_form_food_rating_prompt"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="10dp"
         android:layout_marginStart="24dp"
         android:text="@string/review_form_food_rating_prompt"
         android:textColor="@android:color/black"
@@ -227,7 +227,7 @@
         app:layout_constraintLeft_toLeftOf="parent" />
 
     <RatingBar android:id="@+id/review_form_food_rating_bar"
-        style="@style/AppCustomRatingBar"
+        style="@style/AppTheme.RatingBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
@@ -242,7 +242,7 @@
     <TextView android:id="@+id/review_form_overall_rating_prompt"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="10dp"
         android:layout_marginStart="24dp"
         android:text="@string/review_form_overall_rating_prompt"
         android:textColor="@android:color/black"
@@ -250,7 +250,7 @@
         app:layout_constraintLeft_toLeftOf="parent" />
 
     <RatingBar android:id="@+id/review_form_overall_rating_bar"
-        style="@style/AppCustomRatingBar"
+        style="@style/AppTheme.RatingBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="64dp"
@@ -261,5 +261,17 @@
         app:layout_constraintTop_toBottomOf="@id/review_form_overall_rating_prompt"
         app:layout_constraintBottom_toTopOf="@id/review_form_overall_rating_prompt"
         app:layout_constraintLeft_toRightOf="@id/review_form_overall_rating_prompt" />
+
+    <!-- Next Button -->
+    <Button android:id="@+id/review_form_next_button"
+        style="@style/AppTheme.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="@string/review_form_next_button"
+        android:onClick="onNextButton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
