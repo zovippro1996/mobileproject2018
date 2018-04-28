@@ -5,4 +5,5 @@
     <color name="colorAccent">#FF4081</color>
     <color name="colorPinkButton">#FF5079</color>
     <color name="colorWhiteText">#FFFFFF</color>
+    <color name="colorPinkInputPrompt">#F20CA1</color>
 </resources>

@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">ReStarNote</string>
 
+    <!-- IntroActivity -->
     <string name="intro_title_greeting">Welcome to</string>
     <string name="intro_title_app_name">ReStarNote</string>
     <string name="intro_subtitle">What do you want to do?</string>
@@ -17,7 +18,7 @@
     <string name="establishmentconfirm_location_label">Location</string>
 
     <string-array name="establishment_label">
-        <item></item>
+        <item />
         <item>Restaurant</item>
         <item>Coffee Shop</item>
         <item>Bar</item>
@@ -33,5 +34,39 @@
 
     <string name="action_settings">Settings</string>
 
+
+    <!-- ReviewFormActivity -->
+    <string name="review_form_activity_title">Review Form</string>
+    <string name="review_form_date_prompt">Date of review:</string>
+    <string name="review_form_button_pick_date">Pick Date</string>
+    <string name="review_form_type_meal_prompt">Type of meal served:</string>
+    <string name="review_form_checkbox_breakfast">Breakfast</string>
+    <string name="review_form_checkbox_luch">Lunch</string>
+    <string name="review_form_checkbox_dinner">Dinner</string>
+    <string name="review_form_checkbox_fast_food">Fast Food</string>
+    <string name="review_form_checkbox_snack">Snack</string>
+    <string name="review_form_checkbox_other">Other</string>
+    <string name="review_form_cost_prompt">Cost of meals:</string>
+    <string name="review_form_max_cost_hint">Max. cost</string>
+    <string name="review_form_min_cost_hint">Min. cost</string>
+    <string name="review_form_rating_prompt">Ratings:</string>
+    <string name="review_form_service_rating_prompt">Service</string>
+    <string name="review_form_atmosphere_rating_prompt">Atmosphere</string>
+    <string name="review_form_food_rating_prompt">Food</string>
+    <string name="review_form_overall_rating_prompt">Overall</string>
+    <string name="review_form_next_button">Next</string>
+
+    <!-- ReviewFormContActivity -->
+    <string name="review_form_cont_date_label">Date of review:</string>
+    <string name="review_form_cont_meal_types_label">Types of meal:</string>
+    <string name="review_form_cont_cost_label">Average cost:</string>
+    <string name="review_form_cont_dash">-</string>
+    <string name="review_form_cont_service_rating_label">Service:</string>
+    <string name="review_form_cont_atmosphere_rating_label">Atmosphere:</string>
+    <string name="review_form_cont_food_rating_label">Food:</string>
+    <string name="review_form_cont_overall_rating_label">Overall:</string>
+    <string name="review_form_cont_comment_prompt">Additional comments:</string>
+    <string name="review_form_cont_save_button">Save</string>
+    <string name="review_form_cont_comment_hint">Note anything you want (e.g. return in 2 weeks, bring more friends next time, etc.)</string>
 
 </resources>

@@ -1,6 +1,10 @@
 package com.example.mobile.course.reviewmyplace.object;
 
-public class Establishment {
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.util.Log;
+
+public class Establishment implements Parcelable {
     private int establishmentID;                    // id for the establishment assigned by the
     // database
     private String userID;                          // userID input from user (for what?)
@@ -50,9 +54,40 @@ public class Establishment {
         setEstablishmentLocation(location);
     }
 
-    /**
-     * Get/Set for establishmentID
-     */
+    public Establishment(Parcel in) {
+        String[] strData = new String[3];
+        int[] intData = new int[2];
+
+        // Extract String fields
+        in.readStringArray(strData);
+        userID = strData[0];
+        establishmentName = strData[1];
+        food = strData[2];
+
+        // Extract Integer (and EstablishmentType) fields
+        in.readIntArray(intData);
+        establishmentID = intData[0];
+        switch (intData[1]) {
+            case -1:
+                establishmentType = EstablishmentType.NONE;
+                break;
+            case 1:
+                establishmentType = EstablishmentType.RESTAURANT;
+                break;
+            case 2:
+                establishmentType = EstablishmentType.COFFEE_SHOP;
+                break;
+            case 3:
+                establishmentType = EstablishmentType.BAR;
+                break;
+            default:
+                establishmentType = EstablishmentType.NONE;;
+                Log.w("est_type_warning", "Invalid integer for establishmentType extracted from Parcel");
+                break;
+        }
+    }
+
+    /** Get/Set for establishmentID */
     public void setEstablishmentID(int establishmentID) {
         this.establishmentID = establishmentID;
     }
@@ -129,4 +164,35 @@ public class Establishment {
     public Location getEstablishmentLocation() {
         return establishmentLocation;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeStringArray(new String[] {
+                userID,                         // index: 0
+                establishmentName,              // index: 1
+                food                            // index: 2
+        });
+
+        parcel.writeIntArray(new int[] {
+                establishmentID,                // index: 0
+                establishmentType.getValue()    // index: 1
+        });
+    }
+
+    public static final Parcelable.Creator<Establishment>CREATOR = new Parcelable.Creator<Establishment>() {
+        @Override
+        public Establishment createFromParcel(Parcel parcel) {
+            return new Establishment(parcel);
+        }
+
+        @Override
+        public Establishment[] newArray(int size) {
+            return new Establishment[size];
+        }
+    };
 }

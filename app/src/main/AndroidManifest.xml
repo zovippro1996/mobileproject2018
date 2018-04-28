@@ -9,34 +9,29 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".IntroActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity
+            android:name=".EstablishmentFormActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".EstablishmentConfirmationActivity"
             android:parentActivityName=".EstablishmentFormActivity"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
-        <!-- <activity android:name=".MainActivity"> -->
-        <!-- <intent-filter> -->
-        <!-- <action android:name="android.intent.action.MAIN" /> -->
 
+        <activity android:name=".ReviewFormActivity"
+            android:label="@string/review_form_activity_title">
+        </activity>
 
-        <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-        <!-- </intent-filter> -->
-        <!-- </activity> -->
-        <activity
-            android:name=".EstablishmentFormActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ReviewFormContActivity"
+            android:label="@string/review_form_activity_title"
+            android:parentActivityName=".ReviewFormActivity">
+            <!-- Parent activity meta-data support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".ReviewFormActivity" />
+        </activity>
+
     </application>
-
 </manifest>

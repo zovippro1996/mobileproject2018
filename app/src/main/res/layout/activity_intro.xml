@@ -56,7 +56,7 @@
 
     <Button
         android:id="@+id/intro_button_add"
-        style="@style/AppTheme.IntroActivityButton"
+        style="@style/AppTheme.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -72,7 +72,7 @@
 
     <Button
         android:id="@+id/intro_button_dashboard"
-        style="@style/AppTheme.IntroActivityButton"
+        style="@style/AppTheme.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"

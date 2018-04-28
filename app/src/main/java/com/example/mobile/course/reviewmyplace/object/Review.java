@@ -1,17 +1,21 @@
 package com.example.mobile.course.reviewmyplace.object;
 
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.util.Log;
 
-import java.util.Date;
+import java.util.Calendar;
+import java.util.Locale;
 
-public class Review {
+public class Review implements Parcelable {
     private int reviewID;               // id for the review assigned by the database
     private int establishmentID;        // id of the associated establishment
     // private String userID; (why?)
-    private Date reviewDate;            // date at which the review is created/added
+    private Calendar reviewDate;            // date at which the review is created/added
     private String mealType;            // type of the meal (e.g. breakfast, lunch, dinner, etc.)
     private String reviewContent;       // content of the review (i.e. description)
-    private float billCost;             // average cost of the establishment
+    private float maxCost;              // maximum cost of food in the establishment
+    private float minCost;              // minimum cost of food in the establishment
     private float overallRating;        // overall rating for the establishment as a whole
     private float serviceRating;        // rating for service
     private float atmosphereRating;     // rating for atmosphere
@@ -24,25 +28,66 @@ public class Review {
         setEstablishmentID(-2);
 
         // Default date: current date
-        setReviewDate(new Date());
+        setReviewDate();
 
         setMealType("");
         setReviewContent("");
-        setBillCost(0.0f);
+
+        setMaxCost(0.0f);
+        setMinCost(0.0f);
 
         // Default rating: 2.5
         setRating(2.5f, 2.5f, 2.5f, 2.5f);
     }
 
-    public Review(int id, int establishmentID, Date date, String mealType, String content, float cost,
-                  float serviceRating, float atmosphereRating, float foodRating, float overallRating) {
+    public Review(int id, int establishmentID, Calendar date, String mealType, String content, float minCost,
+                  float maxCost, float serviceRating, float atmosphereRating, float foodRating, float overallRating) {
         setReviewID(id);
         setEstablishmentID(establishmentID);
         setReviewDate(date);
         setMealType(mealType);
         setReviewContent(content);
-        setBillCost(cost);
+        setMinCost(minCost);
+        setMaxCost(maxCost);
         setRating(overallRating, serviceRating, atmosphereRating, foodRating);
+    }
+
+    public Review(int establishmentID, Calendar date, String mealType, String content, float minCost,
+                  float maxCost, float serviceRating, float atmosphereRating, float foodRating, float overallRating) {
+        setEstablishmentID(establishmentID);
+        setReviewDate(date);
+        setMealType(mealType);
+        setReviewContent(content);
+        setMinCost(minCost);
+        setMaxCost(maxCost);
+        setRating(overallRating, serviceRating, atmosphereRating, foodRating);
+    }
+
+    public Review(Parcel in) {
+        String[] strData = new String[2];
+        float[] floatData = new float[6];
+        int[] intData = new int[5];
+
+        // Extract String fields
+        in.readStringArray(strData);
+        mealType = strData[0];
+        reviewContent = strData[1];
+
+        // Extract float fields
+        in.readFloatArray(floatData);
+        minCost = floatData[0];
+        maxCost = floatData[1];
+        serviceRating = floatData[2];
+        atmosphereRating = floatData[3];
+        foodRating = floatData[4];
+        overallRating = floatData[5];
+
+        // Extract int fields
+        in.readIntArray(intData);
+        reviewID = intData[0];
+        establishmentID = intData[1];
+        reviewDate = Calendar.getInstance();
+        reviewDate.set(intData[4], intData[3], intData[2]);
     }
 
     /** Get/Set for reviewID */
@@ -64,11 +109,15 @@ public class Review {
     }
 
     /** Get/Set for reviewDate */
-    public void setReviewDate(Date reviewDate) {
-        this.reviewDate = (Date) reviewDate.clone();
+    public void setReviewDate(Calendar reviewDate) {
+        this.reviewDate = (Calendar) reviewDate.clone();
     }
 
-    public Date getReviewDate() {
+    public void setReviewDate() {
+        reviewDate = Calendar.getInstance();
+    }
+
+    public Calendar getReviewDate() {
         return reviewDate;
     }
 
@@ -90,13 +139,22 @@ public class Review {
         return reviewContent;
     }
 
-    /** Get/Set for billCost */
-    public void setBillCost(float billCost) {
-        this.billCost = billCost;
+    /** Get/Set for maxCost */
+    public void setMaxCost(float maxCost) {
+        this.maxCost = maxCost;
     }
 
-    public float getBillCost() {
-        return billCost;
+    public float getMaxCost() {
+        return maxCost;
+    }
+
+    /** Get/Set for minCost */
+    public void setMinCost(float minCost) {
+        this.minCost = minCost;
+    }
+
+    public float getMinCost() {
+        return minCost;
     }
 
     /**
@@ -177,10 +235,10 @@ public class Review {
 
     /**
      * Set four kinds of rating all at once
-     * @param overall
-     * @param service
-     * @param atmosphere
-     * @param food
+     * @param overall - Overall rating from user
+     * @param service - Rating for service of the associated establishment
+     * @param atmosphere - Rating for atmosphere in the associated establishment
+     * @param food - Rating for food served at the associated establishment
      */
     public void setRating(float overall, float service, float atmosphere, float food) {
         setOverallRating(overall);
@@ -188,4 +246,70 @@ public class Review {
         setAtmosphereRating(atmosphere);
         setFoodRating(food);
     }
+
+    /**
+     * Return a String representation of the date (Calendar) (e.g. 23rd January, 2018)
+     * @return strDate - String representation of the date (Calendar)
+     */
+    public String getStringDate() {
+        int day = reviewDate.get(Calendar.DAY_OF_MONTH);
+        int year = reviewDate.get(Calendar.YEAR);
+        String monthName = reviewDate.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault());
+
+        String strDate = day + "";
+        if (day % 10 == 1 && day != 11) {
+            strDate += "st ";
+        } else if (day % 10 == 2 && day != 12) {
+            strDate += "nd ";
+        } else if (day % 10 == 3 && day != 13) {
+            strDate += "rd ";
+        } else {
+            strDate += "th ";
+        }
+        strDate += monthName + ", " + year;
+
+        return strDate;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeStringArray(new String[] {
+                mealType,                               // index: 0
+                reviewContent                           // index: 1
+        });
+
+        parcel.writeFloatArray(new float[] {
+                minCost,                                // index: 0
+                maxCost,                                // index: 1
+                serviceRating,                          // index: 2
+                atmosphereRating,                       // index: 3
+                foodRating,                             // index: 4
+                overallRating                           // index: 5
+        });
+
+        parcel.writeIntArray(new int[] {
+                reviewID,                               // index: 0
+                establishmentID,                        // index: 1
+                reviewDate.get(Calendar.DAY_OF_MONTH),  // index: 2
+                reviewDate.get(Calendar.MONTH),         // index: 3 (Note: values for MONTH [0,11]
+                reviewDate.get(Calendar.YEAR)           // index: 4
+        });
+    }
+
+    public static final Parcelable.Creator<Review>CREATOR = new Parcelable.Creator<Review>() {
+        @Override
+        public Review createFromParcel(Parcel parcel) {
+            return new Review(parcel);
+        }
+
+        @Override
+        public Review[] newArray(int size) {
+            return new Review[size];
+        }
+    };
 }

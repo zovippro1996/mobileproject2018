@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ReviewFormContActivity">
+
+    <!-- Display previous inputs -->
+    <!-- Date -->
+    <TextView android:id="@+id/review_form_cont_date_label"
+        style="@style/AppTheme.InputPrompt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/review_form_cont_date_label"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView android:id="@+id/review_form_cont_picked_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textSize="14sp"
+        android:fontFamily="serif"
+        app:layout_constraintBaseline_toBaselineOf="@id/review_form_cont_date_label"
+        app:layout_constraintLeft_toRightOf="@id/review_form_cont_date_label" />
+
+    <!-- Types of meal -->
+    <TextView android:id="@+id/review_form_cont_meal_types_label"
+        style="@style/AppTheme.InputPrompt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        android:text="@string/review_form_cont_meal_types_label"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/review_form_cont_date_label" />
+
+    <TextView android:id="@+id/review_form_cont_meal_types"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        android:textSize="14sp"
+        android:fontFamily="serif"
+        app:layout_constraintTop_toBottomOf="@id/review_form_cont_meal_types_label"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <!-- Costs -->
+    <TextView android:id="@+id/review_form_cont_cost_label"
+        style="@style/AppTheme.InputPrompt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        android:text="@string/review_form_cont_cost_label"
+        app:layout_constraintTop_toBottomOf="@id/review_form_cont_meal_types"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <TextView android:id="@+id/review_form_cont_min_cost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:textSize="14sp"
+        android:fontFamily="serif"
+        app:layout_constraintBaseline_toBaselineOf="@id/review_form_cont_cost_label"
+        app:layout_constraintLeft_toRightOf="@id/review_form_cont_cost_label" />
+
+    <TextView android:id="@+id/review_form_cont_dash"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="@string/review_form_cont_dash"
+        android:textSize="14sp"
+        android:fontFamily="serif"
+        app:layout_constraintTop_toBottomOf="@id/review_form_cont_min_cost"
+        app:layout_constraintBottom_toTopOf="@id/review_form_cont_min_cost"
+        app:layout_constraintLeft_toRightOf="@id/review_form_cont_min_cost" />
+
+    <TextView android:id="@+id/review_form_cont_max_cost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textSize="14sp"
+        android:fontFamily="serif"
+        app:layout_constraintBaseline_toBaselineOf="@id/review_form_cont_cost_label"
+        app:layout_constraintLeft_toRightOf="@id/review_form_cont_dash" />
+
+    <TextView android:id="@+id/review_form_cont_currency"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textSize="14sp"
+        android:fontFamily="serif"
+        app:layout_constraintBaseline_toBaselineOf="@id/review_form_cont_cost_label"
+        app:layout_constraintLeft_toRightOf="@id/review_form_cont_max_cost" />
+
+    <!-- Ratings -->
+    <TextView android:id="@+id/review_form_cont_service_rating_label"
+        style="@style/AppTheme.InputPrompt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        android:text="@string/review_form_cont_service_rating_label"
+        app:layout_constraintTop_toBottomOf="@id/review_form_cont_cost_label"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <RatingBar android:id="@+id/review_form_cont_service_rating"
+        style="?android:attr/ratingBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:numStars="5"
+        android:stepSize="1"
+        android:isIndicator="true"
+        app:layout_constraintTop_toBottomOf="@id/review_form_cont_service_rating_label"
+        app:layout_constraintBottom_toTopOf="@id/review_form_cont_service_rating_label"
+        app:layout_constraintLeft_toRightOf="@id/review_form_cont_service_rating_label" />
+
+    <TextView android:id="@+id/review_form_cont_atmosphere_rating_label"
+        style="@style/AppTheme.InputPrompt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        android:text="@string/review_form_cont_atmosphere_rating_label"
+        app:layout_constraintTop_toBottomOf="@id/review_form_cont_service_rating_label"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <RatingBar android:id="@+id/review_form_cont_atmosphere_rating"
+        style="?android:attr/ratingBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:numStars="5"
+        android:stepSize="1"
+        android:isIndicator="true"
+        app:layout_constraintTop_toBottomOf="@id/review_form_cont_atmosphere_rating_label"
+        app:layout_constraintBottom_toTopOf="@id/review_form_cont_atmosphere_rating_label"
+        app:layout_constraintLeft_toRightOf="@id/review_form_cont_atmosphere_rating_label" />
+
+    <TextView android:id="@+id/review_form_cont_food_rating_label"
+        style="@style/AppTheme.InputPrompt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        android:text="@string/review_form_cont_food_rating_label"
+        app:layout_constraintTop_toBottomOf="@id/review_form_cont_atmosphere_rating_label"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <RatingBar android:id="@+id/review_form_cont_food_rating"
+        style="?android:attr/ratingBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:numStars="5"
+        android:stepSize="1"
+        android:isIndicator="true"
+        app:layout_constraintTop_toBottomOf="@id/review_form_cont_food_rating_label"
+        app:layout_constraintBottom_toTopOf="@id/review_form_cont_food_rating_label"
+        app:layout_constraintLeft_toRightOf="@id/review_form_cont_food_rating_label" />
+
+    <TextView android:id="@+id/review_form_cont_overall_rating_label"
+        style="@style/AppTheme.InputPrompt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        android:text="@string/review_form_cont_overall_rating_label"
+        app:layout_constraintTop_toBottomOf="@id/review_form_cont_food_rating_label"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <RatingBar android:id="@+id/review_form_cont_overall_rating"
+        style="?android:attr/ratingBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:numStars="5"
+        android:stepSize="1"
+        android:isIndicator="true"
+        app:layout_constraintTop_toBottomOf="@id/review_form_cont_overall_rating_label"
+        app:layout_constraintBottom_toTopOf="@id/review_form_cont_overall_rating_label"
+        app:layout_constraintLeft_toRightOf="@id/review_form_cont_overall_rating_label" />
+
+
+    <!-- Prompt for comments (optional) -->
+    <!-- Comment -->
+    <TextView android:id="@+id/review_form_cont_comment_prompt"
+        style="@style/AppTheme.InputPrompt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        android:text="@string/review_form_cont_comment_prompt"
+        app:layout_constraintTop_toBottomOf="@id/review_form_cont_overall_rating_label"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <EditText android:id="@+id/review_form_cont_comment"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:padding="4dp"
+        android:textSize="14sp"
+        android:inputType="textMultiLine|textCapSentences"
+        android:gravity="top|start"
+        android:hint="@string/review_form_cont_comment_hint"
+        android:background="@drawable/edit_box"
+        app:layout_constraintBottom_toTopOf="@id/review_form_cont_save_button"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/review_form_cont_comment_prompt" />
+
+    <!-- Button -->
+    <Button android:id="@+id/review_form_cont_save_button"
+        style="@style/AppTheme.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="@string/review_form_cont_save_button"
+        android:onClick="onSaveButton"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+</android.support.constraint.ConstraintLayout>
