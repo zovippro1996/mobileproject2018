@@ -55,18 +55,21 @@ public class EstablishmentFormActivity extends AppCompatActivity {
 //        Check If required field is empty
         if (
                 (TextUtils.isEmpty(UserID))
-                &&(TextUtils.isEmpty(NameEstablishment))
-                &&(TextUtils.isEmpty(TypeEstablishment)))
+                ||(TextUtils.isEmpty(NameEstablishment))
+                ||(TextUtils.isEmpty(TypeEstablishment))
+                ||(TypeEstablishment.equals("0"))
+                )
         {
             return false;
         }
 
-        final String REGEX = "[\\w+]";
+        // Check if UserID correct form
+        final String REGEX = "(\\w+)";
         Pattern pattern = Pattern.compile(REGEX);
         //Validate String Pattern for UserID
         Matcher m = pattern.matcher(UserID);
 
-        if (UserID.matches(REGEX)){
+        if (!UserID.matches(REGEX)){
             return false;
         }
 
