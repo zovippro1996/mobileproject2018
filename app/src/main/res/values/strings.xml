@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ReviewMyPlace</string>
+    <string name="app_name">ReStarNote</string>
 
     <!-- IntroActivity -->
     <string name="intro_title_greeting">Welcome to</string>
@@ -10,8 +10,15 @@
 
     <string name="userID">User ID</string>
 
+    <!--activity_establishment_confirmation Label-->
+    <string name="establishmentconfirm_userID_label">Added by</string>
+    <string name="establishmentconfirm_estname_label">Est. Name</string>
+    <string name="establishmentconfirm_esttype_label">Est. Type</string>
+    <string name="establishmentconfirm_foodtype_label">Food Type</string>
+    <string name="establishmentconfirm_location_label">Location</string>
+
     <string-array name="establishment_label">
-        <item></item>
+        <item />
         <item>Restaurant</item>
         <item>Coffee Shop</item>
         <item>Bar</item>
@@ -23,6 +30,10 @@
         <item>2</item>
         <item>3</item>
     </string-array>
+    <string name="title_activity_establishment_detail">EstablishmentDetailActivity</string>
+
+    <string name="action_settings">Settings</string>
+
 
     <!-- ReviewFormActivity -->
     <string name="review_form_activity_title">Review Form</string>

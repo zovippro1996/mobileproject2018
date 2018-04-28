@@ -14,6 +14,13 @@
         <item name="android:textColor">@color/colorWhiteText</item>
     </style>
 
+
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+
     <!-- Custom theme for title(s). -->
     <style name="AppTheme.Title" parent="@android:style/TextAppearance.Large">
         <item name="android:textSize">28sp</item>
@@ -34,5 +41,6 @@
         <item name="android:minHeight">22dip</item>
         <item name="android:maxHeight">22dip</item>
     </style>
+
 
 </resources>
