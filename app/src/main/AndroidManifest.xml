@@ -19,11 +19,10 @@
         </activity>
         <activity
             android:name=".EstablishmentFormActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:label="New Establishmnet" />
         <activity
             android:name=".EstablishmentConfirmationActivity"
-            android:parentActivityName=".EstablishmentFormActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+            android:parentActivityName=".EstablishmentFormActivity" />
         <activity
             android:name=".ReviewFormActivity"
             android:label="@string/review_form_activity_title"></activity>

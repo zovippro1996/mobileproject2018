@@ -146,31 +146,41 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="0dp"
         android:layout_height="90dp"
+        android:gravity="right"
         android:orientation="horizontal"
+        android:weightSum="1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
 
         <Button
-            android:id="@+id/button_Edit"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="Edit"
-            tools:layout_editor_absoluteX="63dp"
-            tools:layout_editor_absoluteY="345dp" />
-
-        <Button
             android:id="@+id/button_Confirm"
-            android:layout_width="match_parent"
+            style="@style/AppTheme.Button"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="Confirm"
+            android:layout_weight=".5"
+            android:onClick="clickConfirm_Button"
+            android:text="Save"
+            android:textSize="24sp"
             tools:layout_editor_absoluteX="208dp"
             tools:layout_editor_absoluteY="345dp" />
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="228dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="Do you want to save this Establishment ?"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
