@@ -9,38 +9,40 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <activity android:name=".IntroActivity"
+        <activity
+            android:name=".IntroActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".EstablishmentFormActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-
+            android:label="New Establishmnet" />
         <activity
             android:name=".EstablishmentConfirmationActivity"
-            android:parentActivityName=".EstablishmentFormActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-
-        <activity android:name=".ReviewFormActivity"
-            android:label="@string/review_form_activity_title">
-        </activity>
-
-        <activity android:name=".ReviewFormContActivity"
+            android:parentActivityName=".EstablishmentFormActivity" />
+        <activity
+            android:name=".ReviewFormActivity"
+            android:label="@string/review_form_activity_title"></activity>
+        <activity
+            android:name=".ReviewFormContActivity"
             android:label="@string/review_form_activity_title"
             android:parentActivityName=".ReviewFormActivity">
+
             <!-- Parent activity meta-data support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ReviewFormActivity" />
         </activity>
-
+        <activity android:name=".EstablishmentDetailActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
+
 </manifest>
