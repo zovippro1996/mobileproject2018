@@ -3,7 +3,6 @@ package com.example.mobile.course.reviewmyplace;
 import android.app.DatePickerDialog;
 import android.app.DialogFragment;
 import android.content.Intent;
-import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,13 +26,10 @@ public class ReviewFormActivity extends AppCompatActivity
         implements DatePickerDialog.OnDateSetListener, AdapterView.OnItemSelectedListener {
 
     public static final String EXTRA_REVIEW = "com.example.mobile.course.reviewmyplace.EXTRA_REVIEW";
-    public static final String EXTRA_CURRENCY = "com.example.mobile.course.reviewmyplace.EXTRA_CURRENCY";
 
     static final String STATE_REVIEW = "review";
-    static final String STATE_CURRENCY = "currency";
 
     private Review review;
-    private String currency;
 
 //    private int establishmentID;
 
@@ -46,7 +42,7 @@ public class ReviewFormActivity extends AppCompatActivity
         review = new Review();
 
         // Retrieve establishmentID from the Intent passed to this Activity
-        review.setEstablishmentID(-1);
+        review.setEstablishmentID(0);
 
         // Initialize picked date (with default value - current date)
         review.setReviewDate();
@@ -90,7 +86,6 @@ public class ReviewFormActivity extends AppCompatActivity
 
         // Save the input value
         savedInstanceState.putParcelable(STATE_REVIEW, review);
-        savedInstanceState.putString(STATE_CURRENCY, currency);
     }
 
     @Override
@@ -99,7 +94,6 @@ public class ReviewFormActivity extends AppCompatActivity
 
         // Restore the previous inputs
         review = savedInstanceState.getParcelable(STATE_REVIEW);
-        currency = savedInstanceState.getString(STATE_CURRENCY);
 
         // Date
         TextView textView = findViewById(R.id.review_form_picked_date);
@@ -108,23 +102,23 @@ public class ReviewFormActivity extends AppCompatActivity
         // Types of meal
         String[] types = review.getMealType().split("|");
         CheckBox checkbox;
-        for (int i = 0; i < types.length; ++i) {
-            if (types[i].trim().equalsIgnoreCase("breakfast")) {
+        for (String type : types) {
+            if (type.trim().equalsIgnoreCase("breakfast")) {
                 checkbox = findViewById(R.id.review_form_checkbox_breakfast);
                 checkbox.setChecked(true);
-            } else if (types[i].trim().equalsIgnoreCase("lunch")) {
+            } else if (type.trim().equalsIgnoreCase("lunch")) {
                 checkbox = findViewById(R.id.review_form_checkbox_lunch);
                 checkbox.setChecked(true);
-            } else if (types[i].trim().equalsIgnoreCase("dinner")) {
+            } else if (type.trim().equalsIgnoreCase("dinner")) {
                 checkbox = findViewById(R.id.review_form_checkbox_dinner);
                 checkbox.setChecked(true);
-            } else if (types[i].trim().equalsIgnoreCase("fast food")) {
+            } else if (type.trim().equalsIgnoreCase("fast food")) {
                 checkbox = findViewById(R.id.review_form_checkbox_fast_food);
                 checkbox.setChecked(true);
-            } else if (types[i].trim().equalsIgnoreCase("snack")) {
+            } else if (type.trim().equalsIgnoreCase("snack")) {
                 checkbox = findViewById(R.id.review_form_checkbox_snack);
                 checkbox.setChecked(true);
-            } else if (types[i].trim().equalsIgnoreCase("other")) {
+            } else if (type.trim().equalsIgnoreCase("other")) {
                 checkbox = findViewById(R.id.review_form_checkbox_other);
                 checkbox.setChecked(true);
             }
@@ -132,23 +126,24 @@ public class ReviewFormActivity extends AppCompatActivity
 
         // Cost and currency
         EditText editText = findViewById(R.id.review_form_min_cost);
-        editText.setText(Float.toString(review.getMinCost()));
+        editText.setText(String.format(Locale.getDefault(), "%.2f", review.getMinCost()));
 
         editText = findViewById(R.id.review_form_max_cost);
-        editText.setText(Float.toString(review.getMaxCost()));
+        editText.setText(String.format(Locale.getDefault(), "%.2f", review.getMaxCost()));
 
         Spinner minSpinner = findViewById(R.id.review_form_min_currency);
         Spinner maxSpinner = findViewById(R.id.review_form_max_currency);
-        if (currency.equalsIgnoreCase("dollar")) {
+        String currency = review.getCurrency();
+        if (currency.equalsIgnoreCase("dollar") || currency.equalsIgnoreCase("USD (\u0024)")) {
             minSpinner.setSelection(0);
             maxSpinner.setSelection(0);
-        } else if (currency.equalsIgnoreCase("euro")) {
+        } else if (currency.equalsIgnoreCase("euro") || currency.equalsIgnoreCase("EURO (\u20ac)")) {
             minSpinner.setSelection(1);
             maxSpinner.setSelection(1);
-        } else if (currency.equalsIgnoreCase("pound")) {
+        } else if (currency.equalsIgnoreCase("pound") || currency.equalsIgnoreCase("POUND (\u00a3)")) {
             minSpinner.setSelection(2);
             maxSpinner.setSelection(2);
-        } else if (currency.equalsIgnoreCase("vnd")) {
+        } else if (currency.equalsIgnoreCase("vnd") || currency.equalsIgnoreCase("VND")) {
             minSpinner.setSelection(3);
             maxSpinner.setSelection(3);
         }
@@ -189,7 +184,7 @@ public class ReviewFormActivity extends AppCompatActivity
         }
 
         // Extract input data for types of meal
-        extractCheckboxData();
+        review.setMealType(extractCheckboxData());
 
         // Extract input data for service + atmosphere + food + overall ratings
         RatingBar ratingBar = findViewById(R.id.review_form_service_rating_bar);
@@ -206,20 +201,19 @@ public class ReviewFormActivity extends AppCompatActivity
 
         // Extract selected currency
         Spinner spinner = findViewById(R.id.review_form_min_currency);
-        String currency = spinner.getSelectedItem().toString();
+        review.setCurrency(spinner.getSelectedItem().toString());
 
         // Intent to start new Activity
         Intent intent = new Intent(this, ReviewFormContActivity.class);
         intent.putExtra(EXTRA_REVIEW, review);
-        intent.putExtra(EXTRA_CURRENCY, currency);
         startActivity(intent);
     }
 
     /**
-     * Extract the String representation of meal types from all CheckBox and assign
-     * to variable 'mealTypes'
+     * Extract the String representation of meal types from all CheckBox
+     * @return  String representation of all selected types of meal
      */
-    private void extractCheckboxData() {
+    private String extractCheckboxData() {
         // CheckBox components
         CheckBox breakfastCheckbox = findViewById(R.id.review_form_checkbox_breakfast);
         CheckBox lunchCheckbox = findViewById(R.id.review_form_checkbox_lunch);
@@ -245,7 +239,7 @@ public class ReviewFormActivity extends AppCompatActivity
             mealTypes = mealTypes.substring(0, mealTypes.length() - 1);
         }
 
-        review.setMealType(mealTypes);
+        return mealTypes;
     }
 
     @Override
@@ -291,9 +285,6 @@ public class ReviewFormActivity extends AppCompatActivity
 
         // Set the same selection for both spinners
         otherSpinner.setSelection(thisSpinner.getSelectedItemPosition());
-
-        // Set values for currency
-        currency = thisSpinner.getSelectedItem().toString();
     }
 
     @Override

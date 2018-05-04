@@ -5,13 +5,10 @@ import android.os.Parcelable;
 import android.util.Log;
 
 public class Establishment implements Parcelable {
-    private int establishmentID;                    // id for the establishment assigned by the
-    // database
+    private int establishmentID;                    // id for the establishment assigned by the database
     private String userID;                          // userID input from user (for what?)
-    private String establishmentName;               // name of establishment (e.g. Trung Nguyen
-    // Coffee)
-    private EstablishmentType establishmentType;    // type of establishment {Restaurant | Coffe
-    // Shop | Bar}
+    private String establishmentName;               // name of establishment (e.g. Trung Nguyen Coffee)
+    private EstablishmentType establishmentType;    // type of establishment {Restaurant | Coffee Shop | Bar}
     private String food;                            // food served in the establishment
     private Location establishmentLocation;         // location of the establishment
 

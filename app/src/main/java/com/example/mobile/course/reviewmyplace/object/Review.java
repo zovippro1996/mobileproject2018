@@ -11,9 +11,10 @@ public class Review implements Parcelable {
     private int reviewID;               // id for the review assigned by the database
     private int establishmentID;        // id of the associated establishment
     // private String userID; (why?)
-    private Calendar reviewDate;            // date at which the review is created/added
+    private Calendar reviewDate;        // date at which the review is created/added
     private String mealType;            // type of the meal (e.g. breakfast, lunch, dinner, etc.)
     private String reviewContent;       // content of the review (i.e. description)
+    private String currency;            // the currency selected by user when generating the review
     private float maxCost;              // maximum cost of food in the establishment
     private float minCost;              // minimum cost of food in the establishment
     private float overallRating;        // overall rating for the establishment as a whole
@@ -32,6 +33,7 @@ public class Review implements Parcelable {
 
         setMealType("");
         setReviewContent("");
+        setCurrency("");
 
         setMaxCost(0.0f);
         setMinCost(0.0f);
@@ -40,31 +42,33 @@ public class Review implements Parcelable {
         setRating(2.5f, 2.5f, 2.5f, 2.5f);
     }
 
-    public Review(int id, int establishmentID, Calendar date, String mealType, String content, float minCost,
+    public Review(int id, int establishmentID, Calendar date, String mealType, String content, String currency, float minCost,
                   float maxCost, float serviceRating, float atmosphereRating, float foodRating, float overallRating) {
         setReviewID(id);
         setEstablishmentID(establishmentID);
         setReviewDate(date);
         setMealType(mealType);
         setReviewContent(content);
+        setCurrency(currency);
         setMinCost(minCost);
         setMaxCost(maxCost);
         setRating(overallRating, serviceRating, atmosphereRating, foodRating);
     }
 
-    public Review(int establishmentID, Calendar date, String mealType, String content, float minCost,
+    public Review(int establishmentID, Calendar date, String mealType, String content, String currency, float minCost,
                   float maxCost, float serviceRating, float atmosphereRating, float foodRating, float overallRating) {
         setEstablishmentID(establishmentID);
         setReviewDate(date);
         setMealType(mealType);
         setReviewContent(content);
+        setCurrency(currency);
         setMinCost(minCost);
         setMaxCost(maxCost);
         setRating(overallRating, serviceRating, atmosphereRating, foodRating);
     }
 
     public Review(Parcel in) {
-        String[] strData = new String[2];
+        String[] strData = new String[3];
         float[] floatData = new float[6];
         int[] intData = new int[5];
 
@@ -72,6 +76,7 @@ public class Review implements Parcelable {
         in.readStringArray(strData);
         mealType = strData[0];
         reviewContent = strData[1];
+        currency = strData[2];
 
         // Extract float fields
         in.readFloatArray(floatData);
@@ -155,6 +160,15 @@ public class Review implements Parcelable {
 
     public float getMinCost() {
         return minCost;
+    }
+
+    /** Get/Set for currency */
+    public void setCurrency(String currency) {
+        this.currency = currency;
+    }
+
+    public String getCurrency() {
+        return currency;
     }
 
     /**
@@ -280,7 +294,8 @@ public class Review implements Parcelable {
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeStringArray(new String[] {
                 mealType,                               // index: 0
-                reviewContent                           // index: 1
+                reviewContent,                          // index: 1
+                currency                                // index: 2
         });
 
         parcel.writeFloatArray(new float[] {
