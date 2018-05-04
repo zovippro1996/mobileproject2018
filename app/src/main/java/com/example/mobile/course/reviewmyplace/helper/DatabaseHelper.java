@@ -70,8 +70,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 COL_SERVICE_RATING + " REAL," +
                 COL_ATMOSPHERE_RATING + " REAL," +
                 COL_FOOD_RATING + " REAL," +
-                COL_OVERALL_RATING + " REAL," +
-                "FOREIGN KEY(" + COL_ESTABLISHMENT_ID + ") REFERENCES " + TABLE_NAME_ESTABLISHMENT + "(_id));");
+                COL_OVERALL_RATING + " REAL);");
+
+        // Add FOREIGN KEY later (comment for testing)
+//        "FOREIGN KEY(" + COL_ESTABLISHMENT_ID + ") REFERENCES " + TABLE_NAME_ESTABLISHMENT + "(_id));");
     }
 
     @Override
@@ -133,14 +135,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     /**
      * Insert the given Review object into the corresponding table in database
      * @param review Review object to be stored
-     * @param establishmentID ID of the associated establishment
      * @return ID of the review just been inserted
      */
-    public long insertReview(Review review, int establishmentID) {
+    public long insertReview(Review review) {
         ContentValues rowValues = new ContentValues();
 
         // Assemble row of data in the ContentValues object
-        rowValues.put(COL_ESTABLISHMENT_ID, establishmentID);
+        rowValues.put(COL_ESTABLISHMENT_ID, review.getEstablishmentID());
         rowValues.put(COL_DATE, review.getReviewDate().getTimeInMillis());
         rowValues.put(COL_MEAL_TYPES, review.getMealType());
         rowValues.put(COL_MIN_COST, review.getMinCost());

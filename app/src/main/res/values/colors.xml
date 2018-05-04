@@ -6,4 +6,6 @@
     <color name="colorPinkButton">#FF5079</color>
     <color name="colorWhiteText">#FFFFFF</color>
     <color name="colorPinkInputPrompt">#F20CA1</color>
+    <color name="colorCustomPrimary">#FF668A</color>
+    <color name="colorCustomPrimaryDark">#FF4D76</color>
 </resources>

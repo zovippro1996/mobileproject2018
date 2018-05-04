@@ -42,7 +42,7 @@ public class ReviewFormActivity extends AppCompatActivity
         review = new Review();
 
         // Retrieve establishmentID from the Intent passed to this Activity
-        review.setEstablishmentID(-1);
+        review.setEstablishmentID(0);
 
         // Initialize picked date (with default value - current date)
         review.setReviewDate();

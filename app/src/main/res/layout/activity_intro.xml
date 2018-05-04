@@ -5,8 +5,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#f5d8f6"
     tools:context="com.example.mobile.course.reviewmyplace.IntroActivity">
+
+    <ImageView android:id="@+id/intro_background_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/intro_background"
+        android:scaleType="centerCrop"
+        android:tint="#6F000000"
+        android:contentDescription="@string/intro_background_image_content" />
 
     <TextView
         android:id="@+id/intro_title_greeting"
@@ -14,8 +21,8 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:text="@string/intro_title_greeting"
-        android:textColor="@android:color/black"
-        android:textSize="30sp"
+        android:textColor="@android:color/holo_orange_light"
+        android:textSize="35sp"
         android:textStyle="bold|italic"
         android:fontFamily="cursive"
         app:layout_constraintHorizontal_chainStyle="packed"
@@ -31,8 +38,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginBottom="16dp"
         android:text="@string/intro_title_app_name"
-        android:textColor="@android:color/holo_red_light"
-        android:textSize="40sp"
+        android:textColor="@android:color/holo_orange_light"
+        android:textSize="45sp"
         android:textStyle="bold|italic"
         android:fontFamily="cursive"
         app:layout_constraintVertical_chainStyle="packed"
@@ -48,7 +55,8 @@
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
         android:text="@string/intro_subtitle"
-        android:textSize="12sp"
+        android:textColor="@android:color/holo_orange_light"
+        android:textSize="18sp"
         app:layout_constraintTop_toBottomOf="@id/intro_title_app_name"
         app:layout_constraintBottom_toTopOf="@id/intro_button_add"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -60,15 +68,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
+        android:onClick="moveToEstablishmentForm"
         android:text="@string/intro_button_add"
         android:textSize="12sp"
-        android:onClick="moveToEstablishmentForm"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/intro_button_dashboard"
-        app:layout_constraintTop_toBottomOf="@id/intro_subtitle"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/intro_subtitle" />
 
     <Button
         android:id="@+id/intro_button_dashboard"
