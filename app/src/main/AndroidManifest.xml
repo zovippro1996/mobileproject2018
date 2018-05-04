@@ -11,7 +11,8 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".IntroActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -19,13 +20,20 @@
         </activity>
         <activity
             android:name=".EstablishmentFormActivity"
-            android:label="New Establishmnet" />
+            android:label="New Establishmnet"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".EstablishmentConfirmationActivity"
-            android:parentActivityName=".EstablishmentFormActivity" />
+            android:parentActivityName=".EstablishmentFormActivity"
+            android:screenOrientation="portrait">
+            <!-- The meta-data element is needed for versions lower than 4.1 -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".EstablishmentFormActivity" />
+        </activity>
         <activity
             android:name=".ReviewFormActivity"
-            android:label="@string/review_form_activity_title"></activity>
+            android:label="@string/review_form_activity_title" />
         <activity
             android:name=".ReviewFormContActivity"
             android:label="@string/review_form_activity_title"
@@ -36,8 +44,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ReviewFormActivity" />
         </activity>
-        <activity android:name=".EstablishmentDetailActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity
+            android:name=".EstablishmentDetailActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

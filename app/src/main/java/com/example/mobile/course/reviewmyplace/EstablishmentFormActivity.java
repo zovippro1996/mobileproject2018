@@ -1,20 +1,24 @@
 package com.example.mobile.course.reviewmyplace;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class EstablishmentFormActivity extends AppCompatActivity {
 
-    //Init Component in Activity
+    //Initialize Component in Activity
     EditText editText_UserID = null;
     EditText editText_EstablishmentName = null;
     Spinner spinner_EstablishmentType = null;
@@ -46,20 +50,26 @@ public class EstablishmentFormActivity extends AppCompatActivity {
     protected boolean validateAllFields(){
         //GetValue of user input
         String UserID = editText_UserID.getText().toString();
-        String NameEstablishment = editText_EstablishmentName.getText().toString();
-        String TypeEstablishment = getResources().getStringArray(R.array.establishment_value)
+        String EstablishmentName = editText_EstablishmentName.getText().toString();
+        String EstablishmentType = getResources().getStringArray(R.array.establishment_value)
                 [spinner_EstablishmentType.getSelectedItemPosition()];
         String FoodType = editText_FoodType.getText().toString();
         String Location = editText_Location.getText().toString();
 
-//        Check If required field is empty
-        if (
-                (TextUtils.isEmpty(UserID))
-                ||(TextUtils.isEmpty(NameEstablishment))
-                ||(TextUtils.isEmpty(TypeEstablishment))
-                ||(TypeEstablishment.equals("0"))
-                )
-        {
+//      Check If required field is empty
+        if(TextUtils.isEmpty(UserID)){
+            editText_UserID = (EditText) findViewById(R.id.editText_UserID);
+            editText_UserID.setError("This is a Required Field");
+            return false;
+        } else if (TextUtils.isEmpty(EstablishmentName)){
+            editText_EstablishmentName = (EditText) findViewById(R.id.editText_EstablishmentName);
+            editText_EstablishmentName.setError("This is a Required Field");
+            return false;
+        } else if((TextUtils.isEmpty(EstablishmentType)) || (EstablishmentType.equals("-1"))) {
+            TextView errorText = (TextView)spinner_EstablishmentType.getSelectedView();
+            errorText.setError("anything here, just to add the icon");
+            errorText.setTextColor(Color.RED);//just to highlight that this is an error
+            errorText.setText("This is a Required Field");//changes the selected item text to this
             return false;
         }
 
@@ -70,6 +80,9 @@ public class EstablishmentFormActivity extends AppCompatActivity {
         Matcher m = pattern.matcher(UserID);
 
         if (!UserID.matches(REGEX)){
+            editText_UserID = (EditText) findViewById(R.id.editText_UserID);
+            editText_UserID.setError("Wrong Format");
+
             return false;
         }
 

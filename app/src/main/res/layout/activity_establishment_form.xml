@@ -66,10 +66,15 @@
         android:id="@+id/spinner_EstablishmentType"
         android:layout_width="237dp"
         android:layout_height="36dp"
-
         android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/spinner_background"
+        android:padding="2dp"
+        android:popupBackground="@drawable/spinner_background"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView_EstablishmentType" />
+
+
 
     <TextView
         android:id="@+id/textView_FoodType"
