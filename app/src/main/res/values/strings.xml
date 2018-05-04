@@ -7,6 +7,7 @@
     <string name="intro_subtitle">What do you want to do?</string>
     <string name="intro_button_add">Add Establishment</string>
     <string name="intro_button_dashboard">To Dashboard</string>
+    <string name="intro_background_image_content">Background Image</string>
 
     <string name="userID">User ID</string>
 
@@ -68,5 +69,8 @@
     <string name="review_form_cont_comment_prompt">Additional comments:</string>
     <string name="review_form_cont_save_button">Save</string>
     <string name="review_form_cont_comment_hint">Note anything you want (e.g. return in 2 weeks, bring more friends next time, etc.)</string>
+    <string name="alert_dialog_confirm_message">Save details into database?</string>
+    <string name="alert_dialog_confirm_positive">Save</string>
+    <string name="alert_dialog_confirm_negative">Cancel</string>
 
 </resources>

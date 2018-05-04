@@ -1,17 +1,27 @@
 package com.example.mobile.course.reviewmyplace;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.sqlite.SQLiteException;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.mobile.course.reviewmyplace.helper.DatabaseHelper;
 import com.example.mobile.course.reviewmyplace.object.Review;
 
 import java.util.Locale;
 
 public class ReviewFormContActivity extends AppCompatActivity {
+
+    private Review review;
+    private DatabaseHelper databaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +30,7 @@ public class ReviewFormContActivity extends AppCompatActivity {
 
         // Extract extra data from intent
         Intent intent = getIntent();
-        Review review = intent.getParcelableExtra(ReviewFormActivity.EXTRA_REVIEW);
+        review = intent.getParcelableExtra(ReviewFormActivity.EXTRA_REVIEW);
 
         // Display input date
         TextView textView = findViewById(R.id.review_form_cont_picked_date);
@@ -52,6 +62,9 @@ public class ReviewFormContActivity extends AppCompatActivity {
 
         ratingBar = findViewById(R.id.review_form_cont_overall_rating);
         ratingBar.setRating(review.getOverallRating());
+
+        // Get ready to access the database later
+        databaseHelper = new DatabaseHelper(this);
     }
 
     /**
@@ -69,9 +82,54 @@ public class ReviewFormContActivity extends AppCompatActivity {
     }
 
     /**
-     * Save all inputs into the database
+     * Display alert dialog asking for user confirmation before saving
+     * @param view View context
      */
     public void onSaveButton(View view) {
+        // Extract input comment (if any)
+        EditText editText = findViewById(R.id.review_form_cont_comment);
+        review.setReviewContent(editText.getText().toString());
 
+        // Use the Builder class to ask for confirmation
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(R.string.alert_dialog_confirm_message);
+        builder.setPositiveButton(R.string.alert_dialog_confirm_positive, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                saveReview();       // save the input Review into the database
+            }
+        });
+        builder.setNegativeButton(R.string.alert_dialog_confirm_negative, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                // do nothing
+            }
+        });
+
+        // Create and display the AlertDialog
+        builder.show();
+    }
+
+    protected void saveReview() {
+        try {
+            // Insert into database
+            databaseHelper.insertReview(review);
+
+            // Notify successful saving
+            popupToast("Your review has been saved successfully");
+        } catch (SQLiteException sqle) {
+            Log.w(this.getClass().getName(), "Error saving to database");
+
+            // Notify unsuccessful saving
+            popupToast("Couldn't save your review into database");
+        }
+    }
+
+    /**
+     * Display a popup "toast" alert at the bottom of the device
+     * @param message Message to be displayed in the popup
+     */
+    private void popupToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
 }
