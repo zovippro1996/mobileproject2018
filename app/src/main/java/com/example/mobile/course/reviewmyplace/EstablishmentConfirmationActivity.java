@@ -1,8 +1,12 @@
 package com.example.mobile.course.reviewmyplace;
 
+import android.app.TaskStackBuilder;
 import android.content.Intent;
+import android.support.v4.app.NavUtils;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -48,16 +52,24 @@ public class EstablishmentConfirmationActivity extends AppCompatActivity {
         textView_Location.setText(Location);
 
 
-        // Capture the layout's TextView and set the string as its text
-
-
     }
 
-  void clickConfirm_Button(View v){
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    void clickConfirm_Button(View v) {
 
 
-      Intent intent = new Intent(this, EstablishmentDetailActivity.class);
-      startActivity(intent);
+        Intent intent = new Intent(this, EstablishmentDetailActivity.class);
+        startActivity(intent);
 
-  }
+    }
 }

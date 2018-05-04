@@ -10,6 +10,8 @@ import com.example.mobile.course.reviewmyplace.R;
 
 public class FragmentDetail extends Fragment {
 
+    //Initialize Component in Fragment Detail
+
     public FragmentDetail(){}
 
     @Override
