@@ -21,7 +21,6 @@ public class ReviewFormContActivity extends AppCompatActivity {
         // Extract extra data from intent
         Intent intent = getIntent();
         Review review = intent.getParcelableExtra(ReviewFormActivity.EXTRA_REVIEW);
-        String selectedCurrency = intent.getStringExtra(ReviewFormActivity.EXTRA_CURRENCY);
 
         // Display input date
         TextView textView = findViewById(R.id.review_form_cont_picked_date);
@@ -39,7 +38,7 @@ public class ReviewFormContActivity extends AppCompatActivity {
         textView.setText(String.format(Locale.getDefault(), "%.2f", review.getMaxCost()));
 
         textView = findViewById(R.id.review_form_cont_currency);
-        textView.setText(convertCurrency(selectedCurrency));
+        textView.setText(convertCurrency(review.getCurrency()));
 
         // Display input ratings
         RatingBar ratingBar = findViewById(R.id.review_form_cont_service_rating);
@@ -57,7 +56,7 @@ public class ReviewFormContActivity extends AppCompatActivity {
 
     /**
      * Convert value of currency (set in array list) into its String representation (name + symbol)
-     * @param value - Value set in array list for each supported currency
+     * @param value Value set in array list for each supported currency
      * @return String representation (name + symbol) of the corresponding currency
      */
     private String convertCurrency(String value) {
