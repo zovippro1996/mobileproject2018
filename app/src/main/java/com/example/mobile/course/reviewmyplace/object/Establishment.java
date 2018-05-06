@@ -31,9 +31,8 @@ public class Establishment implements Parcelable {
     }
 
 
-    public Establishment(int id, String userID, String name, EstablishmentType type, String food,
+    public Establishment(String userID, String name, EstablishmentType type, String food,
                          String locationDescription) {
-        setEstablishmentID(id);
         setUserID(userID);
         setEstablishmentName(name);
         setEstablishmentType(type);
