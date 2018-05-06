@@ -29,7 +29,7 @@ public class ReviewFormActivity extends AppCompatActivity
 
     static final String STATE_REVIEW = "review";
 
-    private Review review;
+    private Review mReview;
 
 //    private int establishmentID;
 
@@ -39,17 +39,17 @@ public class ReviewFormActivity extends AppCompatActivity
         setContentView(R.layout.activity_review_form);
 
         // Initialize 'empty' review
-        review = new Review();
+        mReview = new Review();
 
         // Retrieve establishmentID from the Intent passed to this Activity
-        review.setEstablishmentID(0);
+        mReview.setEstablishmentID(0);
 
         // Initialize picked date (with default value - current date)
-        review.setReviewDate();
-        int year = review.getReviewDate().get(Calendar.YEAR);
-        int day = review.getReviewDate().get(Calendar.DAY_OF_MONTH);
+        mReview.setReviewDate();
+        int year = mReview.getReviewDate().get(Calendar.YEAR);
+        int day = mReview.getReviewDate().get(Calendar.DAY_OF_MONTH);
         String monthName =
-                review.getReviewDate().getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault());
+                mReview.getReviewDate().getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault());
 
         // String representation of the selected date
         String strPickedDate = day + "";
@@ -85,7 +85,7 @@ public class ReviewFormActivity extends AppCompatActivity
         super.onSaveInstanceState(savedInstanceState);
 
         // Save the input value
-        savedInstanceState.putParcelable(STATE_REVIEW, review);
+        savedInstanceState.putParcelable(STATE_REVIEW, mReview);
     }
 
     @Override
@@ -93,14 +93,14 @@ public class ReviewFormActivity extends AppCompatActivity
         super.onRestoreInstanceState(savedInstanceState);
 
         // Restore the previous inputs
-        review = savedInstanceState.getParcelable(STATE_REVIEW);
+        mReview = savedInstanceState.getParcelable(STATE_REVIEW);
 
         // Date
         TextView textView = findViewById(R.id.review_form_picked_date);
-        textView.setText(review.getStringDate());
+        textView.setText(mReview.getStringDate());
 
         // Types of meal
-        String[] types = review.getMealType().split("|");
+        String[] types = mReview.getMealType().split("|");
         CheckBox checkbox;
         for (String type : types) {
             if (type.trim().equalsIgnoreCase("breakfast")) {
@@ -126,14 +126,14 @@ public class ReviewFormActivity extends AppCompatActivity
 
         // Cost and currency
         EditText editText = findViewById(R.id.review_form_min_cost);
-        editText.setText(String.format(Locale.getDefault(), "%.2f", review.getMinCost()));
+        editText.setText(String.format(Locale.getDefault(), "%.2f", mReview.getMinCost()));
 
         editText = findViewById(R.id.review_form_max_cost);
-        editText.setText(String.format(Locale.getDefault(), "%.2f", review.getMaxCost()));
+        editText.setText(String.format(Locale.getDefault(), "%.2f", mReview.getMaxCost()));
 
         Spinner minSpinner = findViewById(R.id.review_form_min_currency);
         Spinner maxSpinner = findViewById(R.id.review_form_max_currency);
-        String currency = review.getCurrency();
+        String currency = mReview.getCurrency();
         if (currency.equalsIgnoreCase("dollar") || currency.equalsIgnoreCase("USD (\u0024)")) {
             minSpinner.setSelection(0);
             maxSpinner.setSelection(0);
@@ -150,16 +150,16 @@ public class ReviewFormActivity extends AppCompatActivity
 
         // Ratings
         RatingBar ratingBar = findViewById(R.id.review_form_service_rating_bar);
-        ratingBar.setRating(review.getServiceRating());
+        ratingBar.setRating(mReview.getServiceRating());
 
         ratingBar = findViewById(R.id.review_form_atmosphere_rating_bar);
-        ratingBar.setRating(review.getAtmosphereRating());
+        ratingBar.setRating(mReview.getAtmosphereRating());
 
         ratingBar = findViewById(R.id.review_form_food_rating_bar);
-        ratingBar.setRating(review.getFoodRating());
+        ratingBar.setRating(mReview.getFoodRating());
 
         ratingBar = findViewById(R.id.review_form_overall_rating_bar);
-        ratingBar.setRating(review.getOverallRating());
+        ratingBar.setRating(mReview.getOverallRating());
     }
 
     public void showDatePickerDialog(View view) {
@@ -171,41 +171,41 @@ public class ReviewFormActivity extends AppCompatActivity
         // Extract input data for min. & max. costs
         EditText editText = findViewById(R.id.review_form_min_cost);
         if (editText.getText().toString().matches("")) {
-            review.setMinCost(0.0f);
+            mReview.setMinCost(0.0f);
         } else {
-            review.setMinCost(Float.parseFloat(editText.getText().toString()));
+            mReview.setMinCost(Float.parseFloat(editText.getText().toString()));
         }
 
         editText = findViewById(R.id.review_form_max_cost);
         if (editText.getText().toString().matches("")) {
-            review.setMaxCost(0.0f);
+            mReview.setMaxCost(0.0f);
         } else {
-            review.setMaxCost(Float.parseFloat(editText.getText().toString()));
+            mReview.setMaxCost(Float.parseFloat(editText.getText().toString()));
         }
 
         // Extract input data for types of meal
-        review.setMealType(extractCheckboxData());
+        mReview.setMealType(extractCheckboxData());
 
         // Extract input data for service + atmosphere + food + overall ratings
         RatingBar ratingBar = findViewById(R.id.review_form_service_rating_bar);
-        review.setServiceRating(ratingBar.getRating());
+        mReview.setServiceRating(ratingBar.getRating());
 
         ratingBar = findViewById(R.id.review_form_atmosphere_rating_bar);
-        review.setAtmosphereRating(ratingBar.getRating());
+        mReview.setAtmosphereRating(ratingBar.getRating());
 
         ratingBar = findViewById(R.id.review_form_food_rating_bar);
-        review.setFoodRating(ratingBar.getRating());
+        mReview.setFoodRating(ratingBar.getRating());
 
         ratingBar = findViewById(R.id.review_form_overall_rating_bar);
-        review.setOverallRating(ratingBar.getRating());
+        mReview.setOverallRating(ratingBar.getRating());
 
         // Extract selected currency
         Spinner spinner = findViewById(R.id.review_form_min_currency);
-        review.setCurrency(spinner.getSelectedItem().toString());
+        mReview.setCurrency(spinner.getSelectedItem().toString());
 
         // Intent to start new Activity
         Intent intent = new Intent(this, ReviewFormContActivity.class);
-        intent.putExtra(EXTRA_REVIEW, review);
+        intent.putExtra(EXTRA_REVIEW, mReview);
         startActivity(intent);
     }
 
@@ -245,10 +245,10 @@ public class ReviewFormActivity extends AppCompatActivity
     @Override
     public void onDateSet(DatePicker view, int year, int month, int day) {
         // Extract name of selected month
-        review.getReviewDate().set(year, month, day);
+        mReview.getReviewDate().set(year, month, day);
 
         String monthName =
-                review.getReviewDate().getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault());
+                mReview.getReviewDate().getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault());
 
         // String representation of the selected date
         String strPickedDate = day + "";

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Name of establishment -->
+    <TextView android:id="@+id/list_record_establishment_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <!-- User ID -->
+    <TextView android:id="@+id/list_record_user_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        android:text="@string/list_record_user_label"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/list_record_establishment_name"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <TextView android:id="@+id/list_record_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/list_record_user_label"
+        app:layout_constraintLeft_toRightOf="@id/list_record_user_label" />
+
+    <!-- Type of establishment -->
+    <android.support.constraint.Guideline
+        android:id="@+id/list_record_guideline1"
+        android:layout_width="1dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <TextView android:id="@+id/list_record_type_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/list_record_type_label"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@id/list_record_user_label"
+        app:layout_constraintLeft_toRightOf="@id/list_record_guideline1" />
+
+    <TextView android:id="@+id/list_record_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/list_record_type_label"
+        app:layout_constraintLeft_toRightOf="@id/list_record_type_label" />
+
+    <!-- Food served in establishment -->
+    <TextView android:id="@+id/list_record_food_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        android:text="@string/list_record_food_label"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/list_record_user_label"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <TextView android:id="@+id/list_record_food"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/list_record_food_label"
+        app:layout_constraintLeft_toRightOf="@id/list_record_food_label" />
+
+    <!-- Location of the establishment -->
+    <TextView android:id="@+id/list_record_location_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        android:text="@string/list_record_location_label"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/list_record_food_label"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <TextView android:id="@+id/list_record_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="Location of the establishment"
+        android:textSize="16sp"
+        app:layout_constraintBaseline_toBaselineOf="@id/list_record_location_label"
+        app:layout_constraintLeft_toRightOf="@id/list_record_location_label" />
+
+</android.support.constraint.ConstraintLayout>

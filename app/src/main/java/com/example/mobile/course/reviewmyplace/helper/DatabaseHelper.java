@@ -11,31 +11,32 @@ import com.example.mobile.course.reviewmyplace.object.Establishment;
 import com.example.mobile.course.reviewmyplace.object.EstablishmentType;
 import com.example.mobile.course.reviewmyplace.object.Review;
 
+import java.util.ArrayList;
+
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "Establishment_Review";
 
     // Associated columns for Establishment table
     private static final String TABLE_NAME_ESTABLISHMENT = "establishments";
-//    private static final String COL_LOCATION_ID = "location_id";
-    private static final String COL_LOCATION_DESC = "location_description";
-    private static final String COL_ESTABLISHMENT_TYPE = "establishment_type";
-    private static final String COL_ESTABLISHMENT_NAME = "establishment_name";
-    private static final String COL_FOOD = "food";
-    private static final String COL_USER_ID = "user_id";
+    public static final String COL_LOCATION_DESC = "location_description";
+    public static final String COL_ESTABLISHMENT_TYPE = "establishment_type";
+    public static final String COL_ESTABLISHMENT_NAME = "establishment_name";
+    public static final String COL_FOOD = "food";
+    public static final String COL_USER_ID = "user_id";
 
     // Associated columns for Review table
     private static final String TABLE_NAME_REVIEW = "reviews";
-    private static final String COL_ESTABLISHMENT_ID = "establishment_id";
-    private static final String COL_DATE = "date";
-    private static final String COL_MEAL_TYPES = "meal_types";
-    private static final String COL_MIN_COST = "min_cost";
-    private static final String COL_MAX_COST = "max_cost";
-    private static final String COL_CURRENCY = "currency";
-    private static final String COL_SERVICE_RATING = "service_rating";
-    private static final String COL_ATMOSPHERE_RATING = "atmosphere_rating";
-    private static final String COL_FOOD_RATING = "food_rating";
-    private static final String COL_OVERALL_RATING = "overall_rating";
+    public static final String COL_ESTABLISHMENT_ID = "establishment_id";
+    public static final String COL_DATE = "date";
+    public static final String COL_MEAL_TYPES = "meal_types";
+    public static final String COL_MIN_COST = "min_cost";
+    public static final String COL_MAX_COST = "max_cost";
+    public static final String COL_CURRENCY = "currency";
+    public static final String COL_SERVICE_RATING = "service_rating";
+    public static final String COL_ATMOSPHERE_RATING = "atmosphere_rating";
+    public static final String COL_FOOD_RATING = "food_rating";
+    public static final String COL_OVERALL_RATING = "overall_rating";
 
     private SQLiteDatabase database;
 
@@ -179,27 +180,40 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     /**
-     * Get all records of Establishment table whose name matches
-     * the on-typing filter name, ordered by establishment_name
+     * Get all records of Establishment table whose name matches the on-typing filter name
+     * and whose type is one of the filter types, orderd by establishment_name
      * @param filterName The on-typing filter name
+     * @param filterTypes List of all establishment types user wants to filter
      * @return A cursor holding all matching Establishment records
      */
-    public Cursor getFilteredNameEstablishmentRecords(String filterName) {
+    public Cursor getFilteredEstablishmentRecords(String filterName, ArrayList<String> filterTypes) {
+        // Construct 'String' representation of range of types
+        StringBuilder typesBuilder = new StringBuilder("(");
+        if (filterTypes.isEmpty()) {
+            typesBuilder.append("'RESTAURANT','COFFEE_SHOP','BAR')");
+        } else {
+            for (String type : filterTypes) {
+                typesBuilder.append("'");
+                typesBuilder.append(type);
+                typesBuilder.append("',");
+            }
+            typesBuilder.setCharAt(typesBuilder.length() - 1, ')');
+        }
+
         return database.query(TABLE_NAME_ESTABLISHMENT, null,
-                COL_ESTABLISHMENT_NAME + " like ?", new String[] {filterName + "%"},
-                null, null, COL_ESTABLISHMENT_NAME);
+                COL_ESTABLISHMENT_NAME + " like ? and " + COL_ESTABLISHMENT_TYPE + " in " + typesBuilder.toString(),
+                new String[] {filterName + "%"}, null, null, COL_ESTABLISHMENT_NAME);
     }
 
     /**
-     * Get all records of Establishment table whose type matches (precisely)
-     * the filter type, ordered by establishment_name
-     * @param filterType The filter type
-     * @return A cursor holding all matching Establishment records
+     * Get Establishment record whose ID matches the given ID
+     * @param id Given ID to filter
+     * @return A cursor holding (all) matching Establishment record(s)
      */
-    public Cursor getFilteredTypeEstablishmentRecords(String filterType) {
+    public Cursor getEstablishmentRecord(int id) {
         return database.query(TABLE_NAME_ESTABLISHMENT, null,
-                COL_ESTABLISHMENT_TYPE + " = ?", new String[] {filterType}, null,
-                null, COL_ESTABLISHMENT_NAME);
+                COL_ESTABLISHMENT_ID + " = ?", new String[] {String.valueOf(id)},
+                null, null, COL_ESTABLISHMENT_NAME);
     }
 
     /**
