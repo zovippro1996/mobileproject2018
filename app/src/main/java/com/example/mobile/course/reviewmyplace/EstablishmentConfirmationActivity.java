@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -73,7 +74,7 @@ public class EstablishmentConfirmationActivity extends AppCompatActivity {
         textView_FoodType.setText(foodType);
         textView_Location.setText(Location);
 
-// Get ready to access the database later
+        // Get ready to access the database later
         databaseHelper = new DatabaseHelper(this);
     }
 

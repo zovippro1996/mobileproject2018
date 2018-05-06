@@ -21,7 +21,6 @@
         <item name="windowNoTitle">true</item>
     </style>
 
-
     <!-- Custom theme for title(s). -->
     <style name="AppTheme.Title" parent="@android:style/TextAppearance.Large">
         <item name="android:textSize">28sp</item>
@@ -41,6 +40,21 @@
         <item name="android:progressDrawable">@drawable/rating_stars</item>
         <item name="android:minHeight">22dip</item>
         <item name="android:maxHeight">22dip</item>
+    </style>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme_Animation" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="AppTheme_Animation.Transparent" parent="AppTheme_Animation">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+
     </style>
 
 
