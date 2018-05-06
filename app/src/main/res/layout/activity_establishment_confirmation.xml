@@ -58,7 +58,7 @@
         app:layout_constraintTop_toBottomOf="@+id/LabelFoodType" />
 
     <TextView
-        android:id="@+id/textview_UserID"
+        android:id="@+id/textView_UserID"
         android:layout_width="128dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -140,7 +140,7 @@
         android:gravity="center"
         android:text="@string/establishmentconfirm_userID_label"
         android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/textview_UserID"
+        app:layout_constraintEnd_toStartOf="@+id/textView_UserID"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

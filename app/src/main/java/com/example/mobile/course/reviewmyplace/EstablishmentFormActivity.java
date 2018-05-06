@@ -13,6 +13,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.mobile.course.reviewmyplace.object.Establishment;
+import com.example.mobile.course.reviewmyplace.object.EstablishmentType;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -96,20 +99,23 @@ public class EstablishmentFormActivity extends AppCompatActivity {
     public void clickConfirm_Button(View view) {
 
         //GetValue of user input
-        String UserID = editText_UserID.getText().toString();
-        String EstablishmentName = editText_EstablishmentName.getText().toString();
-        String EstablishmentType = getResources().getStringArray(R.array.establishment_value)
+        String userID = editText_UserID.getText().toString();
+        String establishmentName = editText_EstablishmentName.getText().toString();
+        String establishmentType = getResources().getStringArray(R.array.establishment_value)
                 [spinner_EstablishmentType.getSelectedItemPosition()];
-        String FoodType = editText_FoodType.getText().toString();
+
+        String foodType = editText_FoodType.getText().toString();
         String Location = editText_Location.getText().toString();
+
 
 //        Move to other activities if pass all validation
         if (validateAllFields()){
+
             Intent intent = new Intent(this, EstablishmentConfirmationActivity.class);
-            intent.putExtra("UserID", UserID);
-            intent.putExtra("EstablishmentName", EstablishmentName);
-            intent.putExtra("EstablishmentType", EstablishmentType);
-            intent.putExtra("FoodType", FoodType);
+            intent.putExtra("UserID", userID);
+            intent.putExtra("EstablishmentName", establishmentName);
+            intent.putExtra("EstablishmentType", establishmentType);
+            intent.putExtra("FoodType", foodType);
             intent.putExtra("Location", Location);
             startActivity(intent);
         }

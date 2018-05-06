@@ -1,5 +1,6 @@
 package com.example.mobile.course.reviewmyplace;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -22,11 +23,16 @@ public class EstablishmentDetailActivity extends AppCompatActivity {
     TextView textview_EstablishmentName = null;
     TextView textView_Location = null;
 
+    String str_establishmentID = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_establishment_detail);
+
+        // Get the Intent that started this activity and extract the string
+        Intent intent = getIntent();
+        str_establishmentID = intent.getStringExtra("str_establishmentID");
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewPager_1);
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
@@ -76,8 +82,11 @@ public class EstablishmentDetailActivity extends AppCompatActivity {
     public void showAllReview(View view) {
     }
 
-    //OnClick Method for Create New Establishment
+    //OnClick Method for Create New Review
     public void createReview(View view) {
+        Intent intent = new Intent(this, ReviewFormActivity.class);
+        intent.putExtra("str_establishmentID", str_establishmentID);
+        startActivity(intent);
 
     }
 }
