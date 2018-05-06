@@ -31,9 +31,21 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".EstablishmentFormActivity" />
         </activity>
+
+        <activity
+            android:name=".EstablishmentDetailActivity"
+            android:theme="@style/AppTheme_Animation"
+            android:screenOrientation="portrait">
+            <!--<intent-filter>-->
+            <!--<action android:name="android.intent.action.MAIN" />-->
+            <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
+        </activity>
+
         <activity
             android:name=".ReviewFormActivity"
-            android:label="@string/review_form_activity_title" />
+            android:label="@string/review_form_activity_title"
+            android:theme="@style/AppTheme_Animation.Transparent"/>
         <activity
             android:name=".ReviewFormContActivity"
             android:label="@string/review_form_activity_title"
@@ -44,15 +56,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ReviewFormActivity" />
         </activity>
-        <activity
-            android:name=".EstablishmentDetailActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:screenOrientation="portrait">
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
-        </activity>
+
     </application>
 
 </manifest>

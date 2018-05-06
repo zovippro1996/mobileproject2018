@@ -13,6 +13,7 @@ import com.example.mobile.course.reviewmyplace.R;
 public class FragmentReview extends Fragment {
 
     //Initialize Component in Fragment Review
+    private DatabaseHelper databaseHelper;
 
     public FragmentReview(){}
 
