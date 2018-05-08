@@ -18,24 +18,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     // Associated columns for Establishment table
     private static final String TABLE_NAME_ESTABLISHMENT = "establishments";
 //    private static final String COL_LOCATION_ID = "location_id";
-    private static final String COL_LOCATION_DESC = "location_description";
-    private static final String COL_ESTABLISHMENT_TYPE = "establishment_type";
-    private static final String COL_ESTABLISHMENT_NAME = "establishment_name";
-    private static final String COL_FOOD = "food";
-    private static final String COL_USER_ID = "user_id";
+    public static final String COL_LOCATION_DESC = "location_description";
+    public static final String COL_ESTABLISHMENT_TYPE = "establishment_type";
+    public static final String COL_ESTABLISHMENT_NAME = "establishment_name";
+    public static final String COL_FOOD = "food";
+    public static final String COL_USER_ID = "user_id";
 
     // Associated columns for Review table
     private static final String TABLE_NAME_REVIEW = "reviews";
-    private static final String COL_ESTABLISHMENT_ID = "establishment_id";
-    private static final String COL_DATE = "date";
-    private static final String COL_MEAL_TYPES = "meal_types";
-    private static final String COL_MIN_COST = "min_cost";
-    private static final String COL_MAX_COST = "max_cost";
-    private static final String COL_CURRENCY = "currency";
-    private static final String COL_SERVICE_RATING = "service_rating";
-    private static final String COL_ATMOSPHERE_RATING = "atmosphere_rating";
-    private static final String COL_FOOD_RATING = "food_rating";
-    private static final String COL_OVERALL_RATING = "overall_rating";
+    public static final String COL_ESTABLISHMENT_ID = "establishment_id";
+    public static final String COL_DATE = "date";
+    public static final String COL_MEAL_TYPES = "meal_types";
+    public static final String COL_MIN_COST = "min_cost";
+    public static final String COL_MAX_COST = "max_cost";
+    public static final String COL_CURRENCY = "currency";
+    public static final String COL_SERVICE_RATING = "service_rating";
+    public static final String COL_ATMOSPHERE_RATING = "atmosphere_rating";
+    public static final String COL_FOOD_RATING = "food_rating";
+    public static final String COL_OVERALL_RATING = "overall_rating";
 
     private SQLiteDatabase database;
 

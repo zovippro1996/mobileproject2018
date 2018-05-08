@@ -17,7 +17,6 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-
             android:text="Date"
             android:textColor="#545454"
             android:textSize="18sp"
