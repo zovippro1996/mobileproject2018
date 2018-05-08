@@ -43,14 +43,14 @@
     </style>
 
     <!-- Base application theme. -->
-    <style name="AppTheme_Animation" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="AppTheme_Animation" parent="Theme.AppCompat.Light">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="AppTheme_Animation.Transparent" parent="AppTheme_Animation">
+    <style name="AppTheme_Animation.Transparent">
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>

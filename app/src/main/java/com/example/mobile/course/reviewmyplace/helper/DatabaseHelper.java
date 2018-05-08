@@ -212,6 +212,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     /**
+     * Get all Review records ordered by date column
+     * @return A cursor holding all Review records ordered by date
+     */
+    public Cursor getAllReviewRecordsOrderByDate_latest(String establishmentID) {
+
+        return database.query(TABLE_NAME_REVIEW, null, COL_ESTABLISHMENT_ID + " = ?",
+                new String[] {establishmentID},null, null, COL_DATE +" DESC","1");
+    }
+
+    /**
      * Get all Review records ordered by service_rating column
      * @return A cursor holding all Review records ordered by service rating
      */
@@ -246,6 +256,46 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return database.query(TABLE_NAME_REVIEW, null, null, null,
                 null, null, COL_OVERALL_RATING);
     }
+
+    /**
+     * Get the number of establishment records (by doing a query - maybe inefficient)
+     * @return Number of establishment records
+     */
+    public Cursor getAllReviewRecordsfromEstId(String establishmentID) {
+
+        return database.query(TABLE_NAME_REVIEW, null, COL_ESTABLISHMENT_ID + " = ?",
+                new String[] {establishmentID}, null, null, COL_DATE +" DESC");
+    }
+
+    /**
+     * Get the number of establishment records (by doing a query - maybe inefficient)
+     * @return Number of establishment records
+     */
+    public long getNumberOfReviewRecords() {
+        Cursor cursor = database.query(TABLE_NAME_REVIEW, null, null,
+                null, null, null, null);
+
+        long counter = cursor.getCount();
+        cursor.close();
+
+        return counter;
+    }
+
+    /**
+     * Get the number of establishment records (by doing a query - maybe inefficient)
+     * @return Number of establishment records
+     */
+    public long getNumberOfReviewRecordsfromEstId(String establishmentID) {
+        Cursor cursor = database.query(TABLE_NAME_REVIEW, null, COL_ESTABLISHMENT_ID + " = ?",
+                new String[] {establishmentID}, null, null, null);
+
+        long counter = cursor.getCount();
+        cursor.close();
+
+        return counter;
+    }
+
+
 
     /**
      * Delete all Establishment records

@@ -11,41 +11,42 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".IntroActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".EstablishmentFormActivity"
             android:label="New Establishmnet"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".EstablishmentConfirmationActivity"
             android:parentActivityName=".EstablishmentFormActivity"
             android:screenOrientation="portrait">
+
             <!-- The meta-data element is needed for versions lower than 4.1 -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".EstablishmentFormActivity" />
         </activity>
-
         <activity
             android:name=".EstablishmentDetailActivity"
-            android:theme="@style/AppTheme_Animation"
-            android:screenOrientation="portrait">
-            <!--<intent-filter>-->
-            <!--<action android:name="android.intent.action.MAIN" />-->
-            <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
-        </activity>
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme_Animation">
 
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
+        </activity>
         <activity
             android:name=".ReviewFormActivity"
             android:label="@string/review_form_activity_title"
-            android:theme="@style/AppTheme_Animation.Transparent"/>
+            android:theme="@style/AppTheme_Animation.Transparent" />
         <activity
             android:name=".ReviewFormContActivity"
             android:label="@string/review_form_activity_title"
@@ -56,7 +57,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ReviewFormActivity" />
         </activity>
-
+        <activity android:name=".ReviewAllActivity"></activity>
     </application>
 
 </manifest>
