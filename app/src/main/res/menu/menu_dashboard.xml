@@ -3,10 +3,14 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/dashboard_menu_search"
         android:title="@string/dashboard_menu_search_title"
-        android:icon="@drawable/ic_sort_white_24dp"
-        app:showAsAction="collapseActionView|ifRoom"
+        app:showAsAction="ifRoom"
         app:actionViewClass="android.widget.SearchView" />
-    <group android:checkableBehavior="all">
+    <item android:id="@+id/dashboard_menu_sort"
+        android:title="@string/dashboard_menu_sort_title"
+        android:icon="@mipmap/ic_sort_by_alpha_white_24dp"
+        app:showAsAction="ifRoom" />
+    <group android:checkableBehavior="all"
+        app:showAsAction="ifRoom">
         <item android:id="@+id/dashboard_menu_restaurant"
             android:title="@string/dashboard_menu_restaurant" />
         <item android:id="@+id/dashboard_menu_coffee_shop"

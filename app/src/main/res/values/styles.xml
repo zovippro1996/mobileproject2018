@@ -10,7 +10,7 @@
         <item name="android:colorAccent">@color/colorAccent</item>
     </style>
 
-    <!-- Custom theme for buttons in IntroActivity. -->
+    <!-- Custom theme for buttons in FormActivity. -->
     <style name="AppTheme.Button" parent="Widget.AppCompat.Button.Colored">
         <item name="android:colorButtonNormal">@color/colorPinkButton</item>
         <item name="android:textColor">@color/colorWhiteText</item>

@@ -7,6 +7,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -17,9 +18,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.FilterQueryProvider;
 import android.widget.ListView;
+import android.widget.ResourceCursorAdapter;
 import android.widget.SearchView;
-import android.widget.SimpleCursorAdapter;
 
+import com.example.mobile.course.reviewmyplace.helper.EstablishmentCursorAdapter;
 import com.example.mobile.course.reviewmyplace.helper.DatabaseHelper;
 
 import java.util.ArrayList;
@@ -28,8 +30,10 @@ import java.util.Locale;
 public class DashboardActivity extends AppCompatActivity {
 
     private DatabaseHelper mDatabaseHelper;
-    private ArrayList<String> mFilterTypes;       // type of establishment to filter
+    private ArrayList<String> mFilterTypes;         // type of establishment to filter
     private Menu mOptionsMenu;
+    private boolean mAlphabeticalSorted;            // whether to sort establishment records
+                                                    // in alphabetical order or not
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +46,12 @@ public class DashboardActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+
+                // Redirect to EstablishmentFormActivity
+                Intent intent = new Intent(view.getContext(), EstablishmentFormActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -53,45 +61,21 @@ public class DashboardActivity extends AppCompatActivity {
         // Initialize filter types
         mFilterTypes = new ArrayList<>();
 
-        // Get the intent, verify the action (i.e. SEARCH) and get the query
-        handleSearchIntent(getIntent());
-    }
-
-    @Override
-    protected void onNewIntent(Intent intent) {
-        handleSearchIntent(intent);
-    }
-
-    private void handleSearchIntent(Intent intent) {
-        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
-//            String query = intent.getStringExtra(SearchManager.QUERY);
-
-            // Do nothing
-        }
+        // Initialize flag for alphabetical-sort
+        mAlphabeticalSorted = false;
     }
 
     private void setupSearchOnTyping(Menu menu) {
         // Get all records
         Cursor records = mDatabaseHelper.getAllEstablishmentRecords();
 
-        // Array of cursor columns and array of template object to bind to
-        String[] columns = new String[] {DatabaseHelper.COL_ESTABLISHMENT_NAME,
-                                DatabaseHelper.COL_USER_ID, DatabaseHelper.COL_ESTABLISHMENT_TYPE,
-                                DatabaseHelper.COL_FOOD, DatabaseHelper.COL_LOCATION_DESC};
-        int[] templateObjects = new int[] {R.id.list_record_establishment_name,
-                                R.id.list_record_user, R.id.list_record_type,
-                                R.id.list_record_food, R.id.list_record_location};
-
         // Create a new list adapter bound to the cursor
         // Display all Establishment at first
-        final SimpleCursorAdapter adapter = new SimpleCursorAdapter(
-                this,   // context
-                R.layout.list_row_record,   // specify the row template to use
-                records,    // the cursor to bind to
-                columns,    // array of cursor columns to bind to
-                templateObjects,     // parallel array of which template objects to bind to those columns
-                SimpleCursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER
-        );
+        final EstablishmentCursorAdapter adapter = new EstablishmentCursorAdapter(
+                this,
+                R.layout.list_row_record,
+                records,
+                ResourceCursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
 
         // Bound to new adapter
         ListView listView = findViewById(android.R.id.list);
@@ -103,6 +87,8 @@ public class DashboardActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 // Last argument (i.e. long l) is actually the row id from the database
                 Log.i("id", String.format(Locale.getDefault(), "%d", l));
+
+                // TODO: redirect to the corresponding EstablishmentDetailActivity when being clicked
             }
         });
 
@@ -110,7 +96,7 @@ public class DashboardActivity extends AppCompatActivity {
         adapter.setFilterQueryProvider(new FilterQueryProvider() {
             @Override
             public Cursor runQuery(CharSequence charSequence) {
-                return mDatabaseHelper.getFilteredEstablishmentRecords(charSequence.toString(), mFilterTypes);
+                return mDatabaseHelper.getFilteredEstablishmentRecords(charSequence.toString(), mFilterTypes, mAlphabeticalSorted);
             }
         });
 
@@ -146,15 +132,15 @@ public class DashboardActivity extends AppCompatActivity {
 
         // Inflate the options menu from XML
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.dashboard_menu, menu);
+        inflater.inflate(R.menu.menu_dashboard, menu);
 
         // Get the SearchView and set the searchable configuration
-        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+//        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         SearchView searchView = (SearchView) menu.findItem(R.id.dashboard_menu_search).getActionView();
-        if (searchManager != null) {
-            searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-        }
-        searchView.setIconifiedByDefault(false);    // Do not iconify the widget; expand it by default
+//        if (searchManager != null) {
+//            searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+//        }
+        searchView.setQueryHint(getResources().getString(R.string.dashboard_menu_search_hint));
 
         // Setup search-on-typing for SearchView
         setupSearchOnTyping(menu);
@@ -164,19 +150,20 @@ public class DashboardActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        // Stop handling if SearchView
         if (item.getItemId() == R.id.dashboard_menu_search) {
             return super.onOptionsItemSelected(item);
         }
 
         // Retrieve Adapter bound to ListView
         ListView listView = findViewById(android.R.id.list);
-        SimpleCursorAdapter adapter = (SimpleCursorAdapter) listView.getAdapter();
+        EstablishmentCursorAdapter adapter = (EstablishmentCursorAdapter) listView.getAdapter();
 
         // Retrieve the current query in SearchView
         SearchView searchView = (SearchView) mOptionsMenu.findItem(R.id.dashboard_menu_search).getActionView();
         String query = searchView.getQuery().toString();
 
-        // Handle item selection
+        // Handle item selection (for other MenuItem not SearchView)
         switch (item.getItemId()) {
             case R.id.dashboard_menu_restaurant:
                 // Set the state of the checkbox item
@@ -221,6 +208,21 @@ public class DashboardActivity extends AppCompatActivity {
                     // Add "Bar" to list of filter types
                     mFilterTypes.add("BAR");
                 }
+
+                break;
+            case R.id.dashboard_menu_sort:
+                // Set flag
+                mAlphabeticalSorted = !mAlphabeticalSorted;
+
+                // Change icon
+                if (mAlphabeticalSorted) {
+                    item.setIcon(ContextCompat.getDrawable(this, R.mipmap.ic_sort_white_24dp));
+                } else {
+                    item.setIcon(ContextCompat.getDrawable(this, R.mipmap.ic_sort_by_alpha_white_24dp));
+                }
+
+                // Debug
+                Log.i("sorted", mAlphabeticalSorted ? "true" : "false");
 
                 break;
             default:
