@@ -291,6 +291,42 @@ public class Review implements Parcelable {
         return strDate;
     }
 
+    /**
+     * Return a String representation of the given date
+     * @param date Given date
+     * @return String representation of the specified date
+     */
+    public static String getStringDate(Calendar date) {
+        int day = date.get(Calendar.DAY_OF_MONTH);
+        int year = date.get(Calendar.YEAR);
+        String monthName = date.getDisplayName(Calendar.MONTH, Calendar.LONG, Locale.getDefault());
+
+        String strDate = day + "";
+        if (day % 10 == 1 && day != 11) {
+            strDate += "st ";
+        } else if (day % 10 == 2 && day != 12) {
+            strDate += "nd ";
+        } else if (day % 10 == 3 && day != 13) {
+            strDate += "rd ";
+        } else {
+            strDate += "th ";
+        }
+        strDate += monthName + ", " + year;
+
+        return strDate;
+    }
+
+    public static String getStringCostRange(float min, float max, String currency) {
+        String convertedCurrency;
+        if (currency.matches("dollar")) convertedCurrency = "USD (\u0024)";
+        else if (currency.matches("euro")) convertedCurrency = "EURO (\u20ac)";
+        else if (currency.matches("pound")) convertedCurrency = "POUND (\u00a3)";
+        else if (currency.matches("vnd")) convertedCurrency = "VND";
+        else convertedCurrency = currency;
+
+        return String.format(Locale.getDefault(), "%.2f - %.2f %s", min, max, currency);
+    }
+
     @Override
     public int describeContents() {
         return 0;

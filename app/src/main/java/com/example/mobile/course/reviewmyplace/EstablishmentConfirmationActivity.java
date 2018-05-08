@@ -149,7 +149,7 @@ public class EstablishmentConfirmationActivity extends AppCompatActivity {
         }
 
         Intent intent = new Intent(this, EstablishmentDetailActivity.class);
-        intent.putExtra("str_establishmentID", str_establishmentID);
+        intent.putExtra("mStrEstablishmentID", str_establishmentID);
         startActivity(intent);
     }
 
