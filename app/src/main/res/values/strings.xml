@@ -80,6 +80,7 @@
     <string name="dashboard_menu_bar">Bar</string>
     <string name="dashboard_menu_search_title">Search</string>
     <string name="dashboard_menu_search_hint">Search establishment</string>
-    <string name="dashboard_menu_sort_title">Sort</string>
+    <string name="dashboard_menu_sort_alpha_title">A-Z Sort</string>
+    <string name="dashboard_menu_sort_chrono_title">Time Sort</string>
 
 </resources>

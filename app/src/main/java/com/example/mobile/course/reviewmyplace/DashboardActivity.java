@@ -137,13 +137,10 @@ public class DashboardActivity extends AppCompatActivity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_dashboard, menu);
 
-        // Get the SearchView and set the searchable configuration
-//        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        // Add search hint and set iconified state
         SearchView searchView = (SearchView) menu.findItem(R.id.dashboard_menu_search).getActionView();
-//        if (searchManager != null) {
-//            searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-//        }
         searchView.setQueryHint(getResources().getString(R.string.dashboard_menu_search_hint));
+//        searchView.setIconifiedByDefault(false);
 
         // Setup search-on-typing for SearchView
         setupSearchOnTyping(menu);
@@ -219,9 +216,13 @@ public class DashboardActivity extends AppCompatActivity {
 
                 // Change icon
                 if (mAlphabeticalSorted) {
-                    item.setIcon(ContextCompat.getDrawable(this, R.mipmap.ic_sort_white_24dp));
+                    // Set to "chronological sorted"
+                    item.setIcon(R.mipmap.ic_sort_white_24dp);
+                    item.setTitle(R.string.dashboard_menu_sort_chrono_title);
                 } else {
-                    item.setIcon(ContextCompat.getDrawable(this, R.mipmap.ic_sort_by_alpha_white_24dp));
+                    // Set to "alphabetical sorted"
+                    item.setIcon(R.mipmap.ic_sort_by_alpha_white_24dp);
+                    item.setTitle(R.string.dashboard_menu_sort_alpha_title);
                 }
 
                 // Debug
