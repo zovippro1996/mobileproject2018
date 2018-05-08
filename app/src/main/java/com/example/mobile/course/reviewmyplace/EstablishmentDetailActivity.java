@@ -56,7 +56,7 @@ public class EstablishmentDetailActivity extends AppCompatActivity {
 
         // Get the Intent that started this activity and extract the string
         Intent intent = getIntent();
-        str_establishmentID = intent.getStringExtra("str_establishmentID");
+        str_establishmentID = intent.getStringExtra("mStrEstablishmentID");
 
         bundle.putString("establishmentID", str_establishmentID);
 
@@ -110,7 +110,7 @@ public class EstablishmentDetailActivity extends AppCompatActivity {
         bundle.putParcelable("establishment", current_establishment);
 
         //Add Review_number to Bundle
-        long review_number = databaseHelper.getNumberOfReviewRecordsfromEstId(str_establishmentID);
+        long review_number = databaseHelper.getNumberOfReviewRecordsFromEstablishment(str_establishmentID);
         bundle.putLong("review_number", review_number);
 
         if(review_number > 0){
@@ -202,7 +202,7 @@ public class EstablishmentDetailActivity extends AppCompatActivity {
     //OnClick Method for Show All Reviews
     public void showAllReview(View view) {
         Intent intent = new Intent(this, ReviewAllActivity.class);
-        intent.putExtra("str_establishmentID", str_establishmentID);
+        intent.putExtra("mStrEstablishmentID", str_establishmentID);
 
         startActivity(intent);
     }
@@ -215,7 +215,7 @@ public class EstablishmentDetailActivity extends AppCompatActivity {
         int revealY = (int) (view.getY() + view.getHeight() / 2);
 
         Intent intent = new Intent(this, ReviewFormActivity.class);
-        intent.putExtra("str_establishmentID", str_establishmentID);
+        intent.putExtra("mStrEstablishmentID", str_establishmentID);
 //        startActivity(intent);
         intent.putExtra(ReviewFormActivity.EXTRA_CIRCULAR_REVEAL_X, revealX);
         intent.putExtra(ReviewFormActivity.EXTRA_CIRCULAR_REVEAL_Y, revealY);

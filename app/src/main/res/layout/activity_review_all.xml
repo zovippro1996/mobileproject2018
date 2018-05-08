@@ -18,7 +18,7 @@
         app:layout_constraintRight_toRightOf="parent" />
 
     <ListView
-        android:id="@+id/listView"
+        android:id="@android:id/list"
         android:layout_width="368dp"
         android:layout_height="495dp"
         app:layout_constraintBottom_toBottomOf="parent"

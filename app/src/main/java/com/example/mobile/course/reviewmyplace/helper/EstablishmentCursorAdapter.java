@@ -22,9 +22,9 @@ public class EstablishmentCursorAdapter extends ResourceCursorAdapter {
 
     /**
      * Bind all data to a given view (e.g. setting the text on a TextView)
-     * @param view View
-     * @param context Context
-     * @param cursor Cursor
+     * @param view Existing view, returned earlier by newView
+     * @param context Interface to application's global information
+     * @param cursor The cursor from which to get the data (note: the cursor is already moved to the correct position)
      */
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
@@ -57,10 +57,10 @@ public class EstablishmentCursorAdapter extends ResourceCursorAdapter {
         // Set background color for even/odd row records
         if (cursor.getPosition() % 2 == 0) {
             // Set ligh cyan color
-            view.findViewById(R.id.list_record).setBackgroundColor(ContextCompat.getColor(view.getContext(), R.color.colorLightCyan));
+            view.findViewById(R.id.list_establishment_record).setBackgroundColor(ContextCompat.getColor(view.getContext(), R.color.colorLightCyan));
         } else {
             // Set light orange color
-            view.findViewById(R.id.list_record).setBackgroundColor(ContextCompat.getColor(view.getContext(), R.color.colorLightOrange));
+            view.findViewById(R.id.list_establishment_record).setBackgroundColor(ContextCompat.getColor(view.getContext(), R.color.colorLightOrange));
         }
     }
 }

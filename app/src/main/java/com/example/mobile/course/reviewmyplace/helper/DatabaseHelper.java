@@ -243,6 +243,37 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     /**
+     * Get the best Review record in terms of the specified criterion
+     * @param criterion Criterion to choose the best Review record. Must be one of the following
+     *                  {"date", "service", "atmosphere", "food", "overal"}
+     * @return A cursor holding the best qualified
+     */
+    public Cursor getBestReviewRecordBasedOn(String criterion) {
+        String orderBy;
+        if (criterion.equalsIgnoreCase("date")) {
+            orderBy = COL_DATE;
+        } else if (criterion.equalsIgnoreCase("service")) {
+            orderBy = COL_SERVICE_RATING;
+        } else if (criterion.equalsIgnoreCase("atmosphere")) {
+            orderBy = COL_ATMOSPHERE_RATING;
+        } else if (criterion.equalsIgnoreCase("food")) {
+            orderBy = COL_FOOD_RATING;
+        } else if (criterion.equalsIgnoreCase("overall")) {
+            orderBy = COL_OVERALL_RATING;
+        } else {
+            // Invalid value
+            orderBy = "null";
+
+            Log.e("ReviewOrderCriterion", "Invalid column name for ORDER BY filter");
+        }
+
+        return database.query(TABLE_NAME_REVIEW, null, null, null,
+                null, null,
+                orderBy.equalsIgnoreCase("null") ? orderBy + " DESC" : null,
+                "1");
+    }
+
+    /**
      * Get all Review records ordered by service_rating column
      * @return A cursor holding all Review records ordered by service rating
      */
@@ -279,10 +310,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     /**
-     * Get the number of establishment records (by doing a query - maybe inefficient)
-     * @return Number of establishment records
+     * Get all reviews associated with establishment whose ID matches the specified ID
+     * @param establishmentID Specified ID of the Establishment whose reviews need to  be retrieved
+     * @return A cursor holding all matching Reviews
      */
-    public Cursor getAllReviewRecordsfromEstId(String establishmentID) {
+    public Cursor getAllReviewRecordsFromEstablishment(String establishmentID) {
 
         return database.query(TABLE_NAME_REVIEW, null, COL_ESTABLISHMENT_ID + " = ?",
                 new String[] {establishmentID}, null, null, COL_DATE +" DESC");
@@ -303,10 +335,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     /**
-     * Get the number of establishment records (by doing a query - maybe inefficient)
-     * @return Number of establishment records
+     * Get the number of reviews associated with the specified establishment (through ID)
+     * @param establishmentID ID of the desired establishment
+     * @return Number of matching reviews
      */
-    public long getNumberOfReviewRecordsfromEstId(String establishmentID) {
+    public long getNumberOfReviewRecordsFromEstablishment(String establishmentID) {
         Cursor cursor = database.query(TABLE_NAME_REVIEW, null, COL_ESTABLISHMENT_ID + " = ?",
                 new String[] {establishmentID}, null, null, null);
 

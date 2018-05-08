@@ -1,12 +1,9 @@
 package com.example.mobile.course.reviewmyplace;
 
-import android.app.SearchManager;
-import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -73,11 +70,12 @@ public class DashboardActivity extends AppCompatActivity {
         // Display all Establishment at first
         final EstablishmentCursorAdapter adapter = new EstablishmentCursorAdapter(
                 this,
-                R.layout.list_row_record,
+                R.layout.list_establishment_record,
                 records,
-                ResourceCursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
+                ResourceCursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER
+        );
 
-        // Bound to new adapter
+        // Bind adapter to the ListView
         ListView listView = findViewById(android.R.id.list);
         listView.setAdapter(adapter);
 
