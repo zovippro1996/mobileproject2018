@@ -140,8 +140,6 @@ public class ReviewFormActivity extends AppCompatActivity
 
     protected void unRevealActivity() {
 
-
-
     }
 
     @Override

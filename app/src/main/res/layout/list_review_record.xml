@@ -16,6 +16,7 @@
             android:id="@+id/textView_reviewDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:text="Date"
@@ -29,7 +30,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="3dp"
+            android:layout_margin="8dp"
             android:orientation="horizontal">
 
             <TextView
@@ -57,7 +58,8 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingStart="8dp">
 
             <TextView
                 android:id="@+id/textView_overall"
@@ -69,14 +71,13 @@
 
             <RatingBar
                 android:id="@+id/ratingBar_overall"
-                style="@style/AppTheme.RatingBar"
+                style="?android:attr/ratingBarStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:isIndicator="true"
                 android:numStars="5"
-                android:rating="3.5"
-                android:stepSize="0.5"
+                android:stepSize="1"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:layout_editor_absoluteY="134dp" />
 
@@ -85,7 +86,8 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingStart="8dp">
 
             <TextView
                 android:id="@+id/textView_service"
@@ -96,14 +98,13 @@
 
             <RatingBar
                 android:id="@+id/ratingBar_service"
-                style="@style/AppTheme.RatingBar"
+                style="?android:attr/ratingBarStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:isIndicator="true"
                 android:numStars="5"
-                android:rating="3.5"
-                android:stepSize="0.5"
+                android:stepSize="1"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:layout_editor_absoluteY="166dp" />
 
@@ -112,7 +113,8 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingStart="8dp">
 
             <TextView
                 android:id="@+id/textView_atmos"
@@ -123,14 +125,13 @@
 
             <RatingBar
                 android:id="@+id/ratingBar_atmos"
-                style="@style/AppTheme.RatingBar"
+                style="?android:attr/ratingBarStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:isIndicator="true"
                 android:numStars="5"
-                android:rating="3.5"
-                android:stepSize="0.5"
+                android:stepSize="1"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:layout_editor_absoluteY="97dp" />
         </LinearLayout>
@@ -138,7 +139,8 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingStart="8dp">
 
             <TextView
                 android:id="@+id/textView_food"
@@ -149,14 +151,13 @@
 
             <RatingBar
                 android:id="@+id/ratingBar_food"
-                style="@style/AppTheme.RatingBar"
+                style="?android:attr/ratingBarStyleSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:isIndicator="true"
                 android:numStars="5"
-                android:rating="3.5"
-                android:stepSize="0.5"
+                android:stepSize="1"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:layout_editor_absoluteY="62dp" />
         </LinearLayout>
@@ -166,6 +167,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
+            android:layout_marginStart="8dp"
             android:padding="3dp"
             android:text="This is a Sample Comment for a wonderful imaginary restaurant that I don't even know."
             android:textColor="#545454"

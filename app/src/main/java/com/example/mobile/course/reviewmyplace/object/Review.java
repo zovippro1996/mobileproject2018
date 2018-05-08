@@ -317,14 +317,23 @@ public class Review implements Parcelable {
     }
 
     public static String getStringCostRange(float min, float max, String currency) {
-        String convertedCurrency;
-        if (currency.matches("dollar")) convertedCurrency = "USD (\u0024)";
-        else if (currency.matches("euro")) convertedCurrency = "EURO (\u20ac)";
-        else if (currency.matches("pound")) convertedCurrency = "POUND (\u00a3)";
-        else if (currency.matches("vnd")) convertedCurrency = "VND";
-        else convertedCurrency = currency;
+        String currencySymbol;
+        if (currency.equalsIgnoreCase("dollar") || currency.equalsIgnoreCase("USD (\u0024)")) {
+            currencySymbol = "\u0024";
+        }
+        else if (currency.equalsIgnoreCase("euro") || currency.equalsIgnoreCase("EURO (\u20ac)")) {
+            currencySymbol = "\u20ac";
+        }
+        else if (currency.equalsIgnoreCase("pound") || currency.equalsIgnoreCase("POUND (\u00a3)")) {
+            currencySymbol = "\u00a3";
+        }
+        else if (currency.equalsIgnoreCase("vnd") || currency.equalsIgnoreCase("VND")) {
+            currencySymbol = "VND";
+        } else {
+            currencySymbol = currency;
+        }
 
-        return String.format(Locale.getDefault(), "%s %.2f - %.2f ", currency, min, max);
+        return String.format(Locale.getDefault(), "%s %.2f - %.2f ", currencySymbol, min, max);
     }
 
     @Override

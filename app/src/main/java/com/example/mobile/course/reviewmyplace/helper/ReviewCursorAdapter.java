@@ -11,7 +11,6 @@ import com.example.mobile.course.reviewmyplace.R;
 import com.example.mobile.course.reviewmyplace.object.Review;
 
 import java.util.Calendar;
-import java.util.Locale;
 
 public class ReviewCursorAdapter extends ResourceCursorAdapter {
 

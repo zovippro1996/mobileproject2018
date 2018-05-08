@@ -20,7 +20,7 @@ import java.util.Locale;
 
 public class ReviewFormContActivity extends AppCompatActivity {
 
-    private Review review;
+    private Review mReview;
     private DatabaseHelper mDatabaseHelper;
 
     @Override
@@ -30,38 +30,38 @@ public class ReviewFormContActivity extends AppCompatActivity {
 
         // Extract extra data from intent
         Intent intent = getIntent();
-        review = intent.getParcelableExtra(ReviewFormActivity.EXTRA_REVIEW);
+        mReview = intent.getParcelableExtra(ReviewFormActivity.EXTRA_REVIEW);
 
         // Display input date
         TextView textView = findViewById(R.id.review_form_cont_picked_date);
-        textView.setText(review.getStringDate());
+        textView.setText(mReview.getStringDate());
 
         // Display input types of meal
         textView = findViewById(R.id.review_form_cont_meal_types);
-        textView.setText(review.getMealType());
+        textView.setText(mReview.getMealType());
 
         // Display input min. & max. costs with currency
         textView = findViewById(R.id.review_form_cont_min_cost);
-        textView.setText(String.format(Locale.getDefault(), "%.2f", review.getMinCost()));
+        textView.setText(String.format(Locale.getDefault(), "%.2f", mReview.getMinCost()));
 
         textView = findViewById(R.id.review_form_cont_max_cost);
-        textView.setText(String.format(Locale.getDefault(), "%.2f", review.getMaxCost()));
+        textView.setText(String.format(Locale.getDefault(), "%.2f", mReview.getMaxCost()));
 
         textView = findViewById(R.id.review_form_cont_currency);
-        textView.setText(convertCurrency(review.getCurrency()));
+        textView.setText(convertCurrency(mReview.getCurrency()));
 
         // Display input ratings
         RatingBar ratingBar = findViewById(R.id.review_form_cont_service_rating);
-        ratingBar.setRating(review.getServiceRating());
+        ratingBar.setRating(mReview.getServiceRating());
 
         ratingBar = findViewById(R.id.review_form_cont_atmosphere_rating);
-        ratingBar.setRating(review.getAtmosphereRating());
+        ratingBar.setRating(mReview.getAtmosphereRating());
 
         ratingBar = findViewById(R.id.review_form_cont_food_rating);
-        ratingBar.setRating(review.getFoodRating());
+        ratingBar.setRating(mReview.getFoodRating());
 
         ratingBar = findViewById(R.id.review_form_cont_overall_rating);
-        ratingBar.setRating(review.getOverallRating());
+        ratingBar.setRating(mReview.getOverallRating());
 
         // Get ready to access the database later
         mDatabaseHelper = new DatabaseHelper(this);
@@ -88,7 +88,7 @@ public class ReviewFormContActivity extends AppCompatActivity {
     public void onSaveButton(View view) {
         // Extract input comment (if any)
         EditText editText = findViewById(R.id.review_form_cont_comment);
-        review.setReviewContent(editText.getText().toString());
+        mReview.setReviewContent(editText.getText().toString());
 
         // Use the Builder class to ask for confirmation
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -113,20 +113,21 @@ public class ReviewFormContActivity extends AppCompatActivity {
     protected void saveReview() {
         try {
             // Insert into database
-            mDatabaseHelper.insertReview(review);
+            mDatabaseHelper.insertReview(mReview);
 
             // Notify successful saving
-            popupToast("Your review has been saved successfully");
+            popupToast("Your mReview has been saved successfully");
 
+            // Open the corresponding Establishment detailed screen (i.e. EstablishmentDetailActivity)
             Intent intent = new Intent(this, EstablishmentDetailActivity.class);
-            intent.putExtra(EstablishmentConfirmationActivity.EXTRA_ESTABLISHMENT_ID, Integer.toString( review
+            intent.putExtra(EstablishmentConfirmationActivity.EXTRA_ESTABLISHMENT_ID, Integer.toString( mReview
                     .getEstablishmentID()));
             startActivity(intent);
         } catch (SQLiteException sqle) {
             Log.w(this.getClass().getName(), "Error saving to database");
 
             // Notify unsuccessful saving
-            popupToast("Couldn't save your review into database");
+            popupToast("Couldn't save your mReview into database");
         }
     }
 
