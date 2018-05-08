@@ -24,6 +24,8 @@ public class EstablishmentConfirmationActivity extends AppCompatActivity {
 
     private DatabaseHelper databaseHelper;
 
+    public static final String EXTRA_ESTABLISHMENT_ID = "com.example..mobile.course.reviewmyplace.EXTRA_ESTABLISHMENT_ID";
+
     //Initialize Component and Variables
     TextView textView_UserID = null;
     TextView textView_EstablishmentName = null;
@@ -89,7 +91,7 @@ public class EstablishmentConfirmationActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    void clickConfirm_Button(View v) {
+    public void clickSave_Button(View view) {
 
         switch(establishmentType_num){
             case -1:
@@ -149,7 +151,7 @@ public class EstablishmentConfirmationActivity extends AppCompatActivity {
         }
 
         Intent intent = new Intent(this, EstablishmentDetailActivity.class);
-        intent.putExtra("mStrEstablishmentID", str_establishmentID);
+        intent.putExtra(EstablishmentConfirmationActivity.EXTRA_ESTABLISHMENT_ID, str_establishmentID);
         startActivity(intent);
     }
 

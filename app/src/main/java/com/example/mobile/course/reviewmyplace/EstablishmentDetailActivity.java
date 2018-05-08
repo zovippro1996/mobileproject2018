@@ -56,7 +56,7 @@ public class EstablishmentDetailActivity extends AppCompatActivity {
 
         // Get the Intent that started this activity and extract the string
         Intent intent = getIntent();
-        str_establishmentID = intent.getStringExtra("mStrEstablishmentID");
+        str_establishmentID = intent.getStringExtra(EstablishmentConfirmationActivity.EXTRA_ESTABLISHMENT_ID);
 
         bundle.putString("establishmentID", str_establishmentID);
 
@@ -215,7 +215,7 @@ public class EstablishmentDetailActivity extends AppCompatActivity {
         int revealY = (int) (view.getY() + view.getHeight() / 2);
 
         Intent intent = new Intent(this, ReviewFormActivity.class);
-        intent.putExtra("mStrEstablishmentID", str_establishmentID);
+        intent.putExtra(EstablishmentConfirmationActivity.EXTRA_ESTABLISHMENT_ID, str_establishmentID);
 //        startActivity(intent);
         intent.putExtra(ReviewFormActivity.EXTRA_CIRCULAR_REVEAL_X, revealX);
         intent.putExtra(ReviewFormActivity.EXTRA_CIRCULAR_REVEAL_Y, revealY);

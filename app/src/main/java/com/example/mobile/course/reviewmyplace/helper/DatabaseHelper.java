@@ -12,6 +12,7 @@ import com.example.mobile.course.reviewmyplace.object.EstablishmentType;
 import com.example.mobile.course.reviewmyplace.object.Review;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 

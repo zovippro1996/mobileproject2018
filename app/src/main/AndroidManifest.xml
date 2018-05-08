@@ -21,7 +21,7 @@
         </activity>
         <activity
             android:name=".EstablishmentFormActivity"
-            android:label="New Establishmnet"
+            android:label="New Establishment"
             android:screenOrientation="portrait" />
         <activity
             android:name=".EstablishmentConfirmationActivity"
@@ -46,6 +46,7 @@
         <activity
             android:name=".ReviewFormActivity"
             android:label="@string/review_form_activity_title"
+            android:launchMode="singleTop"
             android:theme="@style/AppTheme_Animation.Transparent" />
         <activity
             android:name=".ReviewFormContActivity"

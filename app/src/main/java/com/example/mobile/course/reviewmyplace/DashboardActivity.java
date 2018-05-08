@@ -87,6 +87,11 @@ public class DashboardActivity extends AppCompatActivity {
                 Log.i("id", String.format(Locale.getDefault(), "%d", l));
 
                 // TODO: redirect to the corresponding EstablishmentDetailActivity when being clicked
+
+                // Redirect to the corresponding establishment detailed screen
+                Intent intent = new Intent(view.getContext(), EstablishmentDetailActivity.class);
+                intent.putExtra(EstablishmentConfirmationActivity.EXTRA_ESTABLISHMENT_ID, String.format(Locale.getDefault(), "%d", l));
+                startActivity(intent);
             }
         });
 

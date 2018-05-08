@@ -30,7 +30,7 @@ public class ReviewCursorAdapter extends ResourceCursorAdapter {
 
         // Date of the review
         Calendar date = Calendar.getInstance();
-        date.setTimeInMillis(cursor.getInt(cursor.getColumnIndexOrThrow(DatabaseHelper.COL_DATE)));
+        date.setTimeInMillis(cursor.getLong(cursor.getColumnIndexOrThrow(DatabaseHelper.COL_DATE)));
 
         TextView textView = view.findViewById(R.id.textView_reviewDate);
         textView.setText(Review.getStringDate(date));

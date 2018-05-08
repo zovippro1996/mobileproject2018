@@ -36,7 +36,7 @@ public class ReviewFormActivity extends AppCompatActivity
 
     private Review mReview;
 
-    //Trung-----
+    // Fields for Animation
     public static final String EXTRA_CIRCULAR_REVEAL_X = "EXTRA_CIRCULAR_REVEAL_X";
     public static final String EXTRA_CIRCULAR_REVEAL_Y = "EXTRA_CIRCULAR_REVEAL_Y";
     View rootLayout;
@@ -52,8 +52,8 @@ public class ReviewFormActivity extends AppCompatActivity
 
         final Intent intent = getIntent();
 
+        // Animation
         rootLayout = findViewById(R.id.root_layout);
-
         if (savedInstanceState == null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP &&
                 intent.hasExtra(EXTRA_CIRCULAR_REVEAL_X) &&
                 intent.hasExtra(EXTRA_CIRCULAR_REVEAL_Y)) {
@@ -83,7 +83,7 @@ public class ReviewFormActivity extends AppCompatActivity
         mReview = new Review();
 
         // Retrieve establishmentID from the Intent passed to this Activity
-        mReview.setEstablishmentID(0);
+        mReview.setEstablishmentID(Integer.parseInt(intent.getStringExtra(EstablishmentConfirmationActivity.EXTRA_ESTABLISHMENT_ID)));
 
         // Initialize picked date (with default value - current date)
         mReview.setReviewDate();

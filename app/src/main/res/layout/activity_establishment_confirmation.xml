@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".EstablishmentConfirmationActivity">
 
     <TextView
         android:id="@+id/LabelEstablishmentName"
@@ -163,7 +164,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight=".5"
-            android:onClick="clickConfirm_Button"
+            android:onClick="clickSave_Button"
             android:text="Save"
             android:textSize="24sp"
             tools:layout_editor_absoluteX="208dp"
