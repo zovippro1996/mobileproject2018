@@ -46,7 +46,7 @@
 
                 <TextView
                     android:id="@+id/userID"
-                    android:layout_width="371dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
@@ -79,6 +79,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginBottom="3dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -90,7 +91,7 @@
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="5dp"
                     android:layout_weight="1"
-                    android:text="Establishment Type"
+                    android:text="Type"
                     android:textColor="#545454"
                     android:textSize="20sp"
                     android:textStyle="bold"
@@ -123,7 +124,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:text="Type of Food Serve"
+                android:text="Food Serve"
                 android:textColor="#545454"
                 android:textSize="20sp"
                 android:textStyle="bold"
