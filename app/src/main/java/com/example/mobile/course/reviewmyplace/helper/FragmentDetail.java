@@ -13,7 +13,6 @@ import com.example.mobile.course.reviewmyplace.object.Establishment;
 
 public class FragmentDetail extends Fragment {
 
-
     //Initialize Component in Fragment Detail
     TextView textView_establishmentName = null;
     TextView textView_userID = null;

@@ -67,6 +67,12 @@ public class Review implements Parcelable {
         setRating(overallRating, serviceRating, atmosphereRating, foodRating);
     }
 
+    public Review(Calendar date, float overallRating, String content){
+        setReviewDate(date);
+        setOverallRating(overallRating);
+        setReviewContent(content);
+    }
+
     public Review(Parcel in) {
         String[] strData = new String[3];
         float[] floatData = new float[6];

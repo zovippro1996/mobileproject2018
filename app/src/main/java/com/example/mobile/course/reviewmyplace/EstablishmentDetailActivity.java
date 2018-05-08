@@ -21,8 +21,11 @@ import com.example.mobile.course.reviewmyplace.helper.FragmentDetail;
 import com.example.mobile.course.reviewmyplace.helper.FragmentReview;
 import com.example.mobile.course.reviewmyplace.object.Establishment;
 import com.example.mobile.course.reviewmyplace.object.EstablishmentType;
+import com.example.mobile.course.reviewmyplace.object.Review;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 public class EstablishmentDetailActivity extends AppCompatActivity {
@@ -99,11 +102,36 @@ public class EstablishmentDetailActivity extends AppCompatActivity {
                     (current_establishmentCursor
                             .getColumnIndex("location_description"));
         }
+        current_establishmentCursor.close();
 
+        //Add Establishment to Bundle
         Establishment current_establishment = new Establishment(userID, establishmentName,
                 current_establishmenttype, foodType, Location);
-
         bundle.putParcelable("establishment", current_establishment);
+
+        //Add Review_number to Bundle
+        long review_number = databaseHelper.getNumberOfReviewRecordsfromEstId(str_establishmentID);
+        bundle.putLong("review_number", review_number);
+
+        if(review_number > 0){
+            Cursor latest_review_cursor = databaseHelper.getAllReviewRecordsOrderByDate_latest(str_establishmentID);
+
+            latest_review_cursor.moveToFirst();
+
+            int review_date = latest_review_cursor.getInt(latest_review_cursor.getColumnIndex
+                    ("date"));
+            Calendar review_caldate = Calendar.getInstance();
+
+            review_caldate.setTimeInMillis(review_date);
+
+            float rating = latest_review_cursor.getFloat(latest_review_cursor.getColumnIndex
+                    ("overall_rating"));
+
+            Review review = new Review(review_caldate, rating, "Been there.");
+
+            bundle.putParcelable("review", review);
+        }
+
 
         imageView = (ImageView) findViewById(R.id.imageView);
         switch (establishmentType) {
@@ -119,7 +147,6 @@ public class EstablishmentDetailActivity extends AppCompatActivity {
             default:
                 imageView.setImageResource(R.drawable.default_restaurant);
         }
-
 
         textView_EstablishmentName = (TextView) findViewById(R.id.textView_EstablishmentName);
         textView_EstablishmentName.setText(establishmentName);
@@ -143,7 +170,6 @@ public class EstablishmentDetailActivity extends AppCompatActivity {
 
     //Change Between Tabs
     class ViewPagerAdapter extends FragmentPagerAdapter {
-
         private final List<Fragment> mFragmentList = new ArrayList<>();
         private final List<String> mFragmentTitleList = new ArrayList<>();
 
@@ -175,6 +201,10 @@ public class EstablishmentDetailActivity extends AppCompatActivity {
 
     //OnClick Method for Show All Reviews
     public void showAllReview(View view) {
+        Intent intent = new Intent(this, ReviewAllActivity.class);
+        intent.putExtra("str_establishmentID", str_establishmentID);
+
+        startActivity(intent);
     }
 
     //OnClick Method for Create New Review
@@ -191,6 +221,5 @@ public class EstablishmentDetailActivity extends AppCompatActivity {
         intent.putExtra(ReviewFormActivity.EXTRA_CIRCULAR_REVEAL_Y, revealY);
 
         ActivityCompat.startActivity(this, intent, options.toBundle());
-
     }
 }
