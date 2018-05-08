@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/dashboard_menu_search"
+        android:title="@string/dashboard_menu_search_title"
+        app:showAsAction="ifRoom"
+        app:actionViewClass="android.widget.SearchView" />
+    <item android:id="@+id/dashboard_menu_sort"
+        android:title="@string/dashboard_menu_sort_title"
+        android:icon="@mipmap/ic_sort_by_alpha_white_24dp"
+        app:showAsAction="ifRoom" />
+    <group android:checkableBehavior="all"
+        app:showAsAction="ifRoom">
+        <item android:id="@+id/dashboard_menu_restaurant"
+            android:title="@string/dashboard_menu_restaurant" />
+        <item android:id="@+id/dashboard_menu_coffee_shop"
+            android:title="@string/dashboard_menu_coffee_shop" />
+        <item android:id="@+id/dashboard_menu_bar"
+            android:title="@string/dashboard_menu_bar" />
+    </group>
+</menu>

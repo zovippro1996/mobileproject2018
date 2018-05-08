@@ -73,4 +73,13 @@
     <string name="alert_dialog_confirm_positive">Save</string>
     <string name="alert_dialog_confirm_negative">Cancel</string>
 
+    <!-- DashboardActivity -->
+    <string name="dashboard_activity_title">Dashboard</string>
+    <string name="dashboard_menu_restaurant">Restaurant</string>
+    <string name="dashboard_menu_coffee_shop">Coffee Shop</string>
+    <string name="dashboard_menu_bar">Bar</string>
+    <string name="dashboard_menu_search_title">Search</string>
+    <string name="dashboard_menu_search_hint">Search establishment</string>
+    <string name="dashboard_menu_sort_title">Sort</string>
+
 </resources>

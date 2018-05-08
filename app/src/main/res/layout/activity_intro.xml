@@ -22,7 +22,7 @@
         android:layout_marginEnd="8dp"
         android:text="@string/intro_title_greeting"
         android:textColor="@android:color/holo_orange_light"
-        android:textSize="35sp"
+        android:textSize="32sp"
         android:textStyle="bold|italic"
         android:fontFamily="cursive"
         app:layout_constraintHorizontal_chainStyle="packed"
@@ -39,7 +39,7 @@
         android:layout_marginBottom="16dp"
         android:text="@string/intro_title_app_name"
         android:textColor="@android:color/holo_orange_light"
-        android:textSize="45sp"
+        android:textSize="42sp"
         android:textStyle="bold|italic"
         android:fontFamily="cursive"
         app:layout_constraintVertical_chainStyle="packed"
@@ -64,13 +64,13 @@
 
     <Button
         android:id="@+id/intro_button_add"
-        style="@style/AppTheme.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:onClick="moveToEstablishmentForm"
         android:text="@string/intro_button_add"
         android:textSize="12sp"
+        android:theme="@style/AppTheme.Button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -79,13 +79,13 @@
 
     <Button
         android:id="@+id/intro_button_dashboard"
-        style="@style/AppTheme.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="@string/intro_button_dashboard"
         android:textSize="12sp"
         android:onClick="moveToDashboard"
+        android:theme="@style/AppTheme.Button"
         app:layout_constraintBaseline_toBaselineOf="@id/intro_button_add"
         app:layout_constraintLeft_toRightOf="@id/intro_button_add"
         app:layout_constraintRight_toRightOf="parent" />

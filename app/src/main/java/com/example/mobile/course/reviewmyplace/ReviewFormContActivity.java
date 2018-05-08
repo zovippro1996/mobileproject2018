@@ -21,7 +21,7 @@ import java.util.Locale;
 public class ReviewFormContActivity extends AppCompatActivity {
 
     private Review review;
-    private DatabaseHelper databaseHelper;
+    private DatabaseHelper mDatabaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,7 +64,7 @@ public class ReviewFormContActivity extends AppCompatActivity {
         ratingBar.setRating(review.getOverallRating());
 
         // Get ready to access the database later
-        databaseHelper = new DatabaseHelper(this);
+        mDatabaseHelper = new DatabaseHelper(this);
     }
 
     /**
@@ -113,7 +113,7 @@ public class ReviewFormContActivity extends AppCompatActivity {
     protected void saveReview() {
         try {
             // Insert into database
-            databaseHelper.insertReview(review);
+            mDatabaseHelper.insertReview(review);
 
             // Notify successful saving
             popupToast("Your review has been saved successfully");

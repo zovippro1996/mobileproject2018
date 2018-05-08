@@ -8,4 +8,6 @@
     <color name="colorPinkInputPrompt">#F20CA1</color>
     <color name="colorCustomPrimary">#FF668A</color>
     <color name="colorCustomPrimaryDark">#FF4D76</color>
+    <color name="colorLightOrange">#FFDB99</color>
+    <color name="colorLightCyan">#E0FFFF</color>
 </resources>

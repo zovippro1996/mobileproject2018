@@ -58,6 +58,10 @@
                 android:value=".ReviewFormActivity" />
         </activity>
         <activity android:name=".ReviewAllActivity"></activity>
+        <activity
+            android:name=".DashboardActivity"
+            android:label="@string/dashboard_activity_title"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

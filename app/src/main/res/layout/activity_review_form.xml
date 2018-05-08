@@ -265,13 +265,14 @@
         app:layout_constraintLeft_toRightOf="@id/review_form_overall_rating_prompt" />
 
     <!-- Next Button -->
-    <Button android:id="@+id/review_form_next_button"
-        style="@style/AppTheme.Button"
+    <Button
+        android:id="@+id/review_form_next_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:text="@string/review_form_next_button"
         android:onClick="onNextButton"
+        android:text="@string/review_form_next_button"
+        android:theme="@style/AppTheme.Button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent" />
