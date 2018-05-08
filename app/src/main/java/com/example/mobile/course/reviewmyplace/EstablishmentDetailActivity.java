@@ -1,5 +1,7 @@
 package com.example.mobile.course.reviewmyplace;
 
+import android.app.PendingIntent;
+import android.app.TaskStackBuilder;
 import android.content.Intent;
 import android.database.Cursor;
 import android.support.design.widget.FloatingActionButton;
@@ -9,9 +11,14 @@ import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.NavUtils;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -118,16 +125,18 @@ public class EstablishmentDetailActivity extends AppCompatActivity {
 
             latest_review_cursor.moveToFirst();
 
-            int review_date = latest_review_cursor.getInt(latest_review_cursor.getColumnIndex
-                    ("date"));
-            Calendar review_caldate = Calendar.getInstance();
 
-            review_caldate.setTimeInMillis(review_date);
+            Calendar review_caldate = Calendar.getInstance();
+            review_caldate.setTimeInMillis(latest_review_cursor.getLong(latest_review_cursor.getColumnIndex
+                    ("date")));
 
             float rating = latest_review_cursor.getFloat(latest_review_cursor.getColumnIndex
                     ("overall_rating"));
 
-            Review review = new Review(review_caldate, rating, "Been there.");
+            String comment = latest_review_cursor.getString(latest_review_cursor.getColumnIndex(
+                    (databaseHelper.COL_COMMENT)));
+
+            Review review = new Review(review_caldate, rating, comment);
 
             bundle.putParcelable("review", review);
         }
@@ -165,6 +174,36 @@ public class EstablishmentDetailActivity extends AppCompatActivity {
 
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabLayout_main);
         tabLayout.setupWithViewPager(viewPager);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setDisplayShowHomeEnabled(true);
+        }
+    }
+
+    //Navigate Up to PARENT
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                Intent upIntent = NavUtils.getParentActivityIntent(this);
+                // set the new task and clear flags
+                upIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(upIntent);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    //BACK TO PARENT
+    @Override
+    public void onBackPressed() {
+        Intent upIntent = NavUtils.getParentActivityIntent(this);
+        // set the new task and clear flags
+        upIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(upIntent);
     }
 
 
@@ -202,7 +241,7 @@ public class EstablishmentDetailActivity extends AppCompatActivity {
     //OnClick Method for Show All Reviews
     public void showAllReview(View view) {
         Intent intent = new Intent(this, ReviewAllActivity.class);
-        intent.putExtra("mStrEstablishmentID", str_establishmentID);
+        intent.putExtra(EstablishmentConfirmationActivity.EXTRA_ESTABLISHMENT_ID, str_establishmentID);
 
         startActivity(intent);
     }

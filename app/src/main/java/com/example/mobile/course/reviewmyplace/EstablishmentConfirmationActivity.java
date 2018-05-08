@@ -143,16 +143,17 @@ public class EstablishmentConfirmationActivity extends AppCompatActivity {
             }
             // Notify successful saving
             popupToast("Your review has been saved successfully");
+            Intent intent = new Intent(this, EstablishmentDetailActivity.class);
+            intent.putExtra(EstablishmentConfirmationActivity.EXTRA_ESTABLISHMENT_ID, str_establishmentID);
+            startActivity(intent);
+            finish();
+
         } catch (SQLiteException sqle) {
             Log.w(this.getClass().getName(), "Error saving to database");
 
             // Notify unsuccessful saving
             popupToast("Couldn't save your review into database");
         }
-
-        Intent intent = new Intent(this, EstablishmentDetailActivity.class);
-        intent.putExtra(EstablishmentConfirmationActivity.EXTRA_ESTABLISHMENT_ID, str_establishmentID);
-        startActivity(intent);
     }
 
     private void popupToast(String message) {

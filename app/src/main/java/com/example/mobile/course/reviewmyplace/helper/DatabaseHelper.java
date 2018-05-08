@@ -240,7 +240,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Cursor getAllReviewRecordsOrderByDate_latest(String establishmentID) {
 
         return database.query(TABLE_NAME_REVIEW, null, COL_ESTABLISHMENT_ID + " = ?",
-                new String[] {establishmentID},null, null, COL_DATE +" DESC","1");
+                new String[] {establishmentID},null, null, COL_OVERALL_RATING +" DESC","1");
     }
 
     /**

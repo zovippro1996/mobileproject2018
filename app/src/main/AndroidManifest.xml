@@ -15,7 +15,6 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -23,7 +22,7 @@
             android:name=".EstablishmentFormActivity"
             android:label="New Establishment"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/AppTheme" />
         <activity
             android:name=".EstablishmentConfirmationActivity"
             android:parentActivityName=".EstablishmentFormActivity"
@@ -35,14 +34,28 @@
                 android:value=".EstablishmentFormActivity" />
         </activity>
         <activity
+            android:name=".DashboardActivity"
+            android:label="@string/dashboard_activity_title"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".EstablishmentDetailActivity"
+            android:parentActivityName=".DashboardActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme_Animation">
-
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
+            <!-- The meta-data element is needed for versions lower than 4.1 -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".DashboardActivity" />
+        </activity>
+        <activity
+            android:name=".ReviewAllActivity"
+            android:screenOrientation="portrait"
+            android:parentActivityName=".EstablishmentDetailActivity"
+            android:theme="@style/AppTheme">
+            <!-- The meta-data element is needed for versions lower than 4.1 -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".EstablishmentDetailActivity" />
         </activity>
         <activity
             android:name=".ReviewFormActivity"
@@ -59,11 +72,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ReviewFormActivity" />
         </activity>
-        <activity android:name=".ReviewAllActivity"></activity>
-        <activity
-            android:name=".DashboardActivity"
-            android:label="@string/dashboard_activity_title"
-            android:theme="@style/AppTheme.NoActionBar" />
+
     </application>
 
 </manifest>

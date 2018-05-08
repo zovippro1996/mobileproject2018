@@ -136,6 +136,7 @@
             android:layout_weight=".5"
             android:onClick="clickConfirm_Button"
             android:text="Confirm"
+            android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
             tools:layout_editor_absoluteY="399dp" />
     </LinearLayout>

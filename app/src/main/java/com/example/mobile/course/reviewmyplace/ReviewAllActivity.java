@@ -27,7 +27,7 @@ public class ReviewAllActivity extends ListActivity {
 
         // Get the Intent that started this activity and extract the string
         Intent intent = getIntent();
-        mStrEstablishmentID = intent.getStringExtra("mStrEstablishmentID");
+        mStrEstablishmentID = intent.getStringExtra(EstablishmentConfirmationActivity.EXTRA_ESTABLISHMENT_ID);
 
         populateListView();
     }
@@ -35,8 +35,8 @@ public class ReviewAllActivity extends ListActivity {
     //Generate ListView when the Activity Start
     private void populateListView() {
         // Get all review records ...
-//        Cursor cursor = mDatabaseHelper.getAllReviewRecordsfromEstId(mStrEstablishmentID);
-        Cursor cursor = mDatabaseHelper.getAllReviewRecordsOrderByDate();
+        Cursor cursor = mDatabaseHelper.getAllReviewRecordsFromEstablishment(mStrEstablishmentID);
+//        Cursor cursor = mDatabaseHelper.getAllReviewRecordsOrderByDate();
 
 //        String[] fromField = new String[] {mDatabaseHelper.COL_DATE};
 //
@@ -67,7 +67,7 @@ public class ReviewAllActivity extends ListActivity {
         int revealY = (int) (view.getY() + view.getHeight() / 2);
 
         Intent intent = new Intent(this, ReviewFormActivity.class);
-        intent.putExtra("mStrEstablishmentID", mStrEstablishmentID);
+        intent.putExtra(EstablishmentConfirmationActivity.EXTRA_ESTABLISHMENT_ID, mStrEstablishmentID);
 //        startActivity(intent);
         intent.putExtra(ReviewFormActivity.EXTRA_CIRCULAR_REVEAL_X, revealX);
         intent.putExtra(ReviewFormActivity.EXTRA_CIRCULAR_REVEAL_Y, revealY);
