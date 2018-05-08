@@ -5,9 +5,13 @@
         <!-- Customize your theme here. -->
         <!--<item name="colorPrimary">@color/colorPrimary</item>-->
         <!--<item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
-        <item name="android:colorPrimary">@color/colorCustomPrimary</item>
-        <item name="android:colorPrimaryDark">@color/colorCustomPrimaryDark</item>
-        <item name="android:colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/colorCustomPrimary</item>
+        <item name="colorPrimaryDark">@color/colorCustomPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="MyActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:background">@color/colorAccent</item>
     </style>
 
     <!-- Custom theme for buttons in FormActivity. -->
@@ -39,18 +43,14 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <!-- Base application theme. -->
-    <style name="AppTheme_Animation" parent="Theme.AppCompat.Light">
+    <style name="AppTheme_Animation" parent="AppTheme">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
     </style>
 
     <style name="AppTheme_Animation.Transparent">
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
-
     </style>
 
 
