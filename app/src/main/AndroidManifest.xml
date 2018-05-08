@@ -27,6 +27,7 @@
             android:name=".EstablishmentConfirmationActivity"
             android:parentActivityName=".EstablishmentFormActivity"
             android:screenOrientation="portrait"
+            android:label="Confirmation"
             android:theme="@style/AppTheme">
             <!-- The meta-data element is needed for versions lower than 4.1 -->
             <meta-data
