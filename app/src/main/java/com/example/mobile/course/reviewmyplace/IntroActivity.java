@@ -30,5 +30,6 @@ public class IntroActivity extends AppCompatActivity {
         // Start DashboardActivity
         Intent intent = new Intent(this, DashboardActivity.class);
         startActivity(intent);
+        finish();
     }
 }

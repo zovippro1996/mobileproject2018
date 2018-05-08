@@ -117,6 +117,11 @@ public class ReviewFormContActivity extends AppCompatActivity {
 
             // Notify successful saving
             popupToast("Your review has been saved successfully");
+
+            Intent intent = new Intent(this, EstablishmentDetailActivity.class);
+            intent.putExtra(EstablishmentConfirmationActivity.EXTRA_ESTABLISHMENT_ID, Integer.toString( review
+                    .getEstablishmentID()));
+            startActivity(intent);
         } catch (SQLiteException sqle) {
             Log.w(this.getClass().getName(), "Error saving to database");
 

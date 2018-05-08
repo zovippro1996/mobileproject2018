@@ -324,7 +324,7 @@ public class Review implements Parcelable {
         else if (currency.matches("vnd")) convertedCurrency = "VND";
         else convertedCurrency = currency;
 
-        return String.format(Locale.getDefault(), "%.2f - %.2f %s", min, max, currency);
+        return String.format(Locale.getDefault(), "%s %.2f - %.2f ", currency, min, max);
     }
 
     @Override
