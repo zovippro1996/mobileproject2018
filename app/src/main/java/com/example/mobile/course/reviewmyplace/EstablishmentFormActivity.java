@@ -49,6 +49,38 @@ public class EstablishmentFormActivity extends AppCompatActivity {
         spinner_EstablishmentType.setAdapter(adapter);
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        //GetValue of user input
+        String UserID = editText_UserID.getText().toString();
+        String EstablishmentName = editText_EstablishmentName.getText().toString();
+        String FoodType = editText_FoodType.getText().toString();
+        String Location = editText_Location.getText().toString();
+
+        // Save the input value
+        savedInstanceState.putString("UserID", UserID);
+        savedInstanceState.putString("EstablishmentName", EstablishmentName);
+        savedInstanceState.putString("FoodType", FoodType);
+        savedInstanceState.putString("Location", Location);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        //GetValue of user input
+        String UserID = savedInstanceState.getString("UserID");
+        String EstablishmentName = savedInstanceState.getString("EstablishmentName");
+        String FoodType = savedInstanceState.getString("FoodType");
+        String Location = savedInstanceState.getString("Location");
+
+
+        editText_UserID.setText(UserID);
+        editText_EstablishmentName.setText(EstablishmentName);
+        editText_FoodType.setText(FoodType);
+        editText_Location.setText(Location);
+    }
 
     protected boolean validateAllFields(){
         //GetValue of user input
@@ -63,10 +95,12 @@ public class EstablishmentFormActivity extends AppCompatActivity {
         if(TextUtils.isEmpty(UserID)){
             editText_UserID = (EditText) findViewById(R.id.editText_UserID);
             editText_UserID.setError("This is a Required Field");
+            editText_UserID.requestFocus();
             return false;
         } else if (TextUtils.isEmpty(EstablishmentName)){
             editText_EstablishmentName = (EditText) findViewById(R.id.editText_EstablishmentName);
             editText_EstablishmentName.setError("This is a Required Field");
+            editText_EstablishmentName.requestFocus();
             return false;
         } else if((TextUtils.isEmpty(EstablishmentType)) || (EstablishmentType.equals("-1"))) {
             TextView errorText = (TextView)spinner_EstablishmentType.getSelectedView();

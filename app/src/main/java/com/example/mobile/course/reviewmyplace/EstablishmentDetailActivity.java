@@ -122,23 +122,35 @@ public class EstablishmentDetailActivity extends AppCompatActivity {
 
         if(review_number > 0){
             Cursor latest_review_cursor = databaseHelper.getAllReviewRecordsOrderByDate_latest(str_establishmentID);
-
             latest_review_cursor.moveToFirst();
-
 
             Calendar review_caldate = Calendar.getInstance();
             review_caldate.setTimeInMillis(latest_review_cursor.getLong(latest_review_cursor.getColumnIndex
                     ("date")));
-
             float rating = latest_review_cursor.getFloat(latest_review_cursor.getColumnIndex
                     ("overall_rating"));
-
             String comment = latest_review_cursor.getString(latest_review_cursor.getColumnIndex(
                     (databaseHelper.COL_COMMENT)));
-
             Review review = new Review(review_caldate, rating, comment);
 
             bundle.putParcelable("review", review);
+
+            if (review_number>1){
+                latest_review_cursor.moveToNext();
+                Calendar review_caldate_2 = Calendar.getInstance();
+                review_caldate_2.setTimeInMillis(latest_review_cursor.getLong(latest_review_cursor
+                        .getColumnIndex
+                        ("date")));
+                float rating_2 = latest_review_cursor.getFloat(latest_review_cursor.getColumnIndex
+                        ("overall_rating"));
+
+                String comment_2 = latest_review_cursor.getString(latest_review_cursor
+                        .getColumnIndex(
+                        (databaseHelper.COL_COMMENT)));
+
+                Review review_2 = new Review(review_caldate_2, rating_2, comment_2);
+                bundle.putParcelable("review_2", review_2);
+            }
         }
 
 
