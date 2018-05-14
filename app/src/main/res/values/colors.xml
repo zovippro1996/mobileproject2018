@@ -2,12 +2,14 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#DD1021</color>
     <color name="colorPinkButton">#FF5079</color>
     <color name="colorWhiteText">#ffffff</color>
     <color name="colorPinkInputPrompt">#F20CA1</color>
     <color name="colorCustomPrimary">#FF668A</color>
     <color name="colorCustomPrimaryDark">#FF4D76</color>
-    <color name="colorLightOrange">#FFDB99</color>
+    <color name="colorLightOrange">#fff5e3</color>
     <color name="colorLightCyan">#E0FFFF</color>
+    <color name="colorMcDonaldRedDark">#a70b18</color>
+    <color name="colorMcDonaldRed">#DD1021</color>
 </resources>

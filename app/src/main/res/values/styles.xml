@@ -5,8 +5,8 @@
         <!-- Customize your theme here. -->
         <!--<item name="colorPrimary">@color/colorPrimary</item>-->
         <!--<item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
-        <item name="colorPrimary">@color/colorCustomPrimary</item>
-        <item name="colorPrimaryDark">@color/colorCustomPrimaryDark</item>
+        <item name="colorPrimary">@color/colorMcDonaldRed</item>
+        <item name="colorPrimaryDark">@color/colorMcDonaldRedDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
@@ -16,7 +16,7 @@
 
     <!-- Custom theme for buttons in FormActivity. -->
     <style name="AppTheme.Button" parent="Widget.AppCompat.Button.Colored">
-        <item name="android:colorButtonNormal">@color/colorPinkButton</item>
+        <item name="android:colorButtonNormal">@color/colorMcDonaldRed</item>
         <item name="android:textColor">@color/colorWhiteText</item>
     </style>
 
@@ -27,7 +27,7 @@
 
     <!-- Custom theme for input-prompt (TextView) -->
     <style name="AppTheme.InputPrompt" parent="@android:style/TextAppearance">
-        <item name="android:textColor">@color/colorPinkInputPrompt</item>
+        <item name="android:textColor">@color/colorMcDonaldRedDark</item>
         <item name="android:fontFamily">serif</item>
     </style>
 
