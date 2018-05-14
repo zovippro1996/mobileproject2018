@@ -88,7 +88,13 @@ public class ReviewFormContActivity extends AppCompatActivity {
     public void onSaveButton(View view) {
         // Extract input comment (if any)
         EditText editText = findViewById(R.id.review_form_cont_comment);
-        mReview.setReviewContent(editText.getText().toString());
+        String originalContent = editText.getText().toString();
+
+        String adjustedContent = originalContent.trim()
+                .replaceAll("\\n+", "\n")
+                .replaceAll(" +", " ");
+
+        mReview.setReviewContent(adjustedContent);
 
         // Use the Builder class to ask for confirmation
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -116,7 +122,7 @@ public class ReviewFormContActivity extends AppCompatActivity {
             mDatabaseHelper.insertReview(mReview);
 
             // Notify successful saving
-            popupToast("Your mReview has been saved successfully");
+            popupToast("Your review has been saved successfully");
 
             // Open the corresponding Establishment detailed screen (i.e. EstablishmentDetailActivity)
             Intent intent = new Intent(this, EstablishmentDetailActivity.class);
