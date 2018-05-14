@@ -10,15 +10,17 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_margin="2dp"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="4dp">
 
         <TextView
             android:id="@+id/textView_reviewDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
+            android:layout_marginStart="8dp"
             android:text="Date"
             android:textColor="#545454"
             android:textSize="18sp"
@@ -166,7 +168,8 @@
             android:id="@+id/textView_reviewContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="2dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:padding="3dp"
             android:text="This is a Sample Comment for a wonderful imaginary restaurant that I don't even know."

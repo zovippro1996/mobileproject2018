@@ -2,12 +2,17 @@ package com.example.mobile.course.reviewmyplace;
 
 import android.app.ListActivity;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
+import android.view.Window;
 import android.widget.ResourceCursorAdapter;
+import android.widget.Toolbar;
 
 import com.example.mobile.course.reviewmyplace.helper.DatabaseHelper;
 import com.example.mobile.course.reviewmyplace.helper.ReviewCursorAdapter;
@@ -16,6 +21,7 @@ public class ReviewAllActivity extends ListActivity {
 
     String mStrEstablishmentID = "";
     private DatabaseHelper mDatabaseHelper;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +37,14 @@ public class ReviewAllActivity extends ListActivity {
 
         populateListView();
     }
+
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        // Inflate the menu items for use in the action bar
+//        MenuInflater inflater = getMenuInflater();
+//        inflater.inflate(R.menu.main_activity_actions, menu);
+//        return super.onCreateOptionsMenu(menu);
+//    }
 
     //Generate ListView when the Activity Start
     private void populateListView() {
