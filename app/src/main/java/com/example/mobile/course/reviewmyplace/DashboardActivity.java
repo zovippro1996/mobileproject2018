@@ -16,6 +16,7 @@ import android.widget.FilterQueryProvider;
 import android.widget.ListView;
 import android.widget.ResourceCursorAdapter;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.example.mobile.course.reviewmyplace.helper.EstablishmentCursorAdapter;
 import com.example.mobile.course.reviewmyplace.helper.DatabaseHelper;
@@ -25,11 +26,14 @@ import java.util.Locale;
 
 public class DashboardActivity extends AppCompatActivity {
 
+    private static final int TIME_INTERVAL = 2000;  // (milliseconds) to detect double back pressed
+
     private DatabaseHelper mDatabaseHelper;
     private ArrayList<String> mFilterTypes;         // type of establishment to filter
     private Menu mOptionsMenu;
     private boolean mAlphabeticalSorted;            // whether to sort establishment records
                                                     // in alphabetical order or not
+    private long mBackPressed;                      // the time (in milliseconds) when the Back button is pressed
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,70 +65,18 @@ public class DashboardActivity extends AppCompatActivity {
         mAlphabeticalSorted = false;
     }
 
-    private void setupSearchOnTyping(Menu menu) {
-        // Get all records
-        Cursor records = mDatabaseHelper.getAllEstablishmentRecords();
+    @Override
+    public void onBackPressed() {
+        // If double-back detected
+        if (mBackPressed + TIME_INTERVAL > System.currentTimeMillis()) {
+            super.onBackPressed();
+            return;
+        } else {
+            popupToast("Press Back button twice to exit");
+        }
 
-        // Create a new list adapter bound to the cursor
-        // Display all Establishment at first
-        final EstablishmentCursorAdapter adapter = new EstablishmentCursorAdapter(
-                this,
-                R.layout.list_establishment_record,
-                records,
-                ResourceCursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER
-        );
-
-        // Bind adapter to the ListView
-        ListView listView = findViewById(android.R.id.list);
-        listView.setAdapter(adapter);
-
-        // Set listener for item
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                // Last argument (i.e. long l) is actually the row id from the database
-                Log.i("id", String.format(Locale.getDefault(), "%d", l));
-
-                // TODO: redirect to the corresponding EstablishmentDetailActivity when being clicked
-
-                // Redirect to the corresponding establishment detailed screen
-                Intent intent = new Intent(view.getContext(), EstablishmentDetailActivity.class);
-                intent.putExtra(EstablishmentConfirmationActivity.EXTRA_ESTABLISHMENT_ID, String.format(Locale.getDefault(), "%d", l));
-                startActivity(intent);
-            }
-        });
-
-        // Set filter query provider (i.e. function returning the required cursor) for the adapter
-        adapter.setFilterQueryProvider(new FilterQueryProvider() {
-            @Override
-            public Cursor runQuery(CharSequence charSequence) {
-                return mDatabaseHelper.getFilteredEstablishmentRecords(charSequence.toString(), mFilterTypes, mAlphabeticalSorted);
-            }
-        });
-
-        SearchView searchView = (SearchView) menu.findItem(R.id.dashboard_menu_search).getActionView();
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String s) {
-                // collapse the view?
-
-                // Filter the input keywords
-                adapter.getFilter().filter(s);
-
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String s) {
-                // Filter the input keywords
-                adapter.getFilter().filter(s);
-
-                // Notify changes of data set
-                adapter.notifyDataSetChanged();
-
-                return true;
-            }
-        });
+        // Record the time Back button is last pressed
+        mBackPressed = System.currentTimeMillis();
     }
 
     @Override
@@ -239,5 +191,79 @@ public class DashboardActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
 
         return true;
+    }
+
+    private void setupSearchOnTyping(Menu menu) {
+        // Get all records
+        Cursor records = mDatabaseHelper.getAllEstablishmentRecords();
+
+        // Create a new list adapter bound to the cursor
+        // Display all Establishment at first
+        final EstablishmentCursorAdapter adapter = new EstablishmentCursorAdapter(
+                this,
+                R.layout.list_establishment_record,
+                records,
+                ResourceCursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER
+        );
+
+        // Bind adapter to the ListView
+        ListView listView = findViewById(android.R.id.list);
+        listView.setAdapter(adapter);
+
+        // Set listener for item
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                // Last argument (i.e. long l) is actually the row id from the database
+                Log.i("id", String.format(Locale.getDefault(), "%d", l));
+
+                // TODO: redirect to the corresponding EstablishmentDetailActivity when being clicked
+
+                // Redirect to the corresponding establishment detailed screen
+                Intent intent = new Intent(view.getContext(), EstablishmentDetailActivity.class);
+                intent.putExtra(EstablishmentConfirmationActivity.EXTRA_ESTABLISHMENT_ID, String.format(Locale.getDefault(), "%d", l));
+                startActivity(intent);
+            }
+        });
+
+        // Set filter query provider (i.e. function returning the required cursor) for the adapter
+        adapter.setFilterQueryProvider(new FilterQueryProvider() {
+            @Override
+            public Cursor runQuery(CharSequence charSequence) {
+                return mDatabaseHelper.getFilteredEstablishmentRecords(charSequence.toString(), mFilterTypes, mAlphabeticalSorted);
+            }
+        });
+
+        SearchView searchView = (SearchView) menu.findItem(R.id.dashboard_menu_search).getActionView();
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                // collapse the view?
+
+                // Filter the input keywords
+                adapter.getFilter().filter(s);
+
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                // Filter the input keywords
+                adapter.getFilter().filter(s);
+
+                // Notify changes of data set
+                adapter.notifyDataSetChanged();
+
+                return true;
+            }
+        });
+    }
+
+    /**
+     * Display a popup "toast" alert at the bottom of the device
+     * @param message Message to be displayed in the popup
+     */
+    private void popupToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
 }
