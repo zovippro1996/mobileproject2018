@@ -1,5 +1,6 @@
 package com.example.mobile.course.reviewmyplace;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -91,7 +92,7 @@ public class DashboardActivity extends AppCompatActivity {
         // Add search hint and set iconified state
         SearchView searchView = (SearchView) menu.findItem(R.id.dashboard_menu_search).getActionView();
         searchView.setQueryHint(getResources().getString(R.string.dashboard_menu_search_hint));
-//        searchView.setIconifiedByDefault(false);
+        searchView.setIconifiedByDefault(true);
 
         // Setup search-on-typing for SearchView
         setupSearchOnTyping(menu);
@@ -216,8 +217,6 @@ public class DashboardActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 // Last argument (i.e. long l) is actually the row id from the database
                 Log.i("id", String.format(Locale.getDefault(), "%d", l));
-
-                // TODO: redirect to the corresponding EstablishmentDetailActivity when being clicked
 
                 // Redirect to the corresponding establishment detailed screen
                 Intent intent = new Intent(view.getContext(), EstablishmentDetailActivity.class);
