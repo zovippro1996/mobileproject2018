@@ -17,7 +17,6 @@ import com.example.mobile.course.reviewmyplace.EstablishmentDetailActivity;
 import com.example.mobile.course.reviewmyplace.R;
 import com.example.mobile.course.reviewmyplace.object.Establishment;
 import com.facebook.CallbackManager;
-import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.model.SharePhoto;
 import com.facebook.share.model.SharePhotoContent;
 import com.facebook.share.widget.ShareButton;
@@ -50,7 +49,6 @@ public class FragmentDetail extends Fragment {
         if (getArguments() != null) {
             establishment = getArguments().getParcelable("establishment");
         }
-
     }
 
     @Override
@@ -76,30 +74,35 @@ public class FragmentDetail extends Fragment {
         textView_Location = inf.findViewById(R.id.textView_Location);
         textView_Location.setText(establishment.getEstablishmentLocation().getDescription());
 
+        //Share Content on Facebook
+        Bitmap image = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
 
-        ShareLinkContent content = new ShareLinkContent.Builder()
-                .setContentUrl(Uri.parse("https://developers.facebook.com"))
+        switch (establishment.getEstablishmentType()){
+            case BAR:
+                image = BitmapFactory.decodeResource(getResources(), R.drawable.default_bar);
+                break;
+            case RESTAURANT:
+                image = BitmapFactory.decodeResource(getResources(), R.drawable.default_restaurant);
+                break;
+            case COFFEE_SHOP:
+                image = BitmapFactory.decodeResource(getResources(), R.drawable.default_coffeeshop);
+                break;
+            case NONE:
+                break;
+        }
+
+        SharePhoto photo = new SharePhoto.Builder()
+                .setCaption("My New Destination")
+                .setBitmap(image)
                 .build();
 
+        SharePhotoContent content = new SharePhotoContent.Builder()
+                .addPhoto(photo)
+                .build();
+
+        //Attach ShareContent to Share Button
         ShareButton shareButton = (ShareButton)inf.findViewById(R.id.fb_share_button);
         shareButton.setShareContent(content);
-
-        shareButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                callbackManager = CallbackManager.Factory.create();
-                // this part is optional
-                if (ShareDialog.canShow(ShareLinkContent.class)) {
-                    ShareLinkContent linkContent = new ShareLinkContent.Builder()
-                            .setContentUrl(Uri.parse("http://developers.facebook.com/android"))
-                            .build();
-                    shareDialog.show(linkContent);
-                }
-
-            }
-        });
-
-
 
         // Inflate the layout for this fragment
         return inf;
