@@ -373,6 +373,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      * @param id ID of the establishment to be deleted
      */
     public void deleteEstablishmentRecord(int id) {
+        // Delete all associated Review records first (if any)
+        deleteAllReviewRecordsOfEstablishment(id);
+
         database.delete(TABLE_NAME_ESTABLISHMENT, "_id = ?", new String[] {String.valueOf(id)});
     }
 
@@ -382,5 +385,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      */
     public void deleteReviewRecord(int id) {
         database.delete(TABLE_NAME_REVIEW, "_id = ?", new String[] {String.valueOf(id)});
+    }
+
+    /**
+     * Delete all Review records associated with the specified Establishment
+     * @param establishment_id Id of the associated Establishment record
+     */
+    public void deleteAllReviewRecordsOfEstablishment(int establishment_id) {
+        database.delete(TABLE_NAME_REVIEW, COL_ESTABLISHMENT_ID + " = ?", new String[] {String.valueOf(establishment_id)});
     }
 }

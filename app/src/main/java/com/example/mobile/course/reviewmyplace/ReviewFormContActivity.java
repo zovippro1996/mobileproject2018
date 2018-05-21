@@ -133,7 +133,7 @@ public class ReviewFormContActivity extends AppCompatActivity {
             Log.w(this.getClass().getName(), "Error saving to database");
 
             // Notify unsuccessful saving
-            popupToast("Couldn't save your mReview into database");
+            popupToast("Couldn't save your review into database");
         }
     }
 
