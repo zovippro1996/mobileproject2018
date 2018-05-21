@@ -7,4 +7,8 @@
         android:orderInCategory="100"
         android:title="@string/action_settings"
         app:showAsAction="never" />
+
+    <item android:id="@+id/action_establishment_detail_delete"
+        android:title="@string/action_delete" />
+
 </menu>

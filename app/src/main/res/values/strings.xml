@@ -33,8 +33,12 @@
     </string-array>
     <string name="title_activity_establishment_detail">EstablishmentDetailActivity</string>
 
+    <!-- EstablishmentDetailActivity -->
     <string name="action_settings">Settings</string>
-
+    <string name="action_delete">Delete</string>
+    <string name="action_delete_message">Delete establishment?</string>
+    <string name="action_delete_positive_button">Delete</string>
+    <string name="action_delete_negative_button">Cancel</string>
 
     <!-- ReviewFormActivity -->
     <string name="review_form_activity_title">Review Form</string>

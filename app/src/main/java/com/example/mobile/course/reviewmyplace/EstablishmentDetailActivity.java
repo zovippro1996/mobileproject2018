@@ -1,9 +1,12 @@
 package com.example.mobile.course.reviewmyplace;
 
+import android.app.AlertDialog;
 import android.app.PendingIntent;
 import android.app.TaskStackBuilder;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteException;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.design.widget.FloatingActionButton;
@@ -20,10 +23,14 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.mobile.course.reviewmyplace.helper.DatabaseHelper;
 import com.example.mobile.course.reviewmyplace.helper.FragmentDetail;
@@ -244,8 +251,13 @@ public class EstablishmentDetailActivity extends AppCompatActivity {
                 // set the new task and clear flags
                 upIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(upIntent);
+                return true;
+            case R.id.action_establishment_detail_delete:
+                onDeleteOptionItem();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-        return super.onOptionsItemSelected(item);
     }
 
     //BACK TO PARENT
@@ -313,5 +325,62 @@ public class EstablishmentDetailActivity extends AppCompatActivity {
         ActivityCompat.startActivity(this, intent, options.toBundle());
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the option menu from XML
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_establishment_detail, menu);
 
+        return true;
+    }
+
+    private void onDeleteOptionItem() {
+        // Pop-up dialog asking for confirmation
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(R.string.action_delete_message);
+        builder.setPositiveButton(R.string.action_delete_positive_button, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                deleteEstablishment();      // delete the current Establishment record
+            }
+        });
+        builder.setNegativeButton(R.string.action_delete_negative_button, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                // do nothing
+            }
+        });
+
+        // Show
+        builder.show();
+    }
+
+    private void deleteEstablishment() {
+        try {
+            // Delete record in database
+            databaseHelper.deleteEstablishmentRecord(Integer.parseInt(str_establishmentID));
+
+            // Notification
+            popupToast("Delete establishment successfully");
+
+            // Redirect to DashboardActivity
+            Intent intent = new Intent(this, DashboardActivity.class);
+            startActivity(intent);
+
+            // TODO: remove Activity instance on stack
+        } catch (SQLiteException sqle) {
+            Log.w(this.getClass().getName(), "Error saving to database");
+
+            // Notify unsuccessful saving
+            popupToast("Couldn't delete establishment");
+        }
+    }
+
+    /**
+     * Display a popup "toast" alert at the bottom of the device
+     * @param message Message to be displayed in the popup
+     */
+    private void popupToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+    }
 }
