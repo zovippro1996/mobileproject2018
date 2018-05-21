@@ -1,24 +1,15 @@
 package com.example.mobile.course.reviewmyplace.helper;
 
 import android.content.Context;
-import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.view.View;
-import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.ResourceCursorAdapter;
 import android.widget.TextView;
 
 import com.example.mobile.course.reviewmyplace.R;
-import com.example.mobile.course.reviewmyplace.ReviewAllActivity;
 import com.example.mobile.course.reviewmyplace.object.Review;
 import com.facebook.CallbackManager;
-import com.facebook.share.model.ShareContent;
-import com.facebook.share.model.SharePhoto;
-import com.facebook.share.model.SharePhotoContent;
-import com.facebook.share.widget.ShareButton;
 import com.facebook.share.widget.ShareDialog;
 
 import java.util.Calendar;
@@ -37,10 +28,8 @@ public class ReviewCursorAdapter extends ResourceCursorAdapter {
      * @param context Interface to application's global information
      * @param cursor The cursor from which to get the data (note: the cursor is already moved to the correct position)
      */
-    public void bindView(View view, Context context, Cursor cursor) {
+    public void bindView(View view, final Context context, Cursor cursor) {
         // Populate data from cursor to views in ListView
-
-
 
         // Date of the review
         Calendar date = Calendar.getInstance();
@@ -80,29 +69,5 @@ public class ReviewCursorAdapter extends ResourceCursorAdapter {
         // Comment
         textView = view.findViewById(R.id.textView_reviewContent);
         textView.setText(cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COL_COMMENT)));
-
-        Bitmap image = BitmapFactory.decodeResource(context.getResources(),
-                R.drawable.default_bar);
-
-        SharePhoto photo = new SharePhoto.Builder()
-                .setBitmap(image)
-                .build();
-
-        SharePhotoContent content = new SharePhotoContent.Builder()
-                .addPhoto(photo)
-                .build();
-
-//        ShareButton shareButton = (ShareButton)view.findViewById(R.id.fb_share_button);
-//        shareButton.setShareContent(content);
-
-
-    }
-
-    public void ShareFacebook(String Type, Context context){
-
-
-
-
-
     }
 }

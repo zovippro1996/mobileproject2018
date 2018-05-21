@@ -26,7 +26,7 @@
                 android:layout_marginBottom="10dp"
                 android:layout_marginLeft="2dp"
                 android:layout_marginRight="2dp"
-                android:layout_weight="0.5"
+                android:layout_weight="1"
                 android:fontFamily="sans-serif"
                 android:text="Establishment Name"
                 android:textSize="24sp"
@@ -35,12 +35,6 @@
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent" />
 
-            <com.facebook.share.widget.ShareButton
-                android:id="@+id/fb_share_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:focusable="true" />
         </LinearLayout>
 
         <LinearLayout
@@ -186,6 +180,13 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/Location" />
+
+        <com.facebook.share.widget.ShareButton
+            android:id="@+id/fb_share_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true" />
 
 
     </LinearLayout>

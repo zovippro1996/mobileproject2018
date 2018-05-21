@@ -212,34 +212,9 @@ public class EstablishmentDetailActivity extends AppCompatActivity {
             actionBar.setDisplayShowHomeEnabled(true);
         }
 
-//        callbackManager = CallbackManager.Factory.create();
-//        shareDialog = new ShareDialog(this);
-
-//        Bitmap image = BitmapFactory.decodeResource(getResources(),
-//                R.drawable.default_bar);
-//        SharePhoto photo = new SharePhoto.Builder()
-//                .setBitmap(image)
-//                .build();
-//        SharePhotoContent content = new SharePhotoContent.Builder()
-//                .addPhoto(photo)
-//                .build();
-//        shareButton = adapter.mFragmentList.get(1).getView().findViewById(R.id.fb_share_button);
-//        shareButton.setShareContent(content);
-//
-//        if (ShareDialog.canShow(SharePhotoContent.class)) {
-//            content = new SharePhotoContent.Builder()
-//                    .addPhoto(photo)
-//                    .build();
-//
-//            shareDialog.show(content);
-//        }
     }
 
-//    @Override
-//    public void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//        callbackManager.onActivityResult(requestCode, resultCode, data);
-//    }
+
 
     //Navigate Up to PARENT
     @Override
@@ -363,9 +338,10 @@ public class EstablishmentDetailActivity extends AppCompatActivity {
             // Notification
             popupToast("Delete establishment successfully");
 
-            // Redirect to DashboardActivity
-            Intent intent = new Intent(this, DashboardActivity.class);
-            startActivity(intent);
+            Intent upIntent = NavUtils.getParentActivityIntent(this);
+            // set the new task and clear flags
+            upIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(upIntent);
 
             // TODO: remove Activity instance on stack
         } catch (SQLiteException sqle) {
