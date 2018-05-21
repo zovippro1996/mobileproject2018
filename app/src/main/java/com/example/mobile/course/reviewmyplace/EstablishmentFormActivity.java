@@ -91,11 +91,21 @@ public class EstablishmentFormActivity extends AppCompatActivity {
         String FoodType = editText_FoodType.getText().toString();
         String Location = editText_Location.getText().toString();
 
+        // Check if UserID correct form
+        final String REGEX = "(\\w+)";
+        Pattern pattern = Pattern.compile(REGEX);
+        //Validate String Pattern for UserID
+        Matcher m = pattern.matcher(UserID);
+
 //      Check If required field is empty
-        if(TextUtils.isEmpty(UserID)){
+        if(TextUtils.isEmpty(UserID)) {
             editText_UserID = (EditText) findViewById(R.id.editText_UserID);
             editText_UserID.setError("This is a Required Field");
             editText_UserID.requestFocus();
+            return false;
+        }else if (!UserID.matches(REGEX)){
+            editText_UserID = (EditText) findViewById(R.id.editText_UserID);
+            editText_UserID.setError("Only Allow Alphebetic, Numeric and Underscope");
             return false;
         } else if (TextUtils.isEmpty(EstablishmentName)){
             editText_EstablishmentName = (EditText) findViewById(R.id.editText_EstablishmentName);
@@ -109,20 +119,6 @@ public class EstablishmentFormActivity extends AppCompatActivity {
             errorText.setText("This is a Required Field");//changes the selected item text to this
             return false;
         }
-
-        // Check if UserID correct form
-        final String REGEX = "(\\w+)";
-        Pattern pattern = Pattern.compile(REGEX);
-        //Validate String Pattern for UserID
-        Matcher m = pattern.matcher(UserID);
-
-        if (!UserID.matches(REGEX)){
-            editText_UserID = (EditText) findViewById(R.id.editText_UserID);
-            editText_UserID.setError("Wrong Format");
-
-            return false;
-        }
-
         return true;
     }
 

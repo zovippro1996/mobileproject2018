@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.mobile.course.reviewmyplace">
-
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,12 +9,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
+        <provider
+            android:name="com.facebook.FacebookContentProvider"
+            android:authorities="com.facebook.app.FacebookContentProvider188568121792876"
+            android:exported="true" />
+
         <activity
             android:name=".IntroActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -25,10 +32,11 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".EstablishmentConfirmationActivity"
+            android:label="Confirmation"
             android:parentActivityName=".EstablishmentFormActivity"
             android:screenOrientation="portrait"
-            android:label="Confirmation"
             android:theme="@style/AppTheme">
+
             <!-- The meta-data element is needed for versions lower than 4.1 -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -43,6 +51,7 @@
             android:parentActivityName=".DashboardActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme_Animation">
+
             <!-- The meta-data element is needed for versions lower than 4.1 -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -50,9 +59,10 @@
         </activity>
         <activity
             android:name=".ReviewAllActivity"
-            android:screenOrientation="portrait"
             android:parentActivityName=".EstablishmentDetailActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme">
+
             <!-- The meta-data element is needed for versions lower than 4.1 -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -73,7 +83,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ReviewFormActivity" />
         </activity>
+        <activity android:name=".FacebookActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

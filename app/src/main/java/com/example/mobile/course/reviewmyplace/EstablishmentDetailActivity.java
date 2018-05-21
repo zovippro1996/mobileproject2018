@@ -4,6 +4,8 @@ import android.app.PendingIntent;
 import android.app.TaskStackBuilder;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
@@ -29,6 +31,11 @@ import com.example.mobile.course.reviewmyplace.helper.FragmentReview;
 import com.example.mobile.course.reviewmyplace.object.Establishment;
 import com.example.mobile.course.reviewmyplace.object.EstablishmentType;
 import com.example.mobile.course.reviewmyplace.object.Review;
+import com.facebook.CallbackManager;
+import com.facebook.share.model.SharePhoto;
+import com.facebook.share.model.SharePhotoContent;
+import com.facebook.share.widget.ShareButton;
+import com.facebook.share.widget.ShareDialog;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -54,6 +61,10 @@ public class EstablishmentDetailActivity extends AppCompatActivity {
     FloatingActionButton fab_createReview = null;
 
     Bundle bundle = new Bundle();
+
+    ShareButton shareButton;
+    CallbackManager callbackManager;
+    ShareDialog shareDialog;
 
     private DatabaseHelper databaseHelper;
 
@@ -193,7 +204,35 @@ public class EstablishmentDetailActivity extends AppCompatActivity {
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setDisplayShowHomeEnabled(true);
         }
+
+//        callbackManager = CallbackManager.Factory.create();
+//        shareDialog = new ShareDialog(this);
+
+//        Bitmap image = BitmapFactory.decodeResource(getResources(),
+//                R.drawable.default_bar);
+//        SharePhoto photo = new SharePhoto.Builder()
+//                .setBitmap(image)
+//                .build();
+//        SharePhotoContent content = new SharePhotoContent.Builder()
+//                .addPhoto(photo)
+//                .build();
+//        shareButton = adapter.mFragmentList.get(1).getView().findViewById(R.id.fb_share_button);
+//        shareButton.setShareContent(content);
+//
+//        if (ShareDialog.canShow(SharePhotoContent.class)) {
+//            content = new SharePhotoContent.Builder()
+//                    .addPhoto(photo)
+//                    .build();
+//
+//            shareDialog.show(content);
+//        }
     }
+
+//    @Override
+//    public void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        callbackManager.onActivityResult(requestCode, resultCode, data);
+//    }
 
     //Navigate Up to PARENT
     @Override
@@ -273,4 +312,6 @@ public class EstablishmentDetailActivity extends AppCompatActivity {
 
         ActivityCompat.startActivity(this, intent, options.toBundle());
     }
+
+
 }

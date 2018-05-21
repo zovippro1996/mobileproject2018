@@ -210,7 +210,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         return database.query(TABLE_NAME_ESTABLISHMENT, null,
                 COL_ESTABLISHMENT_NAME + " like ? and " + COL_ESTABLISHMENT_TYPE + " in " + typesBuilder.toString(),
-                new String[] {filterName + "%"}, null, null, sorted ? COL_ESTABLISHMENT_NAME : null);
+                new String[] {"%" + filterName + "%"}, null, null, sorted ?
+                        COL_ESTABLISHMENT_NAME :
+                        null);
     }
 
     /**
