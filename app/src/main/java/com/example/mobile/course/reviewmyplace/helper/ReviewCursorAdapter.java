@@ -1,12 +1,25 @@
 package com.example.mobile.course.reviewmyplace.helper;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteException;
+import android.media.Image;
+import android.support.v4.app.NavUtils;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.ResourceCursorAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.mobile.course.reviewmyplace.EstablishmentConfirmationActivity;
+import com.example.mobile.course.reviewmyplace.EstablishmentDetailActivity;
 import com.example.mobile.course.reviewmyplace.R;
 import com.example.mobile.course.reviewmyplace.object.Review;
 import com.facebook.CallbackManager;
@@ -15,8 +28,8 @@ import com.facebook.share.widget.ShareDialog;
 import java.util.Calendar;
 
 public class ReviewCursorAdapter extends ResourceCursorAdapter {
-    CallbackManager callbackManager;
-    ShareDialog shareDialog;
+
+    DatabaseHelper databaseHelper;
 
     public ReviewCursorAdapter(Context context, int layout, Cursor cursor, int flags) {
         super(context, layout, cursor, flags);
@@ -30,6 +43,11 @@ public class ReviewCursorAdapter extends ResourceCursorAdapter {
      */
     public void bindView(View view, final Context context, Cursor cursor) {
         // Populate data from cursor to views in ListView
+
+        databaseHelper = new DatabaseHelper(context);
+        final int ReviewID = cursor.getInt(cursor.getColumnIndexOrThrow("_id"));
+        final String mStrEstablishmentID = cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper
+                .COL_ESTABLISHMENT_ID));
 
         // Date of the review
         Calendar date = Calendar.getInstance();
@@ -69,5 +87,50 @@ public class ReviewCursorAdapter extends ResourceCursorAdapter {
         // Comment
         textView = view.findViewById(R.id.textView_reviewContent);
         textView.setText(cursor.getString(cursor.getColumnIndexOrThrow(DatabaseHelper.COL_COMMENT)));
+
+        ImageView imageView_deleteReview = view.findViewById(R.id.imageView_deleteReview);
+
+        //onClickActionListener_Delete Review
+        imageView_deleteReview.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(final View view) {
+                // Pop-up dialog asking for confirmation
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setMessage(R.string.action_delete_message_review);
+                builder.setPositiveButton(R.string.action_delete_positive_button, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        try {
+                            // Delete record in database
+                            databaseHelper.deleteReviewRecord(ReviewID);
+                            // Notify successful saving
+                            Toast.makeText(context, "Review Deleted", Toast.LENGTH_LONG).show();
+
+                            //Finish Trace and Redirect to EstDetailActivity
+                            ((Activity)context).finish();
+                            Intent intent = new Intent(view.getContext(), EstablishmentDetailActivity.class);
+                            intent.putExtra(EstablishmentConfirmationActivity
+                                    .EXTRA_ESTABLISHMENT_ID, mStrEstablishmentID);
+
+                        } catch (SQLiteException sqle) {
+                            Log.w(this.getClass().getName(), "Error saving to database");
+
+                            // Notify unsuccessful saving
+                            Toast.makeText(context, "Cannot Save Review", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+                builder.setNegativeButton(R.string.action_delete_negative_button, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        // do nothing
+                    }
+                });
+
+                // Show
+                builder.show();
+
+            }
+        });
     }
 }

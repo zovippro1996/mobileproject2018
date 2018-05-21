@@ -63,7 +63,7 @@ public class ReviewAllActivity extends ListActivity {
 //                .list_review_record, cursor, fromField, toViewID, 0);
 
         // Create a list adapter to bind all data from cursor to ListView
-        final ReviewCursorAdapter adapter = new ReviewCursorAdapter(
+        ReviewCursorAdapter adapter = new ReviewCursorAdapter(
                 this,
                 R.layout.list_review_record,
                 cursor,

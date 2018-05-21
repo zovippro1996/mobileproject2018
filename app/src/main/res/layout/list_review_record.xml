@@ -19,14 +19,16 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:weightSum="1">
 
             <TextView
                 android:id="@+id/textView_reviewDate"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
                 android:layout_weight="1"
                 android:gravity="start"
                 android:text="Date"
@@ -36,6 +38,20 @@
                 app:layout_constraintBottom_toTopOf="@+id/ratingBar"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageView_deleteReview"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="6dp"
+                android:layout_weight="1"
+                android:background="@android:color/holo_red_light"
+                android:clickable="true"
+                android:contentDescription="Image for Delete"
+                android:focusable="true"
+                app:srcCompat="@drawable/baseline_delete_white_24dp" />
         </LinearLayout>
 
         <LinearLayout
