@@ -51,7 +51,7 @@
                 android:clickable="true"
                 android:contentDescription="Image for Delete"
                 android:focusable="true"
-                app:srcCompat="@drawable/baseline_delete_white_24dp" />
+                android:src="@drawable/baseline_delete_white_24dp" />
         </LinearLayout>
 
         <LinearLayout
